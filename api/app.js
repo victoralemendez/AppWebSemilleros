@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // Cargado de rutas de controladores
+var user_routes = require('./routes/user');
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json()); // Conviersion a JSON de los datos recibidos por peticiones HTTP
@@ -21,6 +23,7 @@ app.use(function(req, res, next) {
 });
 
 // Rutas base
+app.use('/api', user_routes);
 
 
 module.exports = app;

@@ -8,7 +8,7 @@ var port = process.env.PORT || 3977;
 mongoose.Promise = global.Promise; // Elimina mensajes de mongoose al ejecutar el servidor
 
 // Conexion a la bd
-mongoose.connect('mongodb://localhost:27017/curso', {useNewUrlParser: true},(err, res) => {
+mongoose.connect('mongodb://localhost:27017/semillero', {useNewUrlParser: true},(err, res) => {
     if (err) {
         throw err;
     } else {
