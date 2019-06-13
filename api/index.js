@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/semillero', {useNewUrlParser: true},
     } else {
         console.log("la conexión con la base de datos está funcionando correctamente");
         app.listen(port, function() {
-            console.log("Servidor del API Rest de musica escuchando en http://localhost:" + port);
+            console.log("Servidor del API Rest de semilleros escuchando en http://localhost:" + port);
         });
     }
 });
