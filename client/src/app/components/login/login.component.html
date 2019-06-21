@@ -1,0 +1,22 @@
+<div id="base">
+   <div id="img-antorcha"></div>
+   <div id="img-bandera"></div>
+   <div id="content" class="row no-gutters">
+      <div id="logo" class="col-12"></div>
+      <form id="form" #loginForm="ngForm" (ngSubmit)="signIn()" class="col-12 col-md-4 offset-md-4">
+         <h2 id="title">Semillero IoTIC</h2>
+         <p id="msg-login">Iniciar Sesión</p>
+         <mat-form-field>
+            <input matInput placeholder="Correo electronico" #name="ngModel" name="email" [(ngModel)]="user.email">
+         </mat-form-field>
+         <mat-form-field>
+            <input matInput placeholder="Contraseña" #name="ngModel" name="password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+         </mat-form-field>
+         <p class="msg-error" *ngIf="msg_error.length > 0">{{msg_error}}</p>
+         <input id="btn-login" type="submit" value="Ingresar"/>
+      </form>
+   </div>
+</div>

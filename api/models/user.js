@@ -9,7 +9,8 @@ var user_schema = Schema({
     email: String,
     password: String,
     role: String,
-    image: String
+    image: String,
+    score: Number
 });
 
 module.exports = mongoose.model('User', user_schema); // Realiza el guardado en una coleccion llamada 'Users' (lo pluraliza)

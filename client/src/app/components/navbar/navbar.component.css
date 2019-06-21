@@ -1,0 +1,23 @@
+#navbar {
+    background-color: #0A266F;
+    /*background-color: #CC0000;*/
+    color: rgb(255, 255, 255);
+}
+
+li {
+    cursor: pointer;
+}
+
+#login {
+    border-radius: 10px;
+    border: 1.5px solid #fff;
+}
+
+#login:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+#login-label:hover {
+    color: #0A266F;
+    font-weight: bold;
+}

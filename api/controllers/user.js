@@ -3,10 +3,11 @@
 
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user');
+var jwt = require('../services/jwt');
 
 
 // Funcion encargada de la autenticación de usuarios mediante credenciales
-function login_user(req, res) {
+function loginUser(req, res) {
     var params = req.body;
     var email = params.email;
     var password = params.password;
@@ -21,7 +22,13 @@ function login_user(req, res) {
                 bcrypt.compare(password, user.password, function (err, check) {
                     if (check) {
                         // Devolver datos del usuario identificado
-                        res.status(200).send({ user });
+                        if (params.getHash) {
+                            res.status(200).send({
+                                token: jwt.createToken(user)
+                            });       
+                        } else {
+                            res.status(200).send({ user });
+                        }
                     } else {
                         res.status(404).send({ message: "Usuario o contraseña incorrectas" });
                     }
@@ -33,7 +40,7 @@ function login_user(req, res) {
 
 
 // Funcion encargada del guardado de nuevos usuarios
-function save_user(req, res) {
+function saveUser(req, res) {
     var user = new User();
     var params = req.body;
 
@@ -44,17 +51,18 @@ function save_user(req, res) {
     user.email = params.email;
     user.role = 'ROLE_USER';
     user.image = 'null';
+    user.score = params.score;
     if (params.password) {
         // Cifrado de clave
         bcrypt.hash(params.password, null, null, function(err, hash) {
             user.password = hash;
             if (user.name != null && user.surname != null && user.email != null) {
                 // Almacenamiento de usuario
-                user.save((err, user_stored) => {
+                user.save((err, userStored) => {
                     if (err) {
                         res.status(500).send({message: 'Error al guardar el usuario'});
                     } else {
-                        if (!user_stored) {
+                        if (!userStored) {
                             res.status(404).send({message: 'No se ha registrado el usuario'});
                         } else {
                             res.status(200).send({user: user_stored});
@@ -71,6 +79,6 @@ function save_user(req, res) {
 }
 
 module.exports = {
-    login_user,
-    save_user
+    loginUser,
+    saveUser
 };
