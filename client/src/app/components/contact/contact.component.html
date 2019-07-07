@@ -1,0 +1,32 @@
+<div id="base">
+  <div id="imgBandera"></div>
+  <app-navbar id="navbar"></app-navbar>
+  <div id="row" class="row no-gutters">
+    <div id="content" class="col-12 col-md-8 offset-md-2">
+      <form id="form" #contactForm="ngForm" (ngSubmit)="send()">
+        <h2 id="title">Contacto</h2>
+        <mat-form-field>
+          <input matInput placeholder="Nombre completo" #name="ngModel" name="name" [(ngModel)]="message.fullname"
+            required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Correo electronico" #email="ngModel" name="email" [(ngModel)]="message.email"
+            required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Telefono" #phone="ngModel" name="phone" [(ngModel)]="message.phoneNumber"
+            required>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea id="message" matInput maxlength="{{length}}" placeholder="Mensaje" #text="ngModel" name="text" [(ngModel)]="message.text"
+            required></textarea>
+          <mat-hint align="end">{{message.text.length}} / {{length}}</mat-hint>
+        </mat-form-field>
+        <p id="msgError" *ngIf="msgError != ''">{{msgError}}</p>
+        <div class="row justify-content-center">
+          <input id="btnSend" class="col-8 col-md-3" type="submit" value="Enviar" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

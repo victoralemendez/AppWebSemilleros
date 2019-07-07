@@ -6,7 +6,9 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // Cargado de rutas de controladores
-var user_routes = require('./routes/user');
+var userRoutes = require('./routes/user');
+var messageRoutes = require('./routes/message');
+var courseRoutes = require('./routes/course');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -23,7 +25,9 @@ app.use(function(req, res, next) {
 });
 
 // Rutas base
-app.use('/api', user_routes);
+app.use('/api', userRoutes);
+app.use('/api', messageRoutes);
+app.use('/api', courseRoutes);
 
 
 module.exports = app;

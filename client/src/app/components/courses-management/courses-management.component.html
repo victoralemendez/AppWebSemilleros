@@ -1,0 +1,34 @@
+<div id="base">
+  <h2>Cursos</h2>
+  <hr>
+  <div class="row justify-content-end no-gutters">
+    <div id="infoMessage" class="col-12 col-md-10">
+      <p class="message" *ngIf="msgError == ''">{{msgInfo}}</p>
+      <p class="message" *ngIf="msgError != ''">{{msgError}}</p>
+    </div>
+    <button mat-button id="btnNew" class="col-6 col-md-2" (click)="createCourse()">
+      <mat-icon class="icon">add</mat-icon>Crear curso
+    </button>
+  </div>
+  <div id="courseList" class="row no-gutters">
+    <div class="col-12 col-md-4" *ngFor="let course of courses; let index = index">
+      <div class="course">
+        <div class="imageCourse">
+
+        </div>
+        <div class="infoCourse">
+          <p class="nameCourse">{{course.name}}</p>
+          <p class="description">{{getShortDescription(course.description)}}</p>
+          <div class="row justify-content-center no-gutters">
+            <div class="col-12 col-md-6">
+              <button class="btnDelete" (click)="deleteCourse(course, index)">Eliminar</button>
+            </div>
+            <div class="col-12 col-md-6">
+              <button class="btnEdit" (click)="updateCourse(course, index)">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+#base {
+    height: 100%;
+    width: 100%;
+}
+
+#imgBandera {
+    position: fixed;    
+    background: url("/assets/images/bandera.jpg") no-repeat;
+    width: 206px;
+    height: 95px;
+    z-index: 0;
+    left: 0;
+    bottom: 0;
+}
+
+#navbar {
+    z-index: 1;
+}
+
+#row {
+    width: 100%;
+    padding: 3% 3% 1% 3%;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding-bottom: 20px;
+    z-index: 1;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 4px 12px rgb(73, 73, 73);
+}
+
+.info {
+    margin: 1% 1% 0% 1%;
+    padding: 3% 4% 1% 4%;
+}
+
+.title {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.text {
+    text-align: justify;
+}

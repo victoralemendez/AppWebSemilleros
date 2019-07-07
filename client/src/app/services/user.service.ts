@@ -26,4 +26,10 @@ export class UserService {
     return this.http.post(this.url + "login", paramsJSON, {headers: headers});
   }
 
+  register(newUser) {
+    let paramsJSON = JSON.stringify(newUser);
+    let headers = new HttpHeaders({'Content-Type' : 'application/json'});
+    return this.http.post(this.url + "register", paramsJSON, {headers: headers});
+  }
+
 }

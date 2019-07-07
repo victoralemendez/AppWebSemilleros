@@ -1,0 +1,7 @@
+<mat-dialog-content>
+  <p id="message">{{message}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button [mat-dialog-close]="false" mat-button>Cancelar</button>
+    <button id="btnContinue" [mat-dialog-close]="true" mat-button cdkFocusInitial>Continuar</button>
+  </mat-dialog-actions>

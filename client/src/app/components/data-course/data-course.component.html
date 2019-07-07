@@ -1,0 +1,46 @@
+<div id="base">
+  <h2 mat-dialog-title align="start">Curso</h2>
+  <p class="info">Ingrese la información del curso ofreetado por el semillero, Llene todos los campos.</p>
+  <mat-dialog-content class="mat-typography">
+    <form id="form" #courseForm="ngForm">
+      <div class="row no-gutters">
+        <div id="data" class="col-12 col-md-8 offset-md-4">
+          <mat-form-field>
+            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="course.name" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" min="10" placeholder="Creditos" #score="ngModel" name="score"
+              [(ngModel)]="course.score" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Link" #link="ngModel" name="link" [(ngModel)]="course.link" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput [min]="minStartDate" [max]="maxStartDate" [matDatepicker]="dp3" [formControl]="startDateControl"
+            placeholder="Fecha de iniciación">
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput [min]="calculateMinEndDate()" [max]="calculateMaxEndDate()" [matDatepicker]="dp2" [formControl]="endDateControl"
+            placeholder="Fecha de finalización">
+          <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+          <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
+          name="description" [(ngModel)]="course.description" required></textarea>
+        <mat-hint align="end">{{course.description.length}} / {{length}}</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
+  <mat-dialog-actions align="end">
+    <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
+    <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
+  </mat-dialog-actions>
+</div>

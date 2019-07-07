@@ -1,0 +1,67 @@
+#base {
+    height: 100%;
+    width: 100%;
+}
+
+#imgBandera {
+    position: fixed;
+    background: url("/assets/images/bandera.jpg") no-repeat;
+    width: 206px;
+    height: 95px;
+    z-index: 0;
+    left: 0;
+    bottom: 0;
+}
+
+#navbar {
+    z-index: 1;
+}
+
+#row {
+    width: 100%;
+    padding: 3% 3% 3% 3%;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding-bottom: 10px;
+    z-index: 1;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 4px 12px rgb(73, 73, 73);
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 5% 2% 5%;
+}
+
+#title {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 4%;
+}
+
+#message {
+    height: 120px !important;
+}
+
+#msgError {
+    text-align: center;
+    color: red;
+}
+
+#btnSend {
+    margin-top: 20px;
+    background-color: rgb(1, 81, 172);
+    box-shadow: 1px 5px 10px rgb(112, 113, 114);
+    color: #fff;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+#btnSend:hover {
+    font-weight: bold;
+}

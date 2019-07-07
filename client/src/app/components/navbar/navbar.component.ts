@@ -13,8 +13,24 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  goToHome() {
+    this.router.navigateByUrl("home");
+  }
+
   goToLogin() {
     this.router.navigateByUrl("login");
+  }
+
+  goToAboutUs() {
+    this.router.navigateByUrl("aboutus");
+  }
+
+  goToRegister() {
+    this.router.navigateByUrl("register");
+  }
+
+  goToContact() {
+    this.router.navigateByUrl("contact");
   }
 
 }

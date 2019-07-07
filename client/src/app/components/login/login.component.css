@@ -1,26 +1,22 @@
 #base {
     height: 100%;
     width: 100%;
-    background-image: url("/assets/images/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     flex-direction: column;
     display: flex;
     z-index: -1;
 }
 
-#img-antorcha {
+#imgAntorcha {
     position: fixed;
     background: url("/assets/images/antorcha.png") no-repeat;
-    height: 592px;
     left: 5%;
     bottom: 0;
+    height: 592px;
     width: 251px;
     z-index: 1;
 }
 
-#img-bandera {
+#imgBandera {
     position: fixed;
     background: url("/assets/images/bandera.png") no-repeat;
     z-index: 1;
@@ -64,23 +60,24 @@
     color: rgb(87, 87, 87);
 }
 
-#msg-login {
+#msgLogin {
     text-align: center;
 }
 
-.msg-error {
+.msgError {
     color: red;
     text-align: center;
 }
 
-#btn-login {
+#btnLogin {
     margin-top: 10px;
-    background-color: rgb(63, 89, 206);
+    background-color: rgb(1, 81, 172);
+    box-shadow: 1px 5px 10px rgb(112, 113, 114);
     color: #fff;
     padding: 2%;
     border-radius: 10px;
 }
 
-#btn-login:hover {
-    box-shadow: 1px 5px 10px rgb(61, 60, 78);
+#btnLogin:hover {
+    box-shadow: 1px 5px 10px rgb(155, 174, 211);
 }

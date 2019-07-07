@@ -1,0 +1,53 @@
+<div id="base">
+  <div id="imgBandera"></div>
+  <app-navbar></app-navbar>
+  <div id="row" class="row no-gutters">
+    <div id="content" class="col-12 col-md-6 offset-md-3">
+      <form id="form" #registerForm="ngForm" (ngSubmit)="register()">
+        <h1 id="title">Formulario de registro</h1>
+        <mat-form-field>
+          <input matInput placeholder="Nombres" #name="ngModel" name="name" [(ngModel)]="user.name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Apellidos" #name="ngModel" name="surname" [(ngModel)]="user.surname" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dp3" [formControl]="dateControl" placeholder="Fecha de nacimiento">
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Correo electronico institucional" #name="ngModel" name="email"
+            [(ngModel)]="user.email" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Contraseña" #name="ngModel" name="password" [(ngModel)]="user.password"
+            [type]="hidePassword ? 'password' : 'text'" required>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Confirmación de contraseña" #name="ngModel" name="auxPassword"
+            [(ngModel)]="auxPassword" [type]="hideAuxPassword ? 'password' : 'text'" required>
+          <button mat-icon-button matSuffix (click)="hideAuxPassword = !hideAuxPassword">
+            <mat-icon>{{hideAuxPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Carrera" #name="ngModel" name="career" [(ngModel)]="user.career" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Semestre</mat-label>
+          <mat-select [(value)]="user.semester" required>
+            <mat-option *ngFor="let semester of semesters" [value]="semester">
+              {{semester}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p id="msgError" *ngIf="msgError != ''">{{msgError}}</p>
+        <input id="btnRegister" type="submit" value="Enviar" />
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,15 @@
 'use strict'
 
 var express = require('express');
-var user_controller = require('../controllers/user');
+var userController = require('../controllers/user');
 var multipart = require('connect-multiparty');
 
 
 var api = express.Router();
 
-api.post('/login', user_controller.loginUser);
-api.post('/register', user_controller.saveUser);
+api.post('/login', userController.loginUser);
+api.post('/register', userController.registerUser);
+api.get('/requests', userController.getUsersNotActivated);
+api.get('/users', userController.getUsersActivated);
 
 module.exports = api;

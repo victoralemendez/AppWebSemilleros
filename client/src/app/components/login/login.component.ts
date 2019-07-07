@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
@@ -12,12 +13,12 @@ export class LoginComponent implements OnInit {
 
   private hide;
   private user: User;
-  private msg_error: String;
+  private msgError: String;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.hide = true;
-    this.msg_error = "";
-    this.user = new User("", "", "", "victoralemendez@unicauca.edu.co", "1234567", "", "", 0);
+    this.msgError = "";
+    this.user = this.createEmptyUser();
   }
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
             alert("El usuario no esta correctamente identificado");
           } else {
             localStorage.setItem('identity', JSON.stringify(identity));
-            this.userService.signIn(this.user.clone(), 'true').subscribe(
+            this.userService.signIn(this.user, 'true').subscribe(
               response => {
                 let res = <any>response;
                 let token = res.token;
@@ -42,31 +43,37 @@ export class LoginComponent implements OnInit {
                   alert("no se ha generado el token");
                 } else {
                   localStorage.setItem('token', token);
-                  this.user = new User("", "", "", "", "", "", "", 0);
+                  this.user = this.createEmptyUser();
+                  this.router.navigateByUrl('/home');
                 }
               },
               error => {
-                let err = <any>error;
-                if (err != null) {
-                  this.msg_error = err.error.message;
-                }
+                this.processError(error);
               }
             )
           }
         },
         error => {
-          let err = <any>error;
-          if (err != null) {
-            this.msg_error = err.error.message;
-          }
+          this.processError(error);
         }
       );
+    }
+  }
+  
+  createEmptyUser() {
+    return new User("", "", "", "", "", "", "", 1);
+  }
+
+  processError(error) {
+    let err = <any>error;
+    if (err != null) {
+      this.msgError = err.error.message;
     }
   }
 
   validInputs() {
     let valid = this.user.email.length > 0 && this.user.password.length > 0
-    this.msg_error = valid ? '' : "Todos los campos son requeridos";
+    this.msgError = valid ? '' : "Todos los campos son requeridos";
     return valid;
   }
 
