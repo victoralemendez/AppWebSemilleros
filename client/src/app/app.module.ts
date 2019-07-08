@@ -14,8 +14,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatExpansionModule } from '@angular/material/expansion';
 
-// imports de componentes propios
+// imports de componentes y servicios propios
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -29,6 +30,7 @@ import { DataCourseComponent } from './components/data-course/data-course.compon
 import { CoursesManagementComponent } from './components/courses-management/courses-management.component';
 import { ConfigContentComponent } from './components/config-content/config-content.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { RequestsComponent } from './components/requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     DataCourseComponent,
     CoursesManagementComponent,
     ConfigContentComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatInputModule, MatOptionModule, MatSelectModule, MatIconModule,
     MatButtonModule,
     MatListModule,
+    MatExpansionModule,
     MatBadgeModule,
     HttpClientModule
   ],

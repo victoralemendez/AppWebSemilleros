@@ -16,7 +16,7 @@ function build(params) {
 }
 
 // Funcion que almacena un curso
-function create(req, res) {
+function register(req, res) {
     var params = req.body;
     var newCourse = build(params);
     newCourse.save(function(err, courseStored) {
@@ -32,10 +32,10 @@ function create(req, res) {
     });
 }
 
-function updateCourse(req, res) {
+function update(req, res) {
     var courseId = req.params.id;
-    var update = req.body;
-    Course.findByIdAndUpdate(courseId, update, function(err, courseUpdated) {
+    var course = req.body;
+    Course.findByIdAndUpdate(courseId, course, function(err, courseUpdated) {
         if (err) {
             res.status(500).send({ message: "Error al actualizar el curso, comuniquese con el Administrador" });
         } else {
@@ -48,7 +48,7 @@ function updateCourse(req, res) {
     });
 }
 
-function deleteCourse(req, res) {
+function remove(req, res) {
     var courseId = req.params.id;
     Course.findByIdAndDelete(courseId, function(err, courseDeleted) {
         if (err) {
@@ -79,8 +79,8 @@ function getCourses(req, res) {
 }
 
 module.exports = {
-    create,
+    register,
     getCourses,
-    updateCourse,
-    deleteCourse
+    update,
+    remove
 }

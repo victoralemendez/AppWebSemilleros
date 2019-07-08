@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
+import { Utilities } from '../../services/utilities';
 
 
 @Component({
@@ -46,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
   // Método para limpiar datos de control de formulario
   private cleanFormData() {
-    this.user = new User("", "", "", "", "", "", "", 0);
+    this.user = new User("", "", "", "", "", "", "", 0, "", "", 0, false, false);
     this.hidePassword = true;
     this.hideAuxPassword = true;
     this.auxPassword = "";
@@ -72,13 +73,10 @@ export class RegisterComponent implements OnInit {
     return valid;
   }
 
-  dateToString() {
-    return this.dateControl.value.getDate() + "-" + this.dateControl.value.getMonth() + "-" + this.dateControl.value.getYear();
-  }
-
   // Método para registrar la solicitud
   register() {
     if (this.validData()) {
+      this.user.bornDate = Utilities.parseDateToString(this.dateControl.value, '-');
       this.userService.register(this.user).subscribe(
         response => {
           this.user = (<any>response).user;

@@ -29,7 +29,23 @@ export class UserService {
   register(newUser) {
     let paramsJSON = JSON.stringify(newUser);
     let headers = new HttpHeaders({'Content-Type' : 'application/json'});
-    return this.http.post(this.url + "register", paramsJSON, {headers: headers});
+    return this.http.post(this.url + "register-user", paramsJSON, {headers: headers});
+  }
+
+  update(user) {
+    let paramsJSON = JSON.stringify(user);
+    let headers = new HttpHeaders({'Content-Type' : 'application/json'});
+    return this.http.put(this.url + "update-user/" + user._id, paramsJSON, {headers: headers});
+  }
+
+  delete(id) {
+    let headers = new HttpHeaders({'Content-Type' : 'application/json'});
+    return this.http.delete(this.url + "delete-user/" + id, {headers: headers});
+  }
+
+  getUsersNotAdmitted() {
+    let headers = new HttpHeaders({'Content-Type' : 'application/json'});
+    return this.http.get(this.url + "requests", {headers: headers});
   }
 
 }

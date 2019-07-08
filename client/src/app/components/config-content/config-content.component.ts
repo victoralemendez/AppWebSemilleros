@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigContentComponent implements OnInit {
 
-  constructor() { }
+  private codeDisplayed: number;
+
+  constructor() {
+    this.codeDisplayed = 1;
+  }
 
   ngOnInit() {
+  }
+
+  displayCourses() {
+    this.codeDisplayed = 1;
+  }
+
+  displayRequests() {
+    this.codeDisplayed = 11;
   }
 
 }

@@ -6,7 +6,7 @@ export class User {
         public surname: String,
         public email: String,
         public password: String,
-        public birthday: String,
+        public bornDate: String,
         public career: String,
         public semester: Number,
         public cvlac?: String,
@@ -16,20 +16,8 @@ export class User {
         public admitted?: Boolean
     ) { }
 
-    public clean(): void {
-        this._id = "";
-        this.name = "";
-        this.surname = "";
-        this.email = "";
-        this.password = "";
-        this.birthday = "";
-        this.career = "";
-        this.semester = 0;
-        this.cvlac = "";
-        this.image = "";
-        this.score = 0;
-        this.adminRole = false;
-        this.admitted = false;
+    public static buildFromJSON(json): User {
+        return new User(json._id, json.name, json.surname, json.email, json.password, json.bornDate, json.carrer, json.semester, json.cvlac, json.image, json.score, json.adminRole, json.admitted);
     }
     
 }

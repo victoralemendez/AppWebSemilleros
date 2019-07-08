@@ -6,11 +6,11 @@
         <div class="col-12 col-md-2">
           <mat-list id="list" role="list">
             <h4 matSubHeader class="header">Semillero</h4>
-            <mat-list-item role="list-item">Información</mat-list-item>
-            <mat-list-item role="list-item">Contacto</mat-list-item>
-            <mat-list-item role="list-item">Cursos</mat-list-item>
+            <mat-list-item role="list-item" (click)="displayCourses()">Cursos</mat-list-item>
             <mat-list-item role="list-item">Noticias</mat-list-item>
             <mat-list-item role="list-item">Eventos</mat-list-item>
+            <mat-list-item role="list-item">Información</mat-list-item>
+            <mat-list-item role="list-item">Contacto</mat-list-item>
             <mat-divider></mat-divider>
             <h4 matSubHeader class="header">Recursos</h4>
             <mat-list-item role="list-item">Dispositivos</mat-list-item>
@@ -22,13 +22,14 @@
             <mat-divider></mat-divider>
             <h4 matSubHeader class="header">Integrantes</h4>
             <mat-list-item role="list-item">Admitidos</mat-list-item>
-            <mat-list-item role="list-item">
+            <mat-list-item role="list-item" (click)="displayRequests()">
               <p matBadge="5" matBadgeOverlap="false">Solicitudes</p>
             </mat-list-item>
           </mat-list>
         </div>
         <div id="config" class="col-12 col-md-10">
-          <app-courses-management></app-courses-management>
+          <app-courses-management *ngIf="codeDisplayed == 1"></app-courses-management>
+          <app-requests *ngIf="codeDisplayed == 11"></app-requests>
         </div>
       </div>
     </div>

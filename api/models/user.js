@@ -10,7 +10,7 @@ var userSchema = Schema({
     password: String,
     adminRole: Boolean,
     admitted: Boolean,
-    birthdate: String,
+    bornDate: String,
     image: String,
     score: Number,
     cvlac: String,

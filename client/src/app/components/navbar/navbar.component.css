@@ -4,7 +4,7 @@
     background-color: #0D4185;
 }
 
-#image-left {
+#imageLeft {
     position: absolute;
     height: 105px;
     width: 253px;
@@ -14,7 +14,7 @@
     margin: 0;
 }
 
-#image-rigth {
+#imageRigth {
     position: absolute;
     height: 105px;
     width: 463px;
@@ -26,7 +26,7 @@
 
 #navbar {
     /*background: url('/assets/images/menu-pri-fondo') repeat-x;*/
-    /*background-color: #CC0000;/*rgb(1, 81, 172);*/    
+    /*background-color: #CC0000;/*rgb(1, 81, 172);*/
     background-color: rgb(170, 22, 22);
     color: rgb(255, 255, 255);
     box-shadow: 0px 6px 8px rgb(56, 55, 55);
@@ -48,19 +48,33 @@ li:hover {
     font-weight: bold;
 }
 
+.a {
+    background-color: rgb(201, 20, 20) !important;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid rgb(134, 94, 94);
+}
 
-#btn-register {
+.btnConfig {
+    cursor: pointer;
+}
+
+.btnConfig:active {
+    background-color: #fff;
+}
+
+#btnRegister {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-#btn-login {
+#btnLogin {
     font-weight: bold;
     padding-left: 10px;
     padding-right: 10px;
     border-bottom: 3px solid rgb(170, 22, 22);
 }
 
-#btn-login:hover {    
+#btnLogin:hover {    
     border-bottom: 3px solid rgb(255, 255, 255);
 }

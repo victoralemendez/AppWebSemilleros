@@ -1,10 +1,10 @@
 <div id="bar">
   <div class="row no-gutters">
     <div class="col-8">
-      <div id="image-left"></div>
+      <div id="imageLeft"></div>
     </div>
     <div class="col-4">
-      <div id="image-rigth"></div>
+      <div id="imageRigth"></div>
     </div>
   </div>
 </div>
@@ -14,7 +14,6 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#">Semillero IoTIC</a>
-
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
@@ -26,12 +25,33 @@
       <li class="nav-item active">
         <a class="nav-link" (click)="goToContact()">Contacto</a>
       </li>
+      <li class="nav-item active" *ngIf="user != null">
+        <a class="nav-link">Recursos</a>
+      </li>
+      <li class="nav-item active" *ngIf="user != null">
+        <a class="nav-link">Biblioteca</a>
+      </li>
     </ul>
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <li id="btn-register" class="nav-item active">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" *ngIf="user != null">
+      <div class="dropdown">
+        <a class="btn dropdown-toggle a" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{getShortName()}}
+        </a>
+
+        <div class="dropdown-menu btnConfig" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item btnConfig" href="#">Perfil</a>
+          <a class="dropdown-item btnConfig" href="#">Mis prestamos</a>
+          <a class="dropdown-item btnConfig" (click)="goToConfig()">Ajustes</a>
+          <a class="dropdown-item btnConfig" (click)="logOut()">Cerrar sesión</a>
+        </div>
+      </div>
+    </ul>
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" *ngIf="user == null"> 
+      <li id="btnRegister" class="nav-item active">
         <a class="nav-link" (click)="goToRegister()">Registrarme</a>
       </li>
-      <li id="btn-login" class="nav-item active">
+      <li id="btnLogin" class="nav-item active">
         <a id="login-label" class="nav-link" (click)="goToLogin()">Iniciar sesión</a>
       </li>
     </ul>

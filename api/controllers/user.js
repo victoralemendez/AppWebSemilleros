@@ -6,7 +6,7 @@ var jwt = require('../services/jwt');
 
 
 // Funcion encargada de la autenticación de usuarios mediante credenciales
-function loginUser(req, res) {
+function login(req, res) {
     var params = req.body;
     var email = params.email;
     var password = params.password;
@@ -33,6 +33,38 @@ function loginUser(req, res) {
         }
     });
 }
+
+function update(req, res) {
+    var id = req.params.id;
+    var user = req.body;
+    User.findByIdAndUpdate(id, user, (err, userUpdated) => {
+        if (err) {
+            res.status(500).send({message: "Error al actualizar el usuario, comuniquese con el administrador"});
+        } else {
+            if (!userUpdated) {
+                res.status(404).send({message: "No se encontró el usuario"});
+            } else {
+                res.status(200).send({ user: userUpdated });
+            }
+        }
+    });
+}
+
+function remove(req, res) {
+    var id = req.params.id;
+    User.findByIdAndDelete(id, (err, userDeleted) => {
+        if (err) {
+            res.status(500).send({message: "Error al eliminar el usuario, comuniquese con el administrador"});
+        } else {
+            if (!userDeleted) {
+                res.status(404).send({message: "No se encontró el usuario"});
+            } else {
+                res.status(200).send({ user: userDeleted });
+            }
+        }
+    });
+}
+
 
 function getUsersNotActivated(req, res) {
     User.find({admitted: false}, function(err, users) {
@@ -103,7 +135,7 @@ function createNewUser(userParams) {
     user.password = userParams.password;
     user.adminRole = false;
     user.admitted = false;
-    user.bithday = userParams.birthdate;
+    user.bornDate = userParams.bornDate;
     user.image = 'null';
     user.score = 0;
     user.cvlac = userParams.cvlac;
@@ -113,7 +145,7 @@ function createNewUser(userParams) {
 }
 
 // Funcion encargada del guardado de nuevos usuarios
-function registerUser(req, res) {
+function register(req, res) {
     var params = req.body;
     var user = createNewUser(params);
     User.findOne({ email: user.email.toLowerCase() }, (err, userFound) => {
@@ -141,8 +173,10 @@ function registerUser(req, res) {
 
 
 module.exports = {
-    loginUser,
-    registerUser,
+    login,
+    register,
+    update,
+    remove,
     getUsersNotActivated,
     getUsersActivated
 };

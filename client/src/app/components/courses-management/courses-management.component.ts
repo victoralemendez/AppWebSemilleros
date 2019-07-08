@@ -85,11 +85,14 @@ export class CoursesManagementComponent implements OnInit {
     });
   }
 
+  private getInfo() {
+    return this.courses.length == 0 ? "No hay cursos registrados" : "Número de cursos encontrados: " + this.courses.length;
+  }
+
   loadCourses() {
     this.courseService.getCourses().subscribe(
       response => {
         this.courses = (<any>response).courses as Course[];
-        this.msgInfo = "Número de cursos encontrados: " + this.courses.length;
       },
       error => {
         this.msgError = (<any>error).error.message;
