@@ -1,0 +1,13 @@
+<div id="base">
+  <h2>Noticias</h2>
+  <hr>
+  <div class="row justify-content-end no-gutters">
+    <div id="infoMessage" class="col-12 col-md-10">
+      <p class="message" *ngIf="msgError == ''">{{getInfo()}}</p>
+      <p class="message" *ngIf="msgError != ''">{{msgError}}</p>
+    </div>
+    <button mat-button id="btnNew" class="col-6 col-md-2" (click)="crearNotice()">
+      <mat-icon class="icon">add</mat-icon>Crear Noticia
+    </button>
+  </div>
+</div>

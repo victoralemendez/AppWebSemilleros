@@ -2,7 +2,19 @@
   <div id="imgBandera"></div>
   <app-navbar id="navbar"></app-navbar>
   <div id="row" class="row no-gutters">
-    <div id="content" class="col-12 col-md-8 offset-md-2">
+    <div id="info" class="col-12 col-md-2 ">
+        <div id="date">
+          <p class="tittle">Dirección:</p>
+          <p class="infoTitle">Calle 9 # 5-45</p>
+          <p class="tittle">Telefono:</p>
+          <p class="infoTitle">8238888 Ext: 441</p>
+          <p class="tittle">Ext:</p>
+          <p class="infoTitle">441</p>
+          <p class="tittle">Correo:</p>
+          <p class="infoTitle">semiotic@unicauca.edu.co</p>
+        </div>
+    </div>
+    <div id="content" class="col-12 col-md-8">
       <form id="form" #contactForm="ngForm" (ngSubmit)="send()">
         <h2 id="title">Contacto</h2>
         <mat-form-field>
@@ -29,4 +41,5 @@
       </form>
     </div>
   </div>
+  
 </div>

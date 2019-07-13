@@ -31,6 +31,8 @@ import { CoursesManagementComponent } from './components/courses-management/cour
 import { ConfigContentComponent } from './components/config-content/config-content.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { RequestsComponent } from './components/requests/requests.component';
+import { NoticeManagementComponent } from './components/notice-management/notice-management.component';
+import { DataNoticeComponent } from './components/data-notice/data-notice.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { RequestsComponent } from './components/requests/requests.component';
     CoursesManagementComponent,
     ConfigContentComponent,
     ConfirmDialogComponent,
-    RequestsComponent
+    RequestsComponent,
+    NoticeManagementComponent,
+    DataNoticeComponent
   ],
   imports: [
     BrowserModule,

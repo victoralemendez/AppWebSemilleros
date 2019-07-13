@@ -22,6 +22,28 @@
     padding: 3% 3% 3% 3%;
 }
 
+.infoTitle {
+    font-size: 10px;
+    font-weight: bolder;
+    margin: 0px 0px 0px 10px;
+}
+
+#date{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px 10px 10px 10px;
+    margin: 0px 5px 5px 5px;
+}
+
+.tittle{
+    font-weight: bolder;
+    font-size: 12px;
+    margin-bottom: 2px;
+    color: blue
+}
+
 #content {
     display: flex;
     flex-direction: column;
@@ -31,6 +53,7 @@
     border-radius: 10px 10px 10px 10px;
     box-shadow: 5px 4px 12px rgb(73, 73, 73);
 }
+
 
 #form {
     display: flex;

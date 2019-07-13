@@ -20,6 +20,10 @@ export class ConfigContentComponent implements OnInit {
     this.codeDisplayed = 1;
   }
 
+  displayNotice() {
+    this.codeDisplayed = 2;
+  }
+
   displayRequests() {
     this.codeDisplayed = 11;
   }
