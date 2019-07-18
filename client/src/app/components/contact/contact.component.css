@@ -22,6 +22,27 @@
     padding: 3% 3% 3% 3%;
 }
 
+#info {
+    background-color: #fff;
+    padding: 5px 9px 5px 9px;
+    border-radius: 10px;
+    margin: 0px 5px 5px 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.infoItem {
+    color: rgb(1, 81, 172);
+    font-weight: bold;
+    margin-bottom: 0;    
+}
+
+.infoContact {
+    margin-top: 0;
+    justify-content: center;
+    font-size: 12px;
+}
+
 #content {
     display: flex;
     flex-direction: column;

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+// Componentes de Angular material
 import { MatDialog } from '@angular/material/dialog';
 
+// Componentes y servicios propios
 import { Course } from '../../models/course';
 import { CourseService } from '../../services/course.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -13,12 +15,17 @@ import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.com
   templateUrl: './courses-management.component.html',
   styleUrls: ['./courses-management.component.css']
 })
+
+// Componente encargado de la gestion de cursos
 export class CoursesManagementComponent implements OnInit {
 
+  // Variable para gestionar los cursos
   private courses: Course[];
 
+  // Variable para controlar el máximo de caracteres a mostrar en la tarjeta
   private maxDescLength: number;
 
+  // Variables para imprimir mensajes
   private msgInfo: String;
   private msgError: String;
 
@@ -32,6 +39,7 @@ export class CoursesManagementComponent implements OnInit {
     this.msgError = '';
   }
 
+  // Funcion encargada de la respuesta del servidor al crear un curso
   createCourse() {
     let newCourse: Course = new Course("", "", "", "", 0, "", "");
     this.dialog.open(DataCourseComponent, { data: newCourse }).beforeClosed().subscribe(result => {
@@ -51,6 +59,7 @@ export class CoursesManagementComponent implements OnInit {
     });
   }
 
+  // Funcion encargada de la respuesta del servidor al modificar un curso
   updateCourse(json: Course, index: number) {
     var courseCloned: Course = new Course(json._id, json.name, json.description, json.link, json.score, json.startDate, json.endDate, json.image);
     this.dialog.open(DataCourseComponent, { data: courseCloned }).beforeClosed().subscribe(result => {
@@ -70,6 +79,7 @@ export class CoursesManagementComponent implements OnInit {
     });
   }
 
+  // Funcion encargada de la respuesta del servidor al eliminar un curso
   deleteCourse(course: Course, index: number) {
     this.dialog.open(ConfirmDialogComponent, { data: "¿Desea continuar con la eliminación del curso?, los datos serán eliminados de forma permanente" }).beforeClosed().subscribe(result => {
       if (result) {
@@ -85,10 +95,12 @@ export class CoursesManagementComponent implements OnInit {
     });
   }
 
+  // Funcion encargada de fijar el mensaje presentado al usuario
   private getInfo() {
     return this.courses.length == 0 ? "No hay cursos registrados" : "Número de cursos encontrados: " + this.courses.length;
   }
 
+  // Funcion encargada de la respuesta del servidor al obtener los cursos
   loadCourses() {
     this.courseService.getCourses().subscribe(
       response => {
@@ -100,6 +112,7 @@ export class CoursesManagementComponent implements OnInit {
     );
   }
 
+  // Funcion encargada de calcular el número de caracteres a mostrar en la descripción del curso (solo para la vista en el modelo de tarjetas)
   getShortDescription(description) {
     return description.substr(0, this.maxDescLength) + " ...";
   }

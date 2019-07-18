@@ -2,11 +2,11 @@
   <h2>Cursos</h2>
   <hr>
   <div class="row justify-content-end no-gutters">
-    <div id="infoMessage" class="col-12 col-md-10">
+    <div id="infoMessage" class="col-12 col-md-8 col-lg-9">
       <p class="message" *ngIf="msgError == ''">{{getInfo()}}</p>
       <p class="message" *ngIf="msgError != ''">{{msgError}}</p>
     </div>
-    <button mat-button id="btnNew" class="col-6 col-md-2" (click)="createCourse()">
+    <button mat-button id="btnNew" class="col-6 col-md-4 col-lg-3" (click)="createCourse()">
       <mat-icon class="icon">add</mat-icon>Crear curso
     </button>
   </div>

@@ -31,6 +31,10 @@ import { CoursesManagementComponent } from './components/courses-management/cour
 import { ConfigContentComponent } from './components/config-content/config-content.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { RequestsComponent } from './components/requests/requests.component';
+import { NewsManagementComponent } from './components/news-management/news-management.component';
+import { DataNewsComponent } from './components/data-news/data-news.component';
+import { DataCategoriesComponent } from './components/data-categories/data-categories.component';
+import { CategoriesManagementComponent } from './components/categories-management/categories-management.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { RequestsComponent } from './components/requests/requests.component';
     CoursesManagementComponent,
     ConfigContentComponent,
     ConfirmDialogComponent,
-    RequestsComponent
+    RequestsComponent,
+    NewsManagementComponent,
+    DataNewsComponent,
+    DataCategoriesComponent,
+    CategoriesManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +77,8 @@ import { RequestsComponent } from './components/requests/requests.component';
   entryComponents: [
     InfoDialogComponent,
     DataCourseComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DataCategoriesComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

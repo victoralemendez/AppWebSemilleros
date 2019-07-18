@@ -1,0 +1,64 @@
+<div id="base">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page" *ngIf="selectedCategory == null">Principales</li>
+      <li class="breadcrumb-item" *ngIf="selectedCategory != null" (click)="loadMainCategories()"><a
+          class="categoryGuide">Principales</a></li>
+      <li class="breadcrumb-item" *ngFor="let category of categoriesGuide; let index = index" (click)="selectCategoryGuide(index)"><a
+          class="categoryGuide">{{category.name}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page" *ngIf="selectedCategory != null">
+        {{selectedCategory.name}}</li>
+    </ol>
+  </nav>
+  <h2>{{updateTitle()}}</h2>
+  <hr>
+  <div *ngIf="selectedCategory != null">
+    <p class="description">{{selectedCategory.description}}</p>
+    <div class="row justify-content-end no-gutters">
+      <button mat-button id="btnEdit" class="col-12 col-md-2" (click)="openUpdate()">Editar</button>
+      <button mat-button id="btnDelete" class="col-12 col-md-2" (click)="createCategory()">Eliminar</button>
+    </div>
+  </div>
+  <div>
+  </div>
+  <div id="categories" *ngIf="categories.length > 0">
+    <div *ngFor="let category of categories; let index = index">
+      <div class="category">
+        <div class="row no-gutters">
+          <div class="col-1 col-md-1">
+            <div class="info-category">
+              <p class="data-index">{{index + 1}}</p>
+            </div>
+          </div>
+          <div class="col-11 col-md-8">
+            <div class="info-category">
+              <p class="data-category">{{category.name}}</p>
+            </div>
+          </div>
+          <button mat-button class="col-2 col-md-1" (click)="selectCategory(index)">
+            <div class="color-icon">
+              <mat-icon class="icon">edit</mat-icon>
+            </div>
+          </button>
+          <button mat-button class="col-1 col-md-1" *ngIf="index < categories.length - 1"
+            (click)="updatePositionDown(index)">
+            <div class="color-icon">
+              <mat-icon class="icon">keyboard_arrow_down</mat-icon>
+            </div>
+          </button>
+          <button mat-button class="col-1 col-md-1" *ngIf="index > 0" (click)="updatePositionUp(index)">
+            <div class="color-icon">
+              <mat-icon class="icon">keyboard_arrow_up</mat-icon>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p id="msgInfo">{{updateInfo()}}</p>
+  <div class="row justify-content-end no-gutters">
+    <button mat-button id="btnNew" class="col-12 col-md-4" (click)="openCreate()">
+      <mat-icon class="icon">add</mat-icon>Agregar Categoría
+    </button>
+  </div>
+</div>

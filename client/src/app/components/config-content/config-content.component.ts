@@ -10,18 +10,14 @@ export class ConfigContentComponent implements OnInit {
   private codeDisplayed: number;
 
   constructor() {
-    this.codeDisplayed = 1;
+    this.codeDisplayed = 7;
   }
 
   ngOnInit() {
   }
 
-  displayCourses() {
-    this.codeDisplayed = 1;
-  }
-
-  displayRequests() {
-    this.codeDisplayed = 11;
+  displayOption(optionCode) {
+    this.codeDisplayed = optionCode;
   }
 
 }
