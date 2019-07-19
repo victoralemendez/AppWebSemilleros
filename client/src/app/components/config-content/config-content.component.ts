@@ -10,7 +10,7 @@ export class ConfigContentComponent implements OnInit {
   private codeDisplayed: number;
 
   constructor() {
-    this.codeDisplayed = 7;
+    this.codeDisplayed = 6;
   }
 
   ngOnInit() {

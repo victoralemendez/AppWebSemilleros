@@ -1,0 +1,36 @@
+<div id="base">
+  <h2>Mensajes</h2>
+  <hr>
+  <p class="infoMessage">{{getInfoMessage()}}</p>
+  <div class="panel" *ngFor="let message of messages; let index = index">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header (click)=updateState(index)>
+          <mat-panel-title>De: {{message.fullname}}</mat-panel-title>
+          <mat-chip-list *ngIf="!message.viewed" class="chip">
+            <mat-chip>Pendiente</mat-chip>
+          </mat-chip-list>
+        </mat-expansion-panel-header>
+        <div class="info">
+          <div class="data">
+            <p class="item-name">Correo:</p>
+            <p class="item-data"> {{message.email}}</p>
+          </div>
+          <div class="data">
+            <p class="item-name">Contacto:</p>
+            <p class="item-data"> {{message.phoneNumber}}</p>
+          </div>
+          <div class="data">
+            <p class="item-name">Mensaje:</p>
+            <p class="item-data"> {{message.text}}</p>
+          </div>
+        </div>
+        <div class="row justify-content-end no-gutters">
+          <div class="col-6 col-md-2">
+            <button class="btnDelete" (click)="delete(index)">Eliminar</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

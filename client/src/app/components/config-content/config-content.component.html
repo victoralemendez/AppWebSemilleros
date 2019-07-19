@@ -11,12 +11,11 @@
             <mat-list-item role="list-item">Eventos</mat-list-item>
             <mat-list-item role="list-item">Información</mat-list-item>
             <mat-list-item role="list-item">Contacto</mat-list-item>
-            <mat-list-item role="list-item">Mensajes</mat-list-item>
+            <mat-list-item role="list-item" (click)="displayOption(6)">Mensajes</mat-list-item>
             <mat-divider></mat-divider>
             <h4 matSubHeader class="header">Recursos</h4>
             <mat-list-item role="list-item" (click)="displayOption(7)">Categorias</mat-list-item>
             <mat-list-item role="list-item">Dispositivos</mat-list-item>
-            <mat-list-item role="list-item">Códigos</mat-list-item>
             <mat-list-item role="list-item">Biblioteca</mat-list-item>
             <mat-list-item role="list-item">
               <p matBadge="5" matBadgeOverlap="false">Prestamos</p>
@@ -24,15 +23,16 @@
             <mat-divider></mat-divider>
             <h4 matSubHeader class="header">Integrantes</h4>
             <mat-list-item role="list-item">Admitidos</mat-list-item>
-            <mat-list-item role="list-item" (click)="displayOption(13)">
+            <mat-list-item role="list-item" (click)="displayOption(12)">
               <p matBadge="5" matBadgeOverlap="false">Solicitudes</p>
             </mat-list-item>
           </mat-list>
         </div>
         <div id="config" class="col-12 col-md-10">
           <app-courses-management *ngIf="codeDisplayed == 1"></app-courses-management>
+          <app-messages-management *ngIf="codeDisplayed == 6"></app-messages-management>
           <app-categories-management *ngIf="codeDisplayed == 7"></app-categories-management>
-          <app-requests *ngIf="codeDisplayed == 13"></app-requests>
+          <app-requests *ngIf="codeDisplayed == 12"></app-requests>
         </div>
       </div>
     </div>

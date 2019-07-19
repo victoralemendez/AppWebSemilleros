@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 // imports de componentes y servicios propios
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { NewsManagementComponent } from './components/news-management/news-manag
 import { DataNewsComponent } from './components/data-news/data-news.component';
 import { DataCategoriesComponent } from './components/data-categories/data-categories.component';
 import { CategoriesManagementComponent } from './components/categories-management/categories-management.component';
+import { MessagesManagementComponent } from './components/messages-management/messages-management.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { CategoriesManagementComponent } from './components/categories-managemen
     NewsManagementComponent,
     DataNewsComponent,
     DataCategoriesComponent,
-    CategoriesManagementComponent
+    CategoriesManagementComponent,
+    MessagesManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { CategoriesManagementComponent } from './components/categories-managemen
     MatFormFieldModule,
     MatDialogModule,
     FormsModule,
+    MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,

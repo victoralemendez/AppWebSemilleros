@@ -14,10 +14,8 @@ import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.com
 export class RequestsComponent implements OnInit {
 
   private requests: any[];
-  private info: string;
 
-  constructor(private userService: UserService, private dialog: MatDialog) {
-   }
+  constructor(private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadRequests();
