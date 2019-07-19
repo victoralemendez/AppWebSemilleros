@@ -33,7 +33,7 @@ export class CoursesManagementComponent implements OnInit {
   }
 
   createCourse() {
-    let newCourse: Course = new Course("", "", "", "", 0, "", "");
+    let newCourse: Course = new Course("", "", "", "", 0, "","");
     this.dialog.open(DataCourseComponent, { data: newCourse }).beforeClosed().subscribe(result => {
       if (result) {
         this.courseService.create(newCourse).subscribe(

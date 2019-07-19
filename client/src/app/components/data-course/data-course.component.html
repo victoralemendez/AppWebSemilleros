@@ -9,11 +9,14 @@
             <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="course.name" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="number" min="10" placeholder="Creditos" #score="ngModel" name="score"
+            <input matInput type="number" min="1" placeholder="Creditos" #score="ngModel" name="score"
               [(ngModel)]="course.score" required>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Link" #link="ngModel" name="link" [(ngModel)]="course.link" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Duracion" #duration="ngModel" name="duration"  [(ngModel)]="course.duration" required>
           </mat-form-field>
         </div>
       </div>

@@ -33,6 +33,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { RequestsComponent } from './components/requests/requests.component';
 import { NoticeManagementComponent } from './components/notice-management/notice-management.component';
 import { DataNoticeComponent } from './components/data-notice/data-notice.component';
+import { EventManagementComponent } from './components/event-managemet/event-managemet.component';
+import { DataEventComponent } from './components/data-event/data-event.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { DataNoticeComponent } from './components/data-notice/data-notice.compon
     ConfirmDialogComponent,
     RequestsComponent,
     NoticeManagementComponent,
-    DataNoticeComponent
+    DataNoticeComponent,
+    EventManagementComponent,
+    DataEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,9 @@ import { DataNoticeComponent } from './components/data-notice/data-notice.compon
   entryComponents: [
     InfoDialogComponent,
     DataCourseComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DataNoticeComponent,
+    DataEventComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

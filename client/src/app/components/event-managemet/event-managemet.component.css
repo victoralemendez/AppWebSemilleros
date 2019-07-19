@@ -18,7 +18,6 @@
 }
 
 #btnNew {
-    display:inline-block;
     padding: 5px 3px 5px 3px;
     color: #fff;
     background-color: rgb(68, 109, 197);
@@ -33,33 +32,34 @@
 
 .icon {
     margin-right: 5px;
+    margin-left: 5px;
 }
 
-#courseList {
+#eventList {
     margin-top: 25px;
     background-color: #fafafa;
     padding: 2%;
 }
 
-.course {
+.event {
     margin: 7px 4px 7px 4px;
     background-color: #fff;
     border: 1px solid #e6e6e6;
     box-shadow: 2px 2px 6px rgb(177, 177, 177);
 }
 
-.imageCourse {
+.imageEvent {
     height: 150px;
     width: 100%;
 }
 
-.infoCourse {
+.infoEvent {
     display: flex;
     flex-direction: column;
     padding: 5%;
 }
 
-.nameCourse {
+.nameEvent {
     text-align: center;
     font-weight: bold;
 }

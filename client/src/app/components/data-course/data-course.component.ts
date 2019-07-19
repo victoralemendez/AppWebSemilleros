@@ -59,7 +59,7 @@ export class DataCourseComponent {
 
   // Funcion para validar el llenado de campos
   validData(): boolean {
-    return this.course.name.length > 0 && this.course.score > 0 && this.course.link.length > 0 && this.course.description.length > 0 && this.startDateControl.value != null && this.endDateControl.value != null;
+    return this.course.name.length > 0 && this.course.score > 0 && this.course.link.length > 0 && this.course.description.length > 0 && this.startDateControl.value != null && this.endDateControl.value != null && this.course.duration.length>0;
   }
 
   // Funcion para cerrar el dialogo

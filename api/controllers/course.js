@@ -7,6 +7,7 @@ function build(params) {
     var newCourse = new Course();
     newCourse.name = params.name;
     newCourse.description = params.description;
+    newCourse.duration = params.duration;
     newCourse.link = params.link;
     newCourse.image = 'null';
     newCourse.startDate = params.startDate;

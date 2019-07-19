@@ -3,15 +3,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var courseSchema = Schema({
+var eventSchema = Schema({
     name: String,
     description: String,
     link: String,
-    duration: String,
     score: Number,
     startDate: String,
     endDate: String,
     image: String
 });
 
-module.exports = mongoose.model('Course', courseSchema);
+module.exports = mongoose.model('Event', eventSchema);

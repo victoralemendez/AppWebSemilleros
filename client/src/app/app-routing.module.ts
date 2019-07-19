@@ -10,6 +10,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ConfigContentComponent } from './components/config-content/config-content.component';
 import { CoursesManagementComponent } from './components/courses-management/courses-management.component';
+import { NoticeManagementComponent } from './components/notice-management/notice-management.component';
+import { EventManagementComponent } from './components/event-managemet/event-managemet.component';
 
 
 const routes: Routes = [
@@ -20,8 +22,10 @@ const routes: Routes = [
   { path: "aboutus", component: AboutUsComponent },
   { path: "contact", component: ContactComponent },
   { path: "config-content", component: ConfigContentComponent },
- 
   //BORRAR LUEGO, LOS SIGUIENTES SON PRUEBAS
+  
+  { path: "notice-management", component: NoticeManagementComponent },
+  { path: "event-management", component: EventManagementComponent },
   { path: 'courses-management', component: CoursesManagementComponent }
 ];
 

@@ -35,31 +35,31 @@
     margin-left: 5px;
 }
 
-#courseList {
+#noticeList {
     margin-top: 25px;
     background-color: #fafafa;
     padding: 2%;
 }
 
-.course {
+.notice {
     margin: 7px 4px 7px 4px;
     background-color: #fff;
     border: 1px solid #e6e6e6;
     box-shadow: 2px 2px 6px rgb(177, 177, 177);
 }
 
-.imageCourse {
+.imageNotice {
     height: 150px;
     width: 100%;
 }
 
-.infoCourse {
+.infoNotice {
     display: flex;
     flex-direction: column;
     padding: 5%;
 }
 
-.nameCourse {
+.nameNotice {
     text-align: center;
     font-weight: bold;
 }
