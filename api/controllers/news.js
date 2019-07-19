@@ -1,74 +1,74 @@
 'use strict'
 
-var Notice = require('../models/notice');
+var News = require('../models/news');
 
 // Funcion que crea una Noticia
 function build(params) {
-    var newNotice = new Notice();
-    newNotice.name = params.name;
-    newNotice.description = params.description;
-    newNotice.image = 'null';
-    return newNotice;
+    var newNews = new Notice();
+    newNews.name = params.name;
+    newNews.description = params.description;
+    newNews.image = 'null';
+    return newNews;
 }
 
 // Funcion que almacena una Noticia
 function register(req, res) {
     var params = req.body;
-    var newNotice = build(params);
-    newNotice.save(function(err, noticeStored) {
+    var newNews = build(params);
+    newNews.save(function(err, newsStored) {
         if (err) {
             res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
         } else {
-            if (!noticeStored) {
+            if (!newsStored) {
                 res.status(500).send({ message: "Ocurrió un error al guardar la noticia, comuniquese con el Administrador" });
             } else {
-                res.status(201).send({ notice: noticeStored });
+                res.status(201).send({ news: newsStored });
             }
         }
     });
 }
 
 function update(req, res) {
-    var noticeId = req.params.id;
-    var notice = req.body;
-    Notice.findByIdAndUpdate(noticeId, notice, function(err, noticeUpdated) {
+    var newsId = req.params.id;
+    var news = req.body;
+    News.findByIdAndUpdate(newsId, news, function(err, newsUpdated) {
         if (err) {
             res.status(500).send({ message: "Error al actualizar la noticia, comuniquese con el Administrador" });
         } else {
-            if (!noticeUpdated) {
+            if (!newsUpdated) {
                 res.status(404).send({ message: "No se encontro la noticia" });
             } else {
-                res.status(200).send({ notice: noticeUpdated });
+                res.status(200).send({ news: newsUpdated });
             }
         }
     });
 }
 
 function remove(req, res) {
-    var noticeId = req.params.id;
-    Notice.findByIdAndDelete(noticeId, function(err, noticeDeleted) {
+    var newsId = req.params.id;
+    News.findByIdAndDelete(newsId, function(err, newsDeleted) {
         if (err) {
             res.status(500).send({ message: "Error al eliminar la noticia, comuniquese con el Administrador" });
         } else {
-            if (!noticeDeleted) {
+            if (!newsDeleted) {
                 res.status(404).send({ message: "No se encontro la noticia" });
             } else {
-                res.status(200).send({ notice: noticeDeleted });
+                res.status(200).send({ news: newsDeleted });
             }
         }
     });
 }
 
 // Funcion que devuelve todos las noticias
-function getNotices(req, res) {
-    Notice.find({}, function(err, notices) {
+function getNews(req, res) {
+    News.find({}, function(err, news) {
         if (err) {
             res.status(200).send({message: "Ocurrió un error interno, comuniquese con el administrador"});
         } else {
-            if (!notices) {
+            if (!news) {
                 res.status(404).send({message: "No se encontraron noticias"});
             } else {
-                res.status(200).send({notices});
+                res.status(200).send({news});
             }
         }
     });
@@ -76,7 +76,7 @@ function getNotices(req, res) {
 
 module.exports = {
     register,
-    getNotices,
+    getNews,
     update,
     remove
 }

@@ -2,43 +2,43 @@ import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { Notice } from '../../models/notice';
-import { NoticeService } from '../../services/notice.service';
+import { News } from '../../models/news';
+import { NewsService } from '../../services/news.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { DataNoticeComponent } from '../data-notice/data-notice.component';
+import { DataNewsComponent } from '../data-news/data-news.component';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 
 @Component({
-  selector: 'app-notice-management',
-  templateUrl: './notice-management.component.html',
-  styleUrls: ['./notice-management.component.css']
+  selector: 'app-news-management',
+  templateUrl: './news-management.component.html',
+  styleUrls: ['./news-management.component.css']
 })
-export class NoticeManagementComponent implements OnInit {
+export class NewsManagementComponent implements OnInit {
   private maxDescLength: number;
-  private notices: Notice[];
+  private newss: News[];
 
   private msgInfo: String;
   private msgError: String;
 
-  constructor(public dialog: MatDialog,private noticeService: NoticeService) { 
-    this.notices=[];
+  constructor(public dialog: MatDialog,private newsService: NewsService) { 
+    this.newss=[];
     this.maxDescLength = 80;
   }
 
   ngOnInit() {
-    this.loadNotices();
+    this.loadNews();
     this.msgError = '';
   }
 
-  createNotice() {
-    let newNotice: Notice = new Notice("","","","");
-    this.dialog.open(DataNoticeComponent, { data: newNotice }).beforeClosed().subscribe(result => {
+  createNews() {
+    let newNews: News = new News("","","","");
+    this.dialog.open(DataNewsComponent, { data: newNews }).beforeClosed().subscribe(result => {
       if (result) {
-        this.noticeService.create(newNotice).subscribe(
+        this.newsService.create(newNews).subscribe(
           response => {
             var info: Information = { title: "Noticia creada", message: "La Noticia se ha creado exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
-            this.notices.push((<any>response).notice);
+            this.newss.push((<any>response).news);
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -49,13 +49,13 @@ export class NoticeManagementComponent implements OnInit {
     });
   }
 
-  updateNotice(json: Notice, index: number) {
-    var noticeCloned: Notice = new Notice(json._id, json.name, json.description,  json.image);
-    this.dialog.open(DataNoticeComponent, { data: noticeCloned }).beforeClosed().subscribe(result => {
+  updateNews(json: News, index: number) {
+    var newsCloned: News = new News(json._id, json.name, json.description,  json.image);
+    this.dialog.open(DataNewsComponent, { data: newsCloned }).beforeClosed().subscribe(result => {
       if (result) {
-        this.noticeService.update(noticeCloned).subscribe(
+        this.newsService.update(newsCloned).subscribe(
           response => {
-            this.notices[index] = noticeCloned;
+            this.newss[index] = newsCloned;
             var info: Information = { title: "Noticia actualizada", message: "La Noticia se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
           },
@@ -68,12 +68,12 @@ export class NoticeManagementComponent implements OnInit {
     });
   }
 
-  deleteNotice(course: Notice, index: number) {
+  deleteNews(course: News, index: number) {
     this.dialog.open(ConfirmDialogComponent, { data: "¿Desea continuar con la eliminación de la noticia?, los datos serán eliminados de forma permanente" }).beforeClosed().subscribe(result => {
       if (result) {
-        this.noticeService.delete(course._id).subscribe(
+        this.newsService.delete(course._id).subscribe(
           response => {
-            this.notices.splice(index, 1);
+            this.newss.splice(index, 1);
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -84,14 +84,14 @@ export class NoticeManagementComponent implements OnInit {
   }
 
   private getInfo() {
-    return this.notices.length == 0 ? "No hay noticias registradas" : "Número de noticias encontradas: " + this.notices.length;
+    return this.newss.length == 0 ? "No hay noticias registradas" : "Número de noticias encontradas: " + this.newss.length;
     
   }
 
-  loadNotices() {
-    this.noticeService.getNotice().subscribe(
+  loadNews() {
+    this.newsService.getNews().subscribe(
       response => {
-        this.notices = (<any>response).notices as Notice[];
+        this.newss = (<any>response).newss as News[];
       },
       error => {
         this.msgError = (<any>error).error.message;

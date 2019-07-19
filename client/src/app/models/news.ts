@@ -1,4 +1,4 @@
-export class Notice {
+export class News {
 
     constructor(
         public _id: String,

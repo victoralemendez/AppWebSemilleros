@@ -33,7 +33,7 @@ export class CoursesManagementComponent implements OnInit {
   }
 
   createCourse() {
-    let newCourse: Course = new Course("", "", "", "", 0, "","");
+    let newCourse: Course = new Course("", "", "", "","", 0, "","");
     this.dialog.open(DataCourseComponent, { data: newCourse }).beforeClosed().subscribe(result => {
       if (result) {
         this.courseService.create(newCourse).subscribe(
@@ -52,7 +52,7 @@ export class CoursesManagementComponent implements OnInit {
   }
 
   updateCourse(json: Course, index: number) {
-    var courseCloned: Course = new Course(json._id, json.name, json.description, json.link, json.score, json.startDate, json.endDate, json.image);
+    var courseCloned: Course = new Course(json._id, json.name, json.description, json.link, json.duration, json.score, json.startDate, json.endDate, json.image);
     this.dialog.open(DataCourseComponent, { data: courseCloned }).beforeClosed().subscribe(result => {
       if (result) {
         this.courseService.update(courseCloned).subscribe(

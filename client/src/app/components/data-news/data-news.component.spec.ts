@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataNoticeComponent } from './data-notice.component';
+import { DataNewsComponent as DataNewsComponent } from './data-news.component';
 
 describe('DataNoticeComponent', () => {
-  let component: DataNoticeComponent;
-  let fixture: ComponentFixture<DataNoticeComponent>;
+  let component: DataNewsComponent;
+  let fixture: ComponentFixture<DataNewsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataNoticeComponent ]
+      declarations: [ DataNewsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DataNoticeComponent);
+    fixture = TestBed.createComponent(DataNewsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

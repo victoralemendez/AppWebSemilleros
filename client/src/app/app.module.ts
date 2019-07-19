@@ -31,8 +31,8 @@ import { CoursesManagementComponent } from './components/courses-management/cour
 import { ConfigContentComponent } from './components/config-content/config-content.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { RequestsComponent } from './components/requests/requests.component';
-import { NoticeManagementComponent } from './components/notice-management/notice-management.component';
-import { DataNoticeComponent } from './components/data-notice/data-notice.component';
+import { NewsManagementComponent } from './components/news-management/news-management.component';
+import { DataNewsComponent } from './components/data-news/data-news.component';
 import { EventManagementComponent } from './components/event-managemet/event-managemet.component';
 import { DataEventComponent } from './components/data-event/data-event.component';
 
@@ -52,8 +52,8 @@ import { DataEventComponent } from './components/data-event/data-event.component
     ConfigContentComponent,
     ConfirmDialogComponent,
     RequestsComponent,
-    NoticeManagementComponent,
-    DataNoticeComponent,
+    NewsManagementComponent,
+    DataNewsComponent,
     EventManagementComponent,
     DataEventComponent,
   ],
@@ -78,7 +78,7 @@ import { DataEventComponent } from './components/data-event/data-event.component
     InfoDialogComponent,
     DataCourseComponent,
     ConfirmDialogComponent,
-    DataNoticeComponent,
+    DataNewsComponent,
     DataEventComponent
   ],
   providers: [],

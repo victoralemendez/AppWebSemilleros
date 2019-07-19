@@ -6,8 +6,8 @@ var Schema = mongoose.Schema;
 var courseSchema = Schema({
     name: String,
     description: String,
-    link: String,
     duration: String,
+    link: String,
     score: Number,
     startDate: String,
     endDate: String,

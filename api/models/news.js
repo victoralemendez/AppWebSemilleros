@@ -3,10 +3,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var noticeSchema = Schema({
+var newsSchema = Schema({
     name: String,
     description: String,
     image: String
 });
 
-module.exports = mongoose.model('Notice', noticeSchema);
+module.exports = mongoose.model('News', newsSchema);

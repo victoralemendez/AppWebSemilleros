@@ -6,7 +6,7 @@ import { GlOBAL } from './global';
 @Injectable({
   providedIn: 'root'
 })
-export class NoticeService {
+export class NewsService {
   
   private url: String;
 
@@ -14,25 +14,25 @@ export class NoticeService {
     this.url = GlOBAL.url;
    }
 
-  public create(notice) {
-    let paramsJSON = JSON.stringify(notice);
+  public create(news) {
+    let paramsJSON = JSON.stringify(news);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.url + "notice", paramsJSON, { headers: headers });
+    return this.http.post(this.url + "news", paramsJSON, { headers: headers });
   }
 
-  public getNotice() {
+  public getNews() {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get(this.url + "notices", { headers: headers });
+    return this.http.get(this.url + "news", { headers: headers });
   }
 
-  public update(notice) {
-    let paramsJSON = JSON.stringify(notice);
+  public update(news) {
+    let paramsJSON = JSON.stringify(news);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put(this.url + "update-notice/" + notice._id, paramsJSON, { headers: headers });
+    return this.http.put(this.url + "update-news/" + news._id, paramsJSON, { headers: headers });
   }
 
-  public delete(noticeId) {
+  public delete(newsId) {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.delete(this.url + "delete-notice/" + noticeId, { headers: headers });
+    return this.http.delete(this.url + "delete-news/" + newsId, { headers: headers });
   }
 }

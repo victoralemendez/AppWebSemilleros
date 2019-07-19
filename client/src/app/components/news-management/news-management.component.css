@@ -35,31 +35,31 @@
     margin-left: 5px;
 }
 
-#noticeList {
+#newsList {
     margin-top: 25px;
     background-color: #fafafa;
     padding: 2%;
 }
 
-.notice {
+.news {
     margin: 7px 4px 7px 4px;
     background-color: #fff;
     border: 1px solid #e6e6e6;
     box-shadow: 2px 2px 6px rgb(177, 177, 177);
 }
 
-.imageNotice {
+.imageNews {
     height: 150px;
     width: 100%;
 }
 
-.infoNotice {
+.infoNews {
     display: flex;
     flex-direction: column;
     padding: 5%;
 }
 
-.nameNotice {
+.nameNews {
     text-align: center;
     font-weight: bold;
 }

@@ -9,7 +9,7 @@ var app = express();
 var userRoutes = require('./routes/user');
 var messageRoutes = require('./routes/message');
 var courseRoutes = require('./routes/course');
-var noticeRoutes = require('./routes/notice');
+var newsRoutes = require('./routes/news');
 var eventRoutes = require('./routes/event');
 
 
@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 app.use('/api', userRoutes);
 app.use('/api', messageRoutes);
 app.use('/api', courseRoutes);
-app.use('/api', noticeRoutes);
+app.use('/api', newsRoutes);
 app.use('/api', eventRoutes);
 
 

@@ -10,7 +10,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ConfigContentComponent } from './components/config-content/config-content.component';
 import { CoursesManagementComponent } from './components/courses-management/courses-management.component';
-import { NoticeManagementComponent } from './components/notice-management/notice-management.component';
+import { NewsManagementComponent } from './components/news-management/news-management.component';
 import { EventManagementComponent } from './components/event-managemet/event-managemet.component';
 
 
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: "config-content", component: ConfigContentComponent },
   //BORRAR LUEGO, LOS SIGUIENTES SON PRUEBAS
   
-  { path: "notice-management", component: NoticeManagementComponent },
+  { path: "notice-management", component: NewsManagementComponent },
   { path: "event-management", component: EventManagementComponent },
   { path: 'courses-management', component: CoursesManagementComponent }
 ];

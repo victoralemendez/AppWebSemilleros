@@ -6,25 +6,25 @@
       <p class="message" *ngIf="msgError == ''">{{getInfo()}}</p>
       <p class="message" *ngIf="msgError != ''">{{msgError}}</p>
     </div>
-    <button mat-button id="btnNew" class="col-6 col-md-2" (click)="createNotice()">
+    <button mat-button id="btnNew" class="col-6 col-md-2" (click)="createNews()">
       <mat-icon class="icon">add</mat-icon>Crear Noticia
     </button>
   </div>
-  <div id="noticeList" class="row no-gutters">
-    <div class="col-12 col-md-4" *ngFor="let notice of notices; let index = index">
-      <div class="notice">
-        <div class="imageNotice">
+  <div id="newsList" class="row no-gutters">
+    <div class="col-12 col-md-4" *ngFor="let news of newss; let index = index">
+      <div class="news">
+        <div class="imageNews">
 
         </div>
-        <div class="infoNotice">
-          <p class="nameNotice">{{notice.name}}</p>
-          <p class="description">{{getShortDescription(notice.description)}}</p>
+        <div class="infoNews">
+          <p class="nameNews">{{news.name}}</p>
+          <p class="description">{{getShortDescription(news.description)}}</p>
           <div class="row justify-content-center no-gutters">
             <div class="col-12 col-md-6">
-              <button class="btnDelete" (click)="deleteNotice(notice, index)">Eliminar</button>
+              <button class="btnDelete" (click)="deleteNews(news, index)">Eliminar</button>
             </div>
             <div class="col-12 col-md-6">
-              <button class="btnEdit" (click)="updateNotice(notice, index)">Editar</button>
+              <button class="btnEdit" (click)="updateNews(news, index)">Editar</button>
             </div>
           </div>
         </div>
