@@ -10,6 +10,7 @@ var userRoutes = require('./routes/user');
 var messageRoutes = require('./routes/message');
 var courseRoutes = require('./routes/course');
 var categoryRoutes = require('./routes/category');
+var deviceRoutes = require('./routes/device');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -30,6 +31,7 @@ app.use('/api', userRoutes);
 app.use('/api', messageRoutes);
 app.use('/api', courseRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', deviceRoutes);
 
 
 module.exports = app;

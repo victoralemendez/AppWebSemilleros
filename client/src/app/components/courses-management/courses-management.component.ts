@@ -26,7 +26,6 @@ export class CoursesManagementComponent implements OnInit {
   private maxDescLength: number;
 
   // Variables para imprimir mensajes
-  private msgInfo: String;
   private msgError: String;
 
   constructor(public dialog: MatDialog, private courseService: CourseService) {

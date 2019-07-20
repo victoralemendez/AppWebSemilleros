@@ -15,7 +15,7 @@
             <mat-divider></mat-divider>
             <h4 matSubHeader class="header">Recursos</h4>
             <mat-list-item role="list-item" (click)="displayOption(7)">Categorias</mat-list-item>
-            <mat-list-item role="list-item">Dispositivos</mat-list-item>
+            <mat-list-item role="list-item" (click)="displayOption(8)">Dispositivos</mat-list-item>
             <mat-list-item role="list-item">Biblioteca</mat-list-item>
             <mat-list-item role="list-item">
               <p matBadge="5" matBadgeOverlap="false">Prestamos</p>
@@ -32,6 +32,7 @@
           <app-courses-management *ngIf="codeDisplayed == 1"></app-courses-management>
           <app-messages-management *ngIf="codeDisplayed == 6"></app-messages-management>
           <app-categories-management *ngIf="codeDisplayed == 7"></app-categories-management>
+          <app-devices-management *ngIf="codeDisplayed == 8"></app-devices-management>
           <app-requests *ngIf="codeDisplayed == 12"></app-requests>
         </div>
       </div>

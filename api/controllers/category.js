@@ -3,7 +3,7 @@
 var Category = require('../models/category');
 
 // Funcion encargada de crear el prototipo que se almacenará en la base de datos
-function build(params) {
+function createCourse(params) {
   var category = new Category();
   category.name = params.name;
   category.description = params.description;

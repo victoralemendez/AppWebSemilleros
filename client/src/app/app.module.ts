@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // imports de componentes y servicios propios
 import { AppComponent } from './app.component';
@@ -37,6 +38,8 @@ import { DataNewsComponent } from './components/data-news/data-news.component';
 import { DataCategoriesComponent } from './components/data-categories/data-categories.component';
 import { CategoriesManagementComponent } from './components/categories-management/categories-management.component';
 import { MessagesManagementComponent } from './components/messages-management/messages-management.component';
+import { DataDeviceComponent } from './components/data-device/data-device.component';
+import { DevicesManagementComponent } from './components/devices-management/devices-management.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import { MessagesManagementComponent } from './components/messages-management/me
     DataNewsComponent,
     DataCategoriesComponent,
     CategoriesManagementComponent,
-    MessagesManagementComponent
+    MessagesManagementComponent,
+    DataDeviceComponent,
+    DevicesManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -76,13 +81,15 @@ import { MessagesManagementComponent } from './components/messages-management/me
     MatListModule,
     MatExpansionModule,
     MatBadgeModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule
   ],
   entryComponents: [
     InfoDialogComponent,
     DataCourseComponent,
     ConfirmDialogComponent,
-    DataCategoriesComponent
+    DataCategoriesComponent,
+    DataDeviceComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

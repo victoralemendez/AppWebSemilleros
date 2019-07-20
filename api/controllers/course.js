@@ -3,7 +3,7 @@
 var Course = require('../models/course');
 
 // Funcion que crea un Curso
-function build(params) {
+function createCourse(params) {
     var newCourse = new Course();
     newCourse.name = params.name;
     newCourse.description = params.description;
@@ -18,7 +18,7 @@ function build(params) {
 // Funcion que almacena un curso
 function register(req, res) {
     var params = req.body;
-    var newCourse = build(params);
+    var newCourse = createCourse(params);
     newCourse.save(function(err, courseStored) {
         if (err) {
             res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });

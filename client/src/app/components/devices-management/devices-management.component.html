@@ -1,0 +1,33 @@
+<div id="base">
+  <h2>Dispositivos</h2>
+  <hr>
+  <div class="row justify-content-end no-gutters">
+    <div id="infoMessage" class="col-12 col-md-8 col-lg-9">
+      <p class="message" *ngIf="msgError == ''">{{getInfo()}}</p>
+      <p class="message" *ngIf="msgError != ''">{{msgError}}</p>
+    </div>
+    <button mat-button id="btnNew" class="col-6 col-md-4 col-lg-3" (click)="createDevice()">
+      <mat-icon class="icon">add</mat-icon>Crear dispositivo
+    </button>
+  </div>
+
+  <div id="deviceList" class="row no-gutters">
+    <div class="col-12 col-md-4" *ngFor="let device of devices; let index = index">
+      <div class="device">
+        <div class="imageDevice">
+
+        </div>
+        <div class="infoDevice">
+          <p class="nameDevice">{{device.name}}</p>
+          <p class="description">{{getShortDescription(device.description)}}</p>
+          <div class="row justify-content-end no-gutters">
+            <div class="col-12 col-md-6">
+              <button class="btnEdit" (click)="updateDevice(device, index)">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
