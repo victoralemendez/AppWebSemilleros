@@ -40,6 +40,8 @@ import { CategoriesManagementComponent } from './components/categories-managemen
 import { MessagesManagementComponent } from './components/messages-management/messages-management.component';
 import { DataDeviceComponent } from './components/data-device/data-device.component';
 import { DevicesManagementComponent } from './components/devices-management/devices-management.component';
+import { UsersManagementComponent } from './components/users-management/users-management.component';
+import { DataUserComponent } from './components/data-user/data-user.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { DevicesManagementComponent } from './components/devices-management/devi
     CategoriesManagementComponent,
     MessagesManagementComponent,
     DataDeviceComponent,
-    DevicesManagementComponent
+    DevicesManagementComponent,
+    UsersManagementComponent,
+    DataUserComponent
   ],
   imports: [
     BrowserModule,

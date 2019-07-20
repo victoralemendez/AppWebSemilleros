@@ -26,7 +26,7 @@ export class DataDeviceComponent {
 
   // Funcion para validar el llenado de campos
   validData(): boolean {
-    return this.device.name.length > 0 && this.device.description.length > 0;
+    return this.device.name.length > 0 && this.device.description.length > 0 && this.device.features.length > 0  && this.device.reference.length > 0;
   }
 
   // Funcion para cerrar el dialogo
@@ -35,7 +35,7 @@ export class DataDeviceComponent {
     if (this.validData()) {
       this.dialog.close(true);
     } else {
-      this.msgError = 'Todos los campos son obligatorios, los creditos deben ser superiores a cero';
+      this.msgError = 'Todos los campos son obligatorios';
     }
     return close;
   }

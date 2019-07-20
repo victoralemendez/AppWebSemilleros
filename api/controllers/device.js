@@ -9,6 +9,8 @@ function createDevice(params) {
   newDevice.description = params.description;
   newDevice.image = 'null';
   newDevice.avialable = params.avialable;
+  newDevice.features = params.features;
+  newDevice.reference = params.reference;
   return newDevice;
 }
 

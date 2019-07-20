@@ -1,7 +1,6 @@
 <div id="base">
   <h2 mat-dialog-title align="start">Dispositivo</h2>
   <p class="info">Ingrese la información del dispositivo ofertado por el semillero, Llene todos los campos.</p>
-  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
 
   <mat-dialog-content class="mat-typography">
     <form id="form" #courseForm="ngForm">
@@ -10,19 +9,30 @@
           <mat-form-field>
             <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="device.name" required>
           </mat-form-field>
-          <mat-checkbox name="avialable" [labelPosition]="before" [(ngModel)]="device.avialable"
-            >Disponible para prestamos</mat-checkbox>
+          <mat-form-field>
+            <input matInput placeholder="Referencia" #name="ngModel" name="refence" [(ngModel)]="device.reference"
+              required>
+          </mat-form-field>
+          <mat-checkbox name="avialable" [labelPosition]="before" [(ngModel)]="device.avialable">Disponible para
+            prestamos</mat-checkbox>
         </div>
         <div id="data-description" class="col-12 col-md-8 offset-md-4">
           <mat-form-field>
-            <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
-              name="description" [(ngModel)]="device.description" required></textarea>
+            <textarea class="description" matInput maxlength="{{length}}" placeholder="Caracteristicas"
+              #description="ngModel" name="features" [(ngModel)]="device.features" required></textarea>
+            <mat-hint align="end">{{device.features.length}} / {{length}}</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea class="description" matInput maxlength="{{length}}" placeholder="Descripción"
+              #description="ngModel" name="description" [(ngModel)]="device.description" required></textarea>
             <mat-hint align="end">{{device.description.length}} / {{length}}</mat-hint>
           </mat-form-field>
         </div>
       </div>
     </form>
   </mat-dialog-content>
+
+  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
 
   <mat-dialog-actions align="end">
     <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>

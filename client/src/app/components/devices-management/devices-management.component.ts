@@ -47,6 +47,10 @@ export class DevicesManagementComponent implements OnInit {
     );
   }
 
+  private getStringState(state) {
+    return state ? "Disponible" : "No disponible";
+  }
+
   // Funcion encargada de fijar el mensaje presentado al usuario
   private getInfo() {
     return this.devices.length == 0 ? "No hay cursos registrados" : "Número de dispositivos encontrados: " + this.devices.length;
@@ -54,7 +58,7 @@ export class DevicesManagementComponent implements OnInit {
 
   // Funcion encargada de la respuesta del servidor al crear un curso
   createDevice() {
-    let newDevice: Device = new Device("", "", "", false);
+    let newDevice: Device = new Device("", "", "", false, "", "");
     this.dialog.open(DataDeviceComponent, { data: newDevice }).beforeClosed().subscribe(result => {
       if (result) {
         this.deviceService.create(newDevice).subscribe(
@@ -79,7 +83,7 @@ export class DevicesManagementComponent implements OnInit {
 
   // Funcion encargada de la respuesta del servidor al modificar un curso
   updateDevice(json: Device, index: number) {
-    var deviceCloned: Device = new Device(json._id, json.name, json.description, json.avialable, json.image);
+    var deviceCloned: Device = new Device(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.image);
     this.dialog.open(DataDeviceComponent, { data: deviceCloned }).beforeClosed().subscribe(result => {
       if (result) {
         this.deviceService.update(deviceCloned).subscribe(

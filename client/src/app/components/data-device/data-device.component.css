@@ -23,7 +23,7 @@
     flex-direction: column;
 }
 
-#description {
+.description {
     height: 130px;
     width: 100%;
 }

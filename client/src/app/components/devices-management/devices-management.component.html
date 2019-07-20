@@ -20,6 +20,7 @@
         <div class="infoDevice">
           <p class="nameDevice">{{device.name}}</p>
           <p class="description">{{getShortDescription(device.description)}}</p>
+          <p class="description">Estado: {{getStringState(device.avialable)}}</p>
           <div class="row justify-content-end no-gutters">
             <div class="col-12 col-md-6">
               <button class="btnEdit" (click)="updateDevice(device, index)">Editar</button>
