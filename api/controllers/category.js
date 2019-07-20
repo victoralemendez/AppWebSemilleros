@@ -3,18 +3,19 @@
 var Category = require('../models/category');
 
 // Funcion encargada de crear el prototipo que se almacenará en la base de datos
-function createCourse(params) {
+function createCategory(params) {
   var category = new Category();
   category.name = params.name;
   category.description = params.description;
   category.parentCategory = params._idParent;
   category.position = params.position;
+  category.avialable = params.avialable;
   return category;
 }
 
 // Funcion encargada de almacenar una categoria en la base de datos
 function register(req, res) {
-  var newCategory = build(req.body);
+  var newCategory = createCategory(req.body);
   newCategory.save(function(err, categoryStored) {
     if (err) {
       res.status(500).send({ message : "Ocurrió un error interno, comuniquese con el servidor"});

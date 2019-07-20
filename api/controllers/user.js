@@ -134,7 +134,8 @@ function createNewUser(userParams) {
     user.email = userParams.email;
     user.password = userParams.password;
     user.adminRole = false;
-    user.admitted = false;
+    user.admitted = true;  // VALOR DE PRUEBA
+    //user.admitted = false;
     user.bornDate = userParams.bornDate;
     user.image = 'null';
     user.score = 0;

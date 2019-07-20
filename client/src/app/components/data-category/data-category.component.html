@@ -7,6 +7,8 @@
         <input matInput type="text" #name="ngModel" placeholder="Nombre" name="name" [(ngModel)]="category.name"
           required>
       </mat-form-field>
+      <mat-checkbox name="avialable" [labelPosition]="before" [(ngModel)]="category.avialable"
+            >Disponible</mat-checkbox>
       <mat-form-field>
         <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
           name="description" [(ngModel)]="category.description" required></textarea>

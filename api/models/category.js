@@ -7,7 +7,8 @@ var categorySchema = Schema({
   name: String,
   description: String,
   parentCategory: {type : Schema.ObjectId, ref: 'Category'},
-  position: Number
+  position: Number,
+  avialable: Boolean
 });
 
 module.exports = mongoose.model('Category', categorySchema);

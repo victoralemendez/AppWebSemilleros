@@ -7,11 +7,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Category } from '../../models/category';
 
 @Component({
-  selector: 'app-data-categories',
-  templateUrl: './data-categories.component.html',
-  styleUrls: ['./data-categories.component.css']
+  selector: 'app-data-category',
+  templateUrl: './data-category.component.html',
+  styleUrls: ['./data-category.component.css']
 })
-export class DataCategoriesComponent {
+export class DataCategoryComponent {
 
   // Variable para mostrar mensaje de error
   private msgError: String;

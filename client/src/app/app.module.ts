@@ -35,7 +35,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { RequestsComponent } from './components/requests/requests.component';
 import { NewsManagementComponent } from './components/news-management/news-management.component';
 import { DataNewsComponent } from './components/data-news/data-news.component';
-import { DataCategoriesComponent } from './components/data-categories/data-categories.component';
+import { DataCategoryComponent } from './components/data-category/data-category.component';
 import { CategoriesManagementComponent } from './components/categories-management/categories-management.component';
 import { MessagesManagementComponent } from './components/messages-management/messages-management.component';
 import { DataDeviceComponent } from './components/data-device/data-device.component';
@@ -59,7 +59,7 @@ import { DevicesManagementComponent } from './components/devices-management/devi
     RequestsComponent,
     NewsManagementComponent,
     DataNewsComponent,
-    DataCategoriesComponent,
+    DataCategoryComponent,
     CategoriesManagementComponent,
     MessagesManagementComponent,
     DataDeviceComponent,
@@ -88,7 +88,7 @@ import { DevicesManagementComponent } from './components/devices-management/devi
     InfoDialogComponent,
     DataCourseComponent,
     ConfirmDialogComponent,
-    DataCategoriesComponent,
+    DataCategoryComponent,
     DataDeviceComponent
   ],
   providers: [],

@@ -10,12 +10,8 @@
           <mat-form-field>
             <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="device.name" required>
           </mat-form-field>
-          <!--
-          <mat-slide-toggle [color]="primary" [checked]="device.avialable">
-            Disponible para préstamos
-          </mat-slide-toggle>
-          -->
-          <mat-checkbox class="blue" name="avialable" [labelPosition]="before" [(ngModel)]="device.avialable" [color]="warn">Disponible para prestamos</mat-checkbox>
+          <mat-checkbox name="avialable" [labelPosition]="before" [(ngModel)]="device.avialable"
+            >Disponible para prestamos</mat-checkbox>
         </div>
         <div id="data-description" class="col-12 col-md-8 offset-md-4">
           <mat-form-field>

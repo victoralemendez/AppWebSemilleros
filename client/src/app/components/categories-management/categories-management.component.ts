@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 // Componentes y servicios propios
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 import { Category } from '../../models/category';
-import { DataCategoriesComponent } from '../data-categories/data-categories.component';
+import { DataCategoryComponent } from '../data-category/data-category.component';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
@@ -34,6 +34,10 @@ export class CategoriesManagementComponent implements OnInit {
     this.selectedCategory = null;
   }
 
+  private getStringState(state) {
+    return state ? "Disponible" : "No disponible";
+  }
+
   private updateInfo() {
     return this.categories.length == 0 ? "No hay categorías registradas, para iniciar con el registro pulse el botón 'Agregar categoría'" : '';
   }
@@ -57,8 +61,8 @@ export class CategoriesManagementComponent implements OnInit {
   // Funcion encargada de recibir respuesta del servidor al crear una categoria
   openCreate() {
     let idParent = this.selectedCategory != null ? this.selectedCategory._id : null;
-    let newCategory: Category = new Category("", "", "", idParent, this.categories.length);
-    this.dialog.open(DataCategoriesComponent, { data: newCategory }).beforeClosed().subscribe(result => {
+    let newCategory: Category = new Category("", "", "", idParent, this.categories.length, true);
+    this.dialog.open(DataCategoryComponent, { data: newCategory }).beforeClosed().subscribe(result => {
       if (result) {
         this.registerCategory(newCategory);
       }
@@ -133,8 +137,8 @@ export class CategoriesManagementComponent implements OnInit {
   }
 
   openUpdate() {
-    let clonedCategory: Category = new Category(this.selectedCategory._id, this.selectedCategory.name, this.selectedCategory.description, this.selectedCategory._idParent, this.selectedCategory.position);
-    this.dialog.open(DataCategoriesComponent, { data: clonedCategory }).beforeClosed().subscribe(result => {
+    let clonedCategory: Category = new Category(this.selectedCategory._id, this.selectedCategory.name, this.selectedCategory.description, this.selectedCategory._idParent, this.selectedCategory.position, this.selectedCategory.avialable);
+    this.dialog.open(DataCategoryComponent, { data: clonedCategory }).beforeClosed().subscribe(result => {
       if (result) {
         this.updateCategory(clonedCategory);
       }

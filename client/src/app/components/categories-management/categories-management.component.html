@@ -14,6 +14,7 @@
   <hr>
   <div *ngIf="selectedCategory != null">
     <p class="description">{{selectedCategory.description}}</p>
+    <p class="state">Estado: {{getStringState(selectedCategory.avialable)}}</p>
     <div class="row justify-content-end no-gutters">
       <button mat-button id="btnEdit" class="col-12 col-md-2" (click)="openUpdate()">Editar</button>
       <button mat-button id="btnDelete" class="col-12 col-md-2" (click)="createCategory()">Eliminar</button>
@@ -33,6 +34,7 @@
           <div class="col-11 col-md-8">
             <div class="info-category">
               <p class="data-category">{{category.name}}</p>
+              <p class="state-category">Estado: {{getStringState(category.avialable)}}</p>
             </div>
           </div>
           <button mat-button class="col-2 col-md-1" (click)="selectCategory(index)">

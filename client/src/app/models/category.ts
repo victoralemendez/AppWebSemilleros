@@ -5,7 +5,8 @@ export class Category {
         public name: String,
         public description: String,
         public _idParent: String,
-        public position: Number
+        public position: Number,
+        public avialable: Boolean
     ) { }
 
 }
