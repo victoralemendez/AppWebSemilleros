@@ -42,7 +42,7 @@
         <div class="dropdown-menu btnConfig" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item btnConfig" href="#">Perfil</a>
           <a class="dropdown-item btnConfig" href="#">Mis prestamos</a>
-          <a class="dropdown-item btnConfig" (click)="goToConfig()">Ajustes</a>
+          <a class="dropdown-item btnConfig" *ngIf="user.adminRole" (click)="goToConfig()">Ajustes</a>
           <a class="dropdown-item btnConfig" (click)="logOut()">Cerrar sesión</a>
         </div>
       </div>

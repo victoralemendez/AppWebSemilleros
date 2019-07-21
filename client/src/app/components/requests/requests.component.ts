@@ -15,7 +15,9 @@ export class RequestsComponent implements OnInit {
 
   private requests: any[];
 
-  constructor(private userService: UserService, private dialog: MatDialog) { }
+  constructor(private userService: UserService, private dialog: MatDialog) {
+    this.requests = [];
+  }
 
   ngOnInit() {
     this.loadRequests();
@@ -32,7 +34,7 @@ export class RequestsComponent implements OnInit {
   }
 
   private loadRequests() {
-    this.userService.getUsersNotAdmitted().subscribe(
+    this.userService.getRequests().subscribe(
       response => {
         this.requests = (<any>response).users;
       },
@@ -57,7 +59,6 @@ export class RequestsComponent implements OnInit {
   }
 
   private refuse(user, index) {
-    user.admitted = true;
     this.userService.delete(user._id).subscribe(
       response => {
         this.requests.splice(index, 1);

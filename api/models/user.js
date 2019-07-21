@@ -15,6 +15,7 @@ var userSchema = Schema({
     score: Number,
     cvlac: String,
     career: String,
+    student: Boolean,
     semester: Number,
 });
 

@@ -5,6 +5,10 @@
     background-color: #fff;
 }
 
+.info-count {
+    color:rgb(126, 126, 126);
+}
+
 .panel {
     width: 100%;
     margin: 2px;

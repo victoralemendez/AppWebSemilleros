@@ -9,6 +9,7 @@ export class User {
         public bornDate: String,
         public career: String,
         public semester: Number,
+        public student: Boolean,
         public cvlac?: String,
         public image?: String,
         public score?: Number,
@@ -17,7 +18,7 @@ export class User {
     ) { }
 
     public static buildFromJSON(json): User {
-        return new User(json._id, json.name, json.surname, json.email, json.password, json.bornDate, json.carrer, json.semester, json.cvlac, json.image, json.score, json.adminRole, json.admitted);
+        return new User(json._id, json.name, json.surname, json.email, json.password, json.bornDate, json.career, json.semester, json.student, json.cvlac, json.image, json.score, json.adminRole, json.admitted);
     }
     
 }

@@ -22,7 +22,7 @@
             </mat-list-item>
             <mat-divider></mat-divider>
             <h4 matSubHeader class="header">Integrantes</h4>
-            <mat-list-item role="list-item">Admitidos</mat-list-item>
+            <mat-list-item role="list-item" (click)="displayOption(11)">Admitidos</mat-list-item>
             <mat-list-item role="list-item" (click)="displayOption(12)">
               <p matBadge="5" matBadgeOverlap="false">Solicitudes</p>
             </mat-list-item>
@@ -33,6 +33,7 @@
           <app-messages-management *ngIf="codeDisplayed == 6"></app-messages-management>
           <app-categories-management *ngIf="codeDisplayed == 7"></app-categories-management>
           <app-devices-management *ngIf="codeDisplayed == 8"></app-devices-management>
+          <app-users-management *ngIf="codeDisplayed == 11"></app-users-management>
           <app-requests *ngIf="codeDisplayed == 12"></app-requests>
         </div>
       </div>

@@ -47,8 +47,8 @@ export class RegisterComponent implements OnInit {
 
   // Método para limpiar datos de control de formulario
   private cleanFormData() {
-    this.user = new User("", "", "", "", "", "", "", 0, "", "", 0, false, false);
     this.hidePassword = true;
+    this.user = new User("", "", "", "", "", "", "", 0, false, "", "", 0, false, false);
     this.hideAuxPassword = true;
     this.auxPassword = "";
     this.msgError = "";
@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
   // Método para validar los datos ingresados por el usuario
   validData() {
     var valid: boolean = false;
-    if (this.user.name.length > 0 && this.user.surname.length > 0 && this.user.email.length > 0 && this.user.password.length > 0 && this.auxPassword.length > 0 && this.user.career.length != 0 && this.user.semester != 0 && this.dateControl.value != null) {
+    if (this.user.name.length > 0 && this.user.surname.length > 0 && this.user.email.length > 0 && this.user.password.length > 0 && this.auxPassword.length > 0 && this.user.career.length != 0 && this.dateControl.value != null) {
       valid = this.user.password == this.auxPassword;
       this.msgError = valid ? "" : this.msgError = "Error: Las contraseñas no coinciden";
     } else {

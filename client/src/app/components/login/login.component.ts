@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   }
   
   createEmptyUser() {
-    return new User("", "", "", "", "", "", "", 1);
+    return new User("", "", "", "", "", "", "", 1, false);
   }
 
   processError(error) {

@@ -93,7 +93,8 @@ import { DataUserComponent } from './components/data-user/data-user.component';
     DataCourseComponent,
     ConfirmDialogComponent,
     DataCategoryComponent,
-    DataDeviceComponent
+    DataDeviceComponent,
+    DataUserComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

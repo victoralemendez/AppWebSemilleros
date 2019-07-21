@@ -31,6 +31,7 @@ export class DataCategoryComponent {
   validData(): boolean {
     return this.category.name.length > 0 && this.category.description.length > 0
   }
+  
   // Funcion para cerrar el dialogo
   closeDialog() {
     var close: boolean = false;

@@ -1,3 +1,53 @@
-<p>
-  users-management works!
-</p>
+<div id="base">
+  <h2>Integrantes</h2>
+  <hr>
+  <p class="info-count">{{getInfoMessage()}}</p>
+  <div class="panel" *ngFor="let user of users; let index = index">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="item-name">{{getShortName(user.name, user.surname)}}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="row no-gutters">
+          <div class="col-12 col-md-3"></div>
+          <div class="col-12 col-md-9">
+            <div class="info">
+              <div class="data">
+                <p class="item-name">Nombre Completo:</p>
+                <p class="item-data"> {{user.name}} {{user.surname}}</p>
+              </div>
+              <div class="data">
+                <p class="item-name">Correo:</p>
+                <p class="item-data"> {{user.email}}</p>
+              </div>
+              <div class="data">
+                <p class="item-name">Fecha de nacimiento:</p>
+                <p class="item-data"> {{user.bornDate}}</p>
+              </div>
+              <div class="data">
+                <p class="item-name">Privilegios de administrador:</p>
+                <p class="item-data"> {{getAdminRole(user.adminRole)}}</p>
+              </div>
+              <div class="data">
+                <p class="item-name">Programa:</p>
+                <p class="item-data"> {{user.career}}</p>
+              </div>
+              <div class="data" *ngIf="user.student">
+                <p class="item-name">Semestre:</p>
+                <p class="item-data"> {{user.semester}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-end no-gutters">
+          <div class="col-6 col-md-2">
+            <button class="btnDelete" (click)="delete(user)">Eliminar</button>
+          </div>
+          <div class=" col-6 col-md-2">
+            <button class="btnEdit" (click)="edit(user, index)">Editar</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

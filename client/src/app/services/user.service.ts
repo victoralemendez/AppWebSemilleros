@@ -43,9 +43,14 @@ export class UserService {
     return this.http.delete(this.url + "delete-user/" + id, {headers: headers});
   }
 
-  getUsersNotAdmitted() {
+  getRequests() {
     let headers = new HttpHeaders({'Content-Type' : 'application/json'});
     return this.http.get(this.url + "requests", {headers: headers});
+  }
+
+  getUsers() {
+    let headers = new HttpHeaders({'Content-Type' : 'application/json'});
+    return this.http.get(this.url + "users", {headers: headers});
   }
 
 }

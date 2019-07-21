@@ -12,7 +12,8 @@
           <input matInput placeholder="Apellidos" #name="ngModel" name="surname" [(ngModel)]="user.surname" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dp3" [formControl]="dateControl" placeholder="Fecha de nacimiento">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dp3" [formControl]="dateControl"
+            placeholder="Fecha de nacimiento">
           <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
           <mat-datepicker #dp3 disabled="false"></mat-datepicker>
         </mat-form-field>
@@ -35,9 +36,11 @@
           </button>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Carrera" #name="ngModel" name="career" [(ngModel)]="user.career" required>
+          <input matInput placeholder="Programa" #name="ngModel" name="career" [(ngModel)]="user.career" required>
         </mat-form-field>
-        <mat-form-field>
+        <mat-checkbox name="student" [(ngModel)]="user.student" [labelPosition]="before">Soy estudiante
+        </mat-checkbox>
+        <mat-form-field *ngIf="user.student">
           <mat-label>Semestre</mat-label>
           <mat-select [(value)]="user.semester" required>
             <mat-option *ngFor="let semester of semesters" [value]="semester">

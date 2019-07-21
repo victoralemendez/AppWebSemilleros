@@ -1,3 +1,66 @@
-<p>
-  data-user works!
-</p>
+<div id="base">
+  <h2 mat-dialog-title align="start">Integrante</h2>
+  <p class="info">Datos personales del integrante del semillero, todos los campos son obligatorios.</p>
+  <mat-dialog-content class="mat-typography">
+    <form id="form" #courseForm="ngForm">
+      <div class="row no-gutters">
+        <div class="col-12 col-md-5">
+
+        </div>
+        <div id="data" class="col-12 col-md-7">
+          <mat-form-field>
+            <input matInput placeholder="Nombres" #name="ngModel" name="name" [(ngModel)]="config.user.name" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Apellidos" #name="ngModel" name="surname" [(ngModel)]="config.user.surname"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dp3" [formControl]="dateControl"
+              placeholder="Fecha de nacimiento">
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Correo electronico institucional" #name="ngModel" name="email"
+              [(ngModel)]="config.user.email" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Contraseña" #name="ngModel" name="password" [(ngModel)]="config.user.password"
+              [type]="hidePassword ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Confirmación de contraseña" #name="ngModel" name="auxPassword"
+              [(ngModel)]="auxPassword" [type]="hideAuxPassword ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hideAuxPassword = !hideAuxPassword">
+              <mat-icon>{{hideAuxPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Programa" #name="ngModel" name="career" [(ngModel)]="config.user.career"
+              required>
+          </mat-form-field>
+          <mat-checkbox name="student" [(ngModel)]="config.user.student" [labelPosition]="before">Estudiante
+          </mat-checkbox>
+          <mat-form-field *ngIf="config.user.student">
+            <mat-label>Semestre</mat-label>
+            <mat-select [(value)]="config.user.semester" required>
+              <mat-option *ngFor="let semester of semesters" [value]="semester">
+                {{semester}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-checkbox name="admin" [(ngModel)]="config.user.adminRole" [labelPosition]="before">Permisos de administrador</mat-checkbox>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
+  <mat-dialog-actions align="end">
+    <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
+    <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
+  </mat-dialog-actions>
+</div>
