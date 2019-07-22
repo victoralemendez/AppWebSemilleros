@@ -30,7 +30,7 @@ mat-list-item {
 }
 
 mat-list-item:hover {
-    padding-left: 20px !important;
+    padding-left: 30px !important;
     background-color: rgba(231, 235, 253, 0.541);
 }
 

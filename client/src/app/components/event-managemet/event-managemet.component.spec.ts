@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventManagementComponent } from "./EventManagementComponent";
+import { EventManagementComponent } from "./event-managemet.component";
 
 describe('EventManagementComponent', () => {
   let component: EventManagementComponent;
