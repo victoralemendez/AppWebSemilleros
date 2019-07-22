@@ -22,7 +22,7 @@ export class NewsService {
 
   public getNews() {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get(this.url + "news", { headers: headers });
+    return this.http.get(this.url + "newss", { headers: headers });
   }
 
   public update(news) {

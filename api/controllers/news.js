@@ -4,7 +4,7 @@ var News = require('../models/news');
 
 // Funcion que crea una Noticia
 function build(params) {
-    var newNews = new Notice();
+    var newNews = new News();
     newNews.name = params.name;
     newNews.description = params.description;
     newNews.image = 'null';

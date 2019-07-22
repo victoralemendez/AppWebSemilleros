@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: "config-content", component: ConfigContentComponent },
   //BORRAR LUEGO, LOS SIGUIENTES SON PRUEBAS
   
-  { path: "notice-management", component: NewsManagementComponent },
+  { path: "news-management", component: NewsManagementComponent },
   { path: "event-management", component: EventManagementComponent },
   { path: 'courses-management', component: CoursesManagementComponent }
 ];

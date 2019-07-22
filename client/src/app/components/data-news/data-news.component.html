@@ -2,18 +2,18 @@
     <h2 mat-dialog-title align="start">Noticia</h2>
     <p class="info">Ingrese la información de la noticia a publicar, Llene todos los campos.</p>
     <mat-dialog-content class="mat-typography">
-      <form id="form" #noticeForm="ngForm">
+      <form id="form" #newsForm="ngForm">
         <div class="row no-gutters">
           <div id="data" class="col-12 col-md-8 offset-md-4">
             <mat-form-field>
-              <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="notice.name" required>
+              <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="news.name" required>
             </mat-form-field>
           </div>
         </div>
         <mat-form-field>
           <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
-            name="description" [(ngModel)]="notice.description" required></textarea>
-          <mat-hint align="end">{{notice.description.length}} / {{length}}</mat-hint>
+            name="description" [(ngModel)]="news.description" required></textarea>
+          <mat-hint align="end">{{news.description.length}} / {{length}}</mat-hint>
         </mat-form-field>
       </form>
     </mat-dialog-content>

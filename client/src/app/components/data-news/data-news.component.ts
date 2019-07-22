@@ -29,6 +29,8 @@ export class DataNewsComponent {
     this.length=500;
    }
 
+   
+
    validData(): boolean {
     return this.news.name.length > 0 && this.news.description.length > 0 ;
   }

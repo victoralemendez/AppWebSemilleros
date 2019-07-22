@@ -68,10 +68,10 @@ export class NewsManagementComponent implements OnInit {
     });
   }
 
-  deleteNews(course: News, index: number) {
+  deleteNews(news: News, index: number) {
     this.dialog.open(ConfirmDialogComponent, { data: "¿Desea continuar con la eliminación de la noticia?, los datos serán eliminados de forma permanente" }).beforeClosed().subscribe(result => {
       if (result) {
-        this.newsService.delete(course._id).subscribe(
+        this.newsService.delete(news._id).subscribe(
           response => {
             this.newss.splice(index, 1);
           },
@@ -84,14 +84,14 @@ export class NewsManagementComponent implements OnInit {
   }
 
   private getInfo() {
+    console.log(this.newss);
     return this.newss.length == 0 ? "No hay noticias registradas" : "Número de noticias encontradas: " + this.newss.length;
-    
   }
 
   loadNews() {
     this.newsService.getNews().subscribe(
       response => {
-        this.newss = (<any>response).newss as News[];
+        this.newss = (<any>response).news;
       },
       error => {
         this.msgError = (<any>error).error.message;

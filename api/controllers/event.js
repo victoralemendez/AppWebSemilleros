@@ -47,7 +47,7 @@ function update(req, res) {
 
 function remove(req, res) {
     var eventId = req.params.id;
-    Course.findByIdAndDelete(eventId, function(err, eventDeleted) {
+    Event.findByIdAndDelete(eventId, function(err, eventDeleted) {
         if (err) {
             res.status(500).send({ message: "Error al eliminar el event, comuniquese con el Administrador" });
         } else {
