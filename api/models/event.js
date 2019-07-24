@@ -6,10 +6,8 @@ var Schema = mongoose.Schema;
 var eventSchema = Schema({
     name: String,
     description: String,
-    link: String,
     score: Number,
-    startDate: String,
-    endDate: String,
+    date: String,
     image: String
 });
 

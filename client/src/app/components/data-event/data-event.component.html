@@ -10,9 +10,13 @@
           </mat-form-field>
           <mat-form-field>
             <input matInput [min]="minStartDate" [max]="maxStartDate" [matDatepicker]="dp3"
-              [formControl]="startDateControl" placeholder="Fecha de iniciación">
+              [formControl]="startDateControl" placeholder="Fecha">
             <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
             <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" min="10" placeholder="Creditos" #score="ngModel" name="score"
+              [(ngModel)]="event.score" required>
           </mat-form-field>
         </div>
       </div>

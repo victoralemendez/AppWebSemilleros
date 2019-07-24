@@ -7,8 +7,8 @@
           <mat-list id="list" role="list">
             <h4 matSubHeader class="header">Semillero</h4>
             <mat-list-item role="list-item" (click)="displayOption(1)">Cursos</mat-list-item>
-            <mat-list-item role="list-item">Noticias</mat-list-item>
-            <mat-list-item role="list-item">Eventos</mat-list-item>
+            <mat-list-item role="list-item" (click)="displayOption(2)">Noticias</mat-list-item>
+            <mat-list-item role="list-item" (click)="displayOption(3)">Eventos</mat-list-item>
             <mat-list-item role="list-item">Información</mat-list-item>
             <mat-list-item role="list-item">Contacto</mat-list-item>
             <mat-list-item role="list-item" (click)="displayOption(6)">Mensajes</mat-list-item>
@@ -30,6 +30,8 @@
         </div>
         <div id="config" class="col-12 col-md-10">
           <app-courses-management *ngIf="codeDisplayed == 1"></app-courses-management>
+          <app-news-management *ngIf="codeDisplayed == 2"></app-news-management>
+          <app-events-management *ngIf="codeDisplayed == 3"></app-events-management>
           <app-messages-management *ngIf="codeDisplayed == 6"></app-messages-management>
           <app-categories-management *ngIf="codeDisplayed == 7"></app-categories-management>
           <app-devices-management *ngIf="codeDisplayed == 8"></app-devices-management>

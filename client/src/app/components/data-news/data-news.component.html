@@ -1,3 +1,25 @@
-<p>
-  data-news works!
-</p>
+<div id="base">
+  <h2 mat-dialog-title align="start">Noticia</h2>
+  <p class="info">Ingrese la información de la noticia a publicar, Llene todos los campos.</p>
+  <mat-dialog-content class="mat-typography">
+    <form id="form" #newsForm="ngForm">
+      <div class="row no-gutters">
+        <div id="data" class="col-12 col-md-8 offset-md-4">
+          <mat-form-field>
+            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="news.name" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field>
+        <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
+          name="description" [(ngModel)]="news.description" required></textarea>
+        <mat-hint align="end">{{news.description.length}} / {{length}}</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
+  <mat-dialog-actions align="end">
+    <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
+    <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
+  </mat-dialog-actions>
+</div>

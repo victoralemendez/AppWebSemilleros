@@ -11,6 +11,8 @@ var messageRoutes = require('./routes/message');
 var courseRoutes = require('./routes/course');
 var categoryRoutes = require('./routes/category');
 var deviceRoutes = require('./routes/device');
+var eventRoutes = require('./routes/event');
+var newsRoutes = require('./routes/news');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -32,6 +34,7 @@ app.use('/api', messageRoutes);
 app.use('/api', courseRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', deviceRoutes);
-
+app.use('/api', newsRoutes);
+app.use('/api', eventRoutes);
 
 module.exports = app;

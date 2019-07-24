@@ -26,11 +26,11 @@ export class EventService {
   public update(event) {
     let paramsJSON = JSON.stringify(event);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put(this.url + "update-course/" + event._id, paramsJSON, { headers: headers });
+    return this.http.put(this.url + "update-event/" + event._id, paramsJSON, { headers: headers });
   }
 
   public delete(eventId) {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.delete(this.url + "delete-course/" + eventId, { headers: headers });
+    return this.http.delete(this.url + "delete-event/" + eventId, { headers: headers });
   }
 }

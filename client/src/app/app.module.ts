@@ -42,6 +42,8 @@ import { DataDeviceComponent } from './components/data-device/data-device.compon
 import { DevicesManagementComponent } from './components/devices-management/devices-management.component';
 import { UsersManagementComponent } from './components/users-management/users-management.component';
 import { DataUserComponent } from './components/data-user/data-user.component';
+import { DataEventComponent } from './components/data-event/data-event.component';
+import { EventsManagementComponent } from './components/events-management/events-management.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { DataUserComponent } from './components/data-user/data-user.component';
     DataDeviceComponent,
     DevicesManagementComponent,
     UsersManagementComponent,
-    DataUserComponent
+    DataUserComponent,
+    DataEventComponent,
+    EventsManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +98,9 @@ import { DataUserComponent } from './components/data-user/data-user.component';
     ConfirmDialogComponent,
     DataCategoryComponent,
     DataDeviceComponent,
-    DataUserComponent
+    DataUserComponent,
+    DataNewsComponent,
+    DataEventComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

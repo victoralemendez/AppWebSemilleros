@@ -41,7 +41,7 @@ export class DataEventComponent {
     if (this.event._id == "") {
       this.startDateControl = new FormControl(new Date());
     } else {
-      this.startDateControl = new FormControl(Utilities.parseStringToDate(this.event.startDate, "-"));
+      this.startDateControl = new FormControl(Utilities.parseStringToDate(this.event.date, "-"));
     }
   }
 
@@ -54,7 +54,7 @@ export class DataEventComponent {
   closeDialog() {
     var close: boolean = false;
     if (this.validData()) {
-      this.event.startDate = Utilities.parseDateToString(this.startDateControl.value, "-");
+      this.event.date = Utilities.parseDateToString(this.startDateControl.value, "-");
       this.dialog.close(true);
     } else {
       this.msgError = 'Todos los campos son obligatorios, los creditos deben ser superiores a cero';

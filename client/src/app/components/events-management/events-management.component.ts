@@ -30,7 +30,7 @@ export class EventsManagementComponent implements OnInit {
   }
 
   createEvent() {
-    let newEvent: Event = new Event("", "", "", "", "");
+    let newEvent: Event = new Event("", "", "", 0, "", "");
     this.dialog.open(DataEventComponent, { data: newEvent }).beforeClosed().subscribe(result => {
       if (result) {
         this.eventService.create(newEvent).subscribe(
@@ -49,13 +49,13 @@ export class EventsManagementComponent implements OnInit {
   }
 
   updateEvent(json: Event, index: number) {
-    var eventCloned: Event = new Event(json._id, json.name, json.description, json.startDate, json.image);
+    var eventCloned: Event = new Event(json._id, json.name, json.description, json.score, json.date, json.image);
     this.dialog.open(DataEventComponent, { data: eventCloned }).beforeClosed().subscribe(result => {
       if (result) {
         this.eventService.update(eventCloned).subscribe(
           response => {
             this.events[index] = eventCloned;
-            var info: Information = { title: "Curso actualizado", message: "El curso se actualizó exitosamente" };
+            var info: Information = { title: "Evento actualizado", message: "El evento se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
           },
           error => {
@@ -68,7 +68,7 @@ export class EventsManagementComponent implements OnInit {
   }
 
   deleteEvent(event: Event, index: number) {
-    this.dialog.open(ConfirmDialogComponent, { data: "¿Desea continuar con la eliminación del curso?, los datos serán eliminados de forma permanente" }).beforeClosed().subscribe(result => {
+    this.dialog.open(ConfirmDialogComponent, { data: "¿Desea continuar con la eliminación del evento?, los datos serán eliminados de forma permanente" }).beforeClosed().subscribe(result => {
       if (result) {
         this.eventService.delete(event._id).subscribe(
           response => {
@@ -89,7 +89,7 @@ export class EventsManagementComponent implements OnInit {
   loadEvents() {
     this.eventService.getEvents().subscribe(
       response => {
-        this.events = (<any>response).events as Event[];
+        this.events = (<any>response).events;
       },
       error => {
         this.msgError = (<any>error).error.message;
@@ -98,7 +98,11 @@ export class EventsManagementComponent implements OnInit {
   }
 
   getShortDescription(description) {
-    return description.substr(0, this.maxDescLength) + " ...";
+    var result = description;
+    if (description.length > this.maxDescLength) {
+      result = description.substr(0, this.maxDescLength) + " ...";
+    }
+    return result;
   }
 
 }
