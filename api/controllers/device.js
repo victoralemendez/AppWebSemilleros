@@ -11,14 +11,16 @@ function createDevice(params) {
   newDevice.avialable = params.avialable;
   newDevice.features = params.features;
   newDevice.reference = params.reference;
+  newDevice.category = params.category._id;
   return newDevice;
 }
+
 
 // Funcion que almacena un dispositivo
 function register(req, res) {
   var params = req.body;
   var newDevice = createDevice(params);
-  newDevice.save(function(err, deviceStored) {
+  newDevice.save(function (err, deviceStored) {
     if (err) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {
@@ -32,24 +34,25 @@ function register(req, res) {
 }
 
 function update(req, res) {
-    var deviceId = req.params.id;
-    var device = req.body;
-    Device.findByIdAndUpdate(deviceId, device, function(err, deviceUpdated) {
-        if (err) {
-            res.status(500).send({ message: "Error al actualizar el dispositivo, comuniquese con el Administrador" });
-        } else {
-            if (!deviceUpdated) {
-                res.status(404).send({ message: "No se encontro el dispositivo" });
-            } else {
-                res.status(200).send({ device: deviceUpdated });
-            }
-        }
-    });
+  var deviceId = req.params.id;
+  var device = req.body;
+  Device.findByIdAndUpdate(deviceId, device, function (err, deviceUpdated) {
+    if (err) {
+      res.status(500).send({ message: "Error al actualizar el dispositivo, comuniquese con el Administrador" });
+    } else {
+      if (!deviceUpdated) {
+        res.status(404).send({ message: "No se encontro el dispositivo" });
+      } else {
+        res.status(200).send({ device: deviceUpdated });
+      }
+    }
+  });
 }
 
 // Funcion que retorna los dispositivos
 function getDevices(req, res) {
-  Device.find({}, function(err, devices) {
+  var find = Device.find({});
+  find.populate({ path: 'category' }).exec(function (err, devices) {
     if (err) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {

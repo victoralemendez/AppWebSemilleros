@@ -29,6 +29,33 @@ function register(req, res) {
   });
 }
 
+// Funcion que retorna id y nombre de las categorias finales
+function getFinalCategories(req, res) {
+  var query = Category.aggregate([
+    {
+      $lookup: {
+        from: 'categories',
+        localField: '_id',
+        foreignField: 'parentCategory',
+        as: 'children'
+      }
+    },
+    { $match: { 'children.0': { $exists: false } } },
+    { $project: { '_id': 1, 'name': 1 } }
+  ]);
+  query.exec(function (err, categories) {
+    if (err) {
+      res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
+    } else {
+      if (!categories) {
+        res.status(404).send({ message: "No se encontrarón subcategorias" });
+      } else {
+        res.status(200).send({ categories });
+      }
+    }
+  });
+}
+
 function update(req, res) {
   var categoryId = req.params.id;
   var category = req.body;
@@ -82,5 +109,6 @@ module.exports = {
   register,
   getMainCategories,
   getSubCategories,
-  update
+  update,
+  getFinalCategories
 }

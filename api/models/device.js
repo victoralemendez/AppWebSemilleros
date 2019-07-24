@@ -10,8 +10,9 @@ var deviceSchema = Schema({
   avialable: Boolean,
   reference: String,
   features: String,
-  //Aqui falta referencia de categoría
+  category: {type : Schema.ObjectId, ref: 'Category'}
   //Aqui falta referencia de manual
 });
 
 module.exports = mongoose.model('Device', deviceSchema);
+  

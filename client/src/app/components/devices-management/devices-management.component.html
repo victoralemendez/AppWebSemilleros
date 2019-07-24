@@ -21,9 +21,10 @@
           <p class="nameDevice">{{device.name}}</p>
           <p class="description">{{getShortDescription(device.description)}}</p>
           <p class="description">Estado: {{getStringState(device.avialable)}}</p>
+          <p class="description">Categoría: {{device.category.name}}</p>
           <div class="row justify-content-end no-gutters">
             <div class="col-12 col-md-6">
-              <button class="btnEdit" (click)="updateDevice(device, index)">Editar</button>
+              <button class="btnEdit" (click)="updateDevice(device)">Editar</button>
             </div>
           </div>
         </div>

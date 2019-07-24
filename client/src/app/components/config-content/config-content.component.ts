@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigContentComponent implements OnInit {
 
+  // Variable para definir la opcion de configuracion seleccionada por defecto
   private codeDisplayed: number;
 
   constructor() {
-    this.codeDisplayed = 11;
+    this.codeDisplayed = 8;
   }
 
   ngOnInit() {

@@ -58,14 +58,14 @@ export class DevicesManagementComponent implements OnInit {
 
   // Funcion encargada de la respuesta del servidor al crear un curso
   createDevice() {
-    let newDevice: Device = new Device("", "", "", false, "", "");
+    let newDevice: Device = new Device("", "", "", false, "", "", { _id: null, name: "" });
     this.dialog.open(DataDeviceComponent, { data: newDevice }).beforeClosed().subscribe(result => {
       if (result) {
         this.deviceService.create(newDevice).subscribe(
           response => {
             var info: Information = { title: "Dispositivo creado", message: "El dispositivo se ha creado exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
-            this.devices.push((<any>response).device);
+            this.showDevices();
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -78,17 +78,21 @@ export class DevicesManagementComponent implements OnInit {
 
   // Funcion encargada de calcular el número de caracteres a mostrar en la descripción del dispositivo (solo para la vista en el modelo de tarjetas)
   getShortDescription(description) {
-    return description.substr(0, this.maxDescLength) + " ...";
+    var shortDescrip = description;
+    if (description.length > this.maxDescLength) {
+      shortDescrip = description.substr(0, this.maxDescLength) + " ...";
+    }
+    return shortDescrip;
   }
 
   // Funcion encargada de la respuesta del servidor al modificar un curso
-  updateDevice(json: Device, index: number) {
-    var deviceCloned: Device = new Device(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.image);
+  updateDevice(json: Device) {
+    var deviceCloned: Device = new Device(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.category);
     this.dialog.open(DataDeviceComponent, { data: deviceCloned }).beforeClosed().subscribe(result => {
       if (result) {
         this.deviceService.update(deviceCloned).subscribe(
           response => {
-            this.devices[index] = deviceCloned;
+            this.showDevices();
             var info: Information = { title: "Dispositivo actualizado", message: "El dispositivo se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
           },

@@ -29,6 +29,11 @@ export class CategoryService {
     return this.http.get(this.url + "main-categories", { headers: headers });
   }
 
+  public getFinalCategories() {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.url + "final-categories", { headers: headers });
+  }
+
   public getSubCategories(idCategory) {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get(this.url + "sub-categories/" + idCategory, { headers: headers });

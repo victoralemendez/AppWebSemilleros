@@ -7,6 +7,7 @@ export class Device {
         public avialable: Boolean,
         public reference: String,
         public features: String,
+        public category: any,
         public image?: String
     ) { }
 

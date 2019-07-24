@@ -27,6 +27,14 @@
               #description="ngModel" name="description" [(ngModel)]="device.description" required></textarea>
             <mat-hint align="end">{{device.description.length}} / {{length}}</mat-hint>
           </mat-form-field>
+          <mat-form-field>
+            <mat-label>Categoría</mat-label>
+            <mat-select [(value)]="selectedCategory.name" name="category" required>
+              <mat-option *ngFor="let category of categories; let index = index" [value]="category.name" (click)="test(index)">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
     </form>

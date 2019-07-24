@@ -8,6 +8,7 @@ var api = express.Router();
 api.post('/category', categoryController.register);
 api.get('/main-categories', categoryController.getMainCategories);
 api.get('/sub-categories/:id', categoryController.getSubCategories);
+api.get('/final-categories', categoryController.getFinalCategories);
 api.put('/category/:id', categoryController.update);
 
 
