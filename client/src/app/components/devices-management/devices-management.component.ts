@@ -53,7 +53,7 @@ export class DevicesManagementComponent implements OnInit {
 
   // Funcion encargada de fijar el mensaje presentado al usuario
   private getInfo() {
-    return this.devices.length == 0 ? "No hay cursos registrados" : "Número de dispositivos encontrados: " + this.devices.length;
+    return this.devices.length == 0 ? "No hay dispositivos registrados" : "Número de dispositivos encontrados: " + this.devices.length;
   }
 
   // Funcion encargada de la respuesta del servidor al crear un curso

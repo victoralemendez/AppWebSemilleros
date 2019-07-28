@@ -17,6 +17,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
 
 // imports de componentes y servicios propios
 import { AppComponent } from './app.component';
@@ -44,6 +45,12 @@ import { UsersManagementComponent } from './components/users-management/users-ma
 import { DataUserComponent } from './components/data-user/data-user.component';
 import { DataEventComponent } from './components/data-event/data-event.component';
 import { EventsManagementComponent } from './components/events-management/events-management.component';
+import { ResourcesComponent } from './components/resources/resources.component';
+import { MenuPartComponent } from './components/menu-part/menu-part.component';
+import { DataContactComponent } from './components/data-contact/data-contact.component';
+import { DataInfoComponent } from './components/data-info/data-info.component';
+import { InfoManagementComponent } from './components/info-management/info-management.component';
+import { ContactManagementComponent } from './components/contact-management/contact-management.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +78,13 @@ import { EventsManagementComponent } from './components/events-management/events
     UsersManagementComponent,
     DataUserComponent,
     DataEventComponent,
-    EventsManagementComponent
+    EventsManagementComponent,
+    ResourcesComponent,
+    MenuPartComponent,
+    DataContactComponent,
+    DataInfoComponent,
+    InfoManagementComponent,
+    ContactManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +103,8 @@ import { EventsManagementComponent } from './components/events-management/events
     MatExpansionModule,
     MatBadgeModule,
     HttpClientModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule
   ],
   entryComponents: [
     InfoDialogComponent,
@@ -100,7 +114,9 @@ import { EventsManagementComponent } from './components/events-management/events
     DataDeviceComponent,
     DataUserComponent,
     DataNewsComponent,
-    DataEventComponent
+    DataEventComponent,
+    DataContactComponent,
+    DataInfoComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

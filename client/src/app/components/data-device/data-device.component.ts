@@ -29,6 +29,7 @@ export class DataDeviceComponent {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public device: Device, private dialog: MatDialogRef<any>, private categoryService: CategoryService) {
+    console.log(this.device.category);
     this.msgError = '';
     this.length = 500;
     this.selectedCategory = this.device.category;
@@ -63,7 +64,7 @@ export class DataDeviceComponent {
     return close;
   }
 
-  test(index) {
+  selectCategory(index) {
     this.indexCategory = index;
     this.selectedCategory = this.categories[index];
     this.device.category = this.categories[index];

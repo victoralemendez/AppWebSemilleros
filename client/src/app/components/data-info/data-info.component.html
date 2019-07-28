@@ -1,0 +1,21 @@
+<div id="base">
+  <h2 mat-dialog-title align="start">Información</h2>
+  <p class="info">Ingrese los datos para el item de información, Llene todos los campos.</p>
+  <mat-dialog-content class="mat-typography">
+    <form id="form" #infoForm="ngForm">
+      <mat-form-field>
+        <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="info.name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea id="text" matInput maxlength="{{lengthText}}" placeholder="Texto" #text="ngModel" name="text"
+          [(ngModel)]="info.text" required></textarea>
+        <mat-hint align="end">{{info.text.length}} / {{lengthText}}</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
+  <mat-dialog-actions align="end">
+    <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
+    <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
+  </mat-dialog-actions>
+</div>

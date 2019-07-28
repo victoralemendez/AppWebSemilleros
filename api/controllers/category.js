@@ -56,6 +56,7 @@ function getFinalCategories(req, res) {
   });
 }
 
+// Funcion encargada de actualizar un registro de categoria
 function update(req, res) {
   var categoryId = req.params.id;
   var category = req.body;

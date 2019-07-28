@@ -10,7 +10,6 @@ export class AppComponent {
 
   constructor(private router: Router) {
     this.router.navigateByUrl('/config-content');
-//    this.router.navigateByUrl('/register');
   }
 
 }
