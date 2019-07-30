@@ -14,6 +14,7 @@ var deviceRoutes = require('./routes/device');
 var eventRoutes = require('./routes/event');
 var newsRoutes = require('./routes/news');
 var informationRoutes = require('./routes/information');
+var contactRoutes = require('./routes/info-contact');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -38,6 +39,7 @@ app.use('/api', deviceRoutes);
 app.use('/api', newsRoutes);
 app.use('/api', eventRoutes);
 app.use('/api', informationRoutes);
+app.use('/api', contactRoutes);
 
 
 module.exports = app;

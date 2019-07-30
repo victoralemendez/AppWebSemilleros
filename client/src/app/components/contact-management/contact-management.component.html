@@ -1,3 +1,31 @@
-<p>
-  contact-management works!
-</p>
+<div id="base">
+  <h2>Contacto</h2>
+  <hr>
+  <div class="row justify-content-end no-gutters">
+    <div id="infoMessage" class="col-12 col-md-8 col-lg-9">
+      <p class="message" *ngIf="msgError == ''">{{getInfo()}}</p>
+      <p class="message" *ngIf="msgError != ''">{{msgError}}</p>
+    </div>
+    <button mat-button id="btnNew" class="col-6 col-md-4 col-lg-3" (click)="createContact()">
+      <mat-icon class="icon">add</mat-icon>Crear contacto
+    </button>
+  </div>
+  <div id="contactList" class="row no-gutters">
+    <div class="col-12 col-md-4" *ngFor="let contact of contacts; let index = index">
+      <div class="contact">
+        <div class="infoContact">
+          <p class="title">{{contact.title}}</p>
+          <p class="text">{{contact.text}}</p>
+          <div class="row justify-content-center no-gutters">
+            <div class="col-12 col-md-6">
+              <button class="btnDelete" (click)="deleteContact(index)">Eliminar</button>
+            </div>
+            <div class="col-12 col-md-6">
+              <button class="btnEdit" (click)="updateContact(index)">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

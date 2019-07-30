@@ -28,7 +28,7 @@ function register(req, res) {
     });
 }
 
-// Funcion encargada de actualizar un registro de informacion
+// Funcion encargada de actualizar un documento de informacion
 function update(req, res) {
     var infoId = req.params.id;
     var info = req.body;
@@ -47,18 +47,18 @@ function update(req, res) {
 
 // Funcion encargada de eliminar un item de informacion especifico
 function remove(req, res) {
-    Information.findByIdAndDelete(req.params.id, function(err, deletedInfo) {
-      if (err) {
-        res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
-      } else {
-        if (!deletedInfo) {
-          res.status(404).send({ message: "No se encontró item de información" });
+    Information.findByIdAndDelete(req.params.id, function (err, deletedInfo) {
+        if (err) {
+            res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
         } else {
-          res.status(200).send({ info: deletedInfo });
+            if (!deletedInfo) {
+                res.status(404).send({ message: "No se encontró item de información" });
+            } else {
+                res.status(200).send({ info: deletedInfo });
+            }
         }
-      }
     });
-  }
+}
 
 // Funcion que envia todos los items de informacion
 function getInformations(req, res) {

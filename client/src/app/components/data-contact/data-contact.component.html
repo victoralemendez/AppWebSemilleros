@@ -1,3 +1,18 @@
-<p>
-  data-contact works!
-</p>
+<div id="base">
+  <h2 mat-dialog-title align="start">Contacto</h2>
+  <p class="info">Ingrese los datos correspondiente a la información de contacto</p>
+  <mat-dialog-content id="data" class="mat-typography">
+    <mat-form-field>
+      <input matInput type="text" #title="ngModel" placeholder="Titulo" name="title" [(ngModel)]="contact.title"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" #name="ngModel" placeholder="Texto" name="text" [(ngModel)]="contact.text" required>
+    </mat-form-field>
+  </mat-dialog-content>
+  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
+  <mat-dialog-actions align="end">
+    <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
+    <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
+  </mat-dialog-actions>
+</div>

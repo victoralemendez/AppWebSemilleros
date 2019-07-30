@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+// Componentes de Angular Material
 import { MatDialog } from '@angular/material/dialog';
 
+// Componentes y servicios propios
+import { ContactService } from '../../services/contact.service';
 import { Message } from '../../models/message';
 import { MessageService } from '../../services/message.service';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
@@ -13,12 +16,14 @@ import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.com
 })
 export class ContactComponent implements OnInit {
 
+  private contacts: any[];
   private message: Message;
   private length: Number;
   private msgError: String;
 
-  constructor(private dialog: MatDialog, private messageService: MessageService) {
+  constructor(private dialog: MatDialog, private messageService: MessageService, private contactService: ContactService) {
     this.message = new Message("", "", "", "", "");
+    this.contacts = [];
     this.length = 200;
     this.msgError = "";
   }
@@ -29,7 +34,7 @@ export class ContactComponent implements OnInit {
         response => {
           this.showDialog((<any>response).message);
           this.msgError = "";
-        }, 
+        },
         error => {
           this.showError(error);
         }
@@ -45,8 +50,8 @@ export class ContactComponent implements OnInit {
   }
 
   showDialog(message) {
-    var info: Information = {title: "Mensaje Enviado", message: message};
-    this.dialog.open(InfoDialogComponent, {data: info}).beforeClosed().subscribe(result => {
+    var info: Information = { title: "Mensaje Enviado", message: message };
+    this.dialog.open(InfoDialogComponent, { data: info }).beforeClosed().subscribe(result => {
       this.message = new Message("", "", "", "", "");
     });
   }
@@ -57,9 +62,22 @@ export class ContactComponent implements OnInit {
       this.msgError = "Todos los campos son obligatorios";
     }
     return valid;
-   }
+  }
 
   ngOnInit() {
+    this.showContacts();
+  }
+
+  showContacts() {
+    this.contactService.getContacts().subscribe(
+      response => {
+        this.contacts = (<any>response).contacts;
+      },
+      error => {
+        var info: Information = { title: "Error", message: (<any>error).error.message };
+        this.dialog.open(InfoDialogComponent, { data: info });
+      }
+    );
   }
 
 }

@@ -3,19 +3,9 @@
   <app-navbar id="navbar"></app-navbar>
   <div id="row" class="row no-gutters">
     <div class="col-12 col-md-2">
-      <div id="info">
-        <p class="infoItem">Correo</p>
-        <p class="infoContact">semilleroiotic@unicauca.edu.co</p>
-        <p class="infoItem">Telefono</p>
-        <p class="infoContact">8222222 ext 411</p>
-        <p class="infoItem">Telefono</p>
-        <p class="infoContact">8222222 ext 411</p>
-        <p class="infoItem">Telefono</p>
-        <p class="infoContact">8222222 ext 411</p>
-        <p class="infoItem">Telefono</p>
-        <p class="infoContact">8222222 ext 411</p>
-        <p class="infoItem">Telefono</p>
-        <p class="infoContact">8222222 ext 411</p>
+      <div id="info" *ngFor="let contact of contacts">
+        <p class="title">{{contact.title}}</p>
+        <p class="text">{{contact.text}}</p>
       </div>
     </div>
     <div id="content" class="col-12 col-md-8">
@@ -34,8 +24,8 @@
             required>
         </mat-form-field>
         <mat-form-field>
-          <textarea id="message" matInput maxlength="{{length}}" placeholder="Mensaje" #text="ngModel" name="text" [(ngModel)]="message.text"
-            required></textarea>
+          <textarea id="message" matInput maxlength="{{length}}" placeholder="Mensaje" #text="ngModel" name="text"
+            [(ngModel)]="message.text" required></textarea>
           <mat-hint align="end">{{message.text.length}} / {{length}}</mat-hint>
         </mat-form-field>
         <p id="msgError" *ngIf="msgError != ''">{{msgError}}</p>

@@ -1,4 +1,4 @@
-    'user strict'
+'user strict'
 
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user');
@@ -10,7 +10,7 @@ function login(req, res) {
     var params = req.body;
     var email = params.email;
     var password = params.password;
-    User.findOne({ email: email.toLowerCase(), admitted: true }, function(err, user) {
+    User.findOne({ email: email.toLowerCase(), admitted: true }, function (err, user) {
         if (err) {
             res.status(500).send({ message: "Error en la petición" });
         } else {
@@ -39,10 +39,10 @@ function update(req, res) {
     var user = req.body;
     User.findByIdAndUpdate(id, user, (err, userUpdated) => {
         if (err) {
-            res.status(500).send({message: "Error al actualizar el usuario, comuniquese con el administrador"});
+            res.status(500).send({ message: "Error al actualizar el usuario, comuniquese con el administrador" });
         } else {
             if (!userUpdated) {
-                res.status(404).send({message: "No se encontró el usuario"});
+                res.status(404).send({ message: "No se encontró el usuario" });
             } else {
                 res.status(200).send({ user: userUpdated });
             }
@@ -52,12 +52,12 @@ function update(req, res) {
 
 function remove(req, res) {
     var id = req.params.id;
-    User.findByIdAndDelete(id, (err, userDeleted) => {
+    User.findByIdAndDelete(id, function (err, userDeleted) {
         if (err) {
-            res.status(500).send({message: "Error al eliminar el usuario, comuniquese con el administrador"});
+            res.status(500).send({ message: "Error al eliminar el usuario, comuniquese con el administrador" });
         } else {
             if (!userDeleted) {
-                res.status(404).send({message: "No se encontró el usuario"});
+                res.status(404).send({ message: "No se encontró el usuario" });
             } else {
                 res.status(200).send({ user: userDeleted });
             }
@@ -67,42 +67,42 @@ function remove(req, res) {
 
 
 function getUsersNotActivated(req, res) {
-    User.find({admitted: false}, function(err, users) {
+    User.find({ admitted: false }, function (err, users) {
         if (err) {
-            res.status(500).send({message: "Error interno, contacte con el administrador"});
+            res.status(500).send({ message: "Error interno, contacte con el administrador" });
         } else {
             if (!users) {
-                res.status(404).send({message: "No se encontraron solicitudes registradas"});
+                res.status(404).send({ message: "No se encontraron solicitudes registradas" });
             } else {
-                res.status(200).send({users});
+                res.status(200).send({ users });
             }
         }
     });
 }
 
 function getCountUsersNotActivated(req, res) {
-    User.find({admitted: false}, function(err, users) {
+    User.find({ admitted: false }, function (err, users) {
         if (err) {
-            res.status(500).send({message: "Error interno, contacte con el administrador"});
+            res.status(500).send({ message: "Error interno, contacte con el administrador" });
         } else {
             if (!users) {
-                res.status(404).send({message: "No se encontraron solicitudes registradas"});
+                res.status(404).send({ message: "No se encontraron solicitudes registradas" });
             } else {
-                res.status(200).send({number: users.length});
+                res.status(200).send({ number: users.length });
             }
         }
     });
 }
 
 function getUsersActivated(req, res) {
-    User.find({admitted: true}, function(err, users) {
+    User.find({ admitted: true }, function (err, users) {
         if (err) {
-            res.status(500).send({message: "Error interno, contacte con el administrador"});
+            res.status(500).send({ message: "Error interno, contacte con el administrador" });
         } else {
             if (!users) {
-                res.status(404).send({message: "No se encontraron usuarios registrados"});
+                res.status(404).send({ message: "No se encontraron usuarios registrados" });
             } else {
-                res.status(200).send({users});
+                res.status(200).send({ users });
             }
         }
     });
