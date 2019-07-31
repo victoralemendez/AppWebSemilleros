@@ -29,7 +29,7 @@ export class ResourcesComponent implements OnInit {
 
   constructor(private categoryService: CategoryService, private deviceService: DeviceService, private dialog: MatDialog) {
     this.menu = [];
-    this.maxDescLength = 80;
+    this.maxDescLength = 60;
     this.buildMainMenu();
   }
 

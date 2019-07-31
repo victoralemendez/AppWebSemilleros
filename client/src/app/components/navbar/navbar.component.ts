@@ -61,6 +61,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl("profile");
   }
 
+  goToResources() {
+    this.router.navigateByUrl("resources");    
+  }
+
   logOut() {
     localStorage.setItem('identity', null);
     localStorage.setItem('token', null);

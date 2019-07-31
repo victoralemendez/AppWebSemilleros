@@ -4,7 +4,7 @@
     <div id="content" class="col-12 col-md-10">
       <div class="row no-gutters">
 
-        <div class="col-12 col-md-2">
+        <div class="col-12 col-md-2" (mouseenter)="openMainMenu()">
           <button mat-button [matMenuTriggerFor]="mainCategories" #mainTrigger="matMenuTrigger"
             (click)="openMainMenu()">Recursos
           </button>
@@ -26,7 +26,11 @@
                 </div>
                 <div class="infoDevice">
                   <p class="nameDevice">{{device.name}}</p>
-                  <p class="description">{{getShortDescription(device.description)}}</p>
+                  <p class="descriptionDevice">{{getShortDescription(device.description)}}</p>
+                </div>
+                <div class="options">
+                  <button class="btnDetails">Detalles</button>
+                  <button class="btnLoan">Solicitar Prestamo</button>
                 </div>
               </div>
             </div>
