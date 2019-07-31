@@ -49,7 +49,7 @@ function update(req, res) {
   });
 }
 
-// Funcion que retorna los dispositivos
+// Funcion que retorna todos los dispositivos
 function getDevices(req, res) {
   var find = Device.find({});
   find.populate({ path: 'category' }).exec(function (err, devices) {
@@ -65,8 +65,25 @@ function getDevices(req, res) {
   });
 }
 
+// Funcion que retorna los dispositivos asociados a una categoria
+function getDevicesCategory(req, res) {
+  var idCategory = req.params.id;
+  Device.find({ category: idCategory, avialable: true }, function (err, devices) {
+    if (err) {
+      res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
+    } else {
+      if (!devices) {
+        res.status(404).send({ message: "Error: No se encontraron dispositivos" });
+      } else {
+        res.status(200).send({ devices });
+      }
+    }
+  });
+}
+
 module.exports = {
   register,
   getDevices,
-  update
+  update,
+  getDevicesCategory
 }

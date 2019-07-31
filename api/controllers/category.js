@@ -16,14 +16,14 @@ function createCategory(params) {
 // Funcion encargada de almacenar una categoria en la base de datos
 function register(req, res) {
   var newCategory = createCategory(req.body);
-  newCategory.save(function(err, categoryStored) {
+  newCategory.save(function (err, categoryStored) {
     if (err) {
-      res.status(500).send({ message : "Ocurrió un error interno, comuniquese con el servidor"});
+      res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
     } else {
       if (!categoryStored) {
-        res.status(500).send({message : "Ocurrió un error al guardar la categoria, comuniquese con el administrador"});
+        res.status(500).send({ message: "Ocurrió un error al guardar la categoria, comuniquese con el administrador" });
       } else {
-        res.status(201).send({ category : categoryStored });
+        res.status(201).send({ category: categoryStored });
       }
     }
   });
@@ -60,7 +60,7 @@ function getFinalCategories(req, res) {
 function update(req, res) {
   var categoryId = req.params.id;
   var category = req.body;
-  Category.findByIdAndUpdate(categoryId, category, function(err, categoryUpdated) {
+  Category.findByIdAndUpdate(categoryId, category, function (err, categoryUpdated) {
     if (err) {
       res.status(500).send({ message: "Error al actualizar la categoria, comuniquese con el Administrador" });
     } else {
@@ -71,18 +71,17 @@ function update(req, res) {
       }
     }
   });
-
 }
 
 // Funcion encargada de acceder a las categorias principales en la base de datos
 function getMainCategories(req, res) {
   var find = Category.find({ parentCategory: null }).sort('position');
-  find.exec(function(err, categories) {
+  find.exec(function (err, categories) {
     if (err) {
-      res.status(500).send({ message : "Ocurrió un error interno, comuniquese con el servidor"});
+      res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
     } else {
       if (!categories) {
-        res.status(404).send({message : "No hay categorias registradas"});
+        res.status(404).send({ message: "No hay categorias registradas" });
       } else {
         res.status(200).send({ categories });
       }
@@ -92,15 +91,65 @@ function getMainCategories(req, res) {
 
 // Funcion encargada de acceder a subcategorias especificas en la base de datos
 function getSubCategories(req, res) {
-  var find = Category.find({parentCategory : req.params.id}).sort('position');
-  find.exec(function(err, categories) {
+  var find = Category.find({ parentCategory: req.params.id }).sort('position');
+  find.exec(function (err, categories) {
     if (err) {
-      res.status(500).send({ message : "Ocurrió un error interno, comuniquese con el servidor" });
+      res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
     } else {
       if (!categories) {
-        res.status(404).send({ message : "No hay categorias subregistradas" });
+        res.status(404).send({ message: "No hay categorias subregistradas" });
       } else {
         res.status(200).send({ categories });
+      }
+    }
+  });
+}
+
+// Funcion encargada de recuperar categorias principales, solo recupero el id y nombre
+function getSimpleMainCategories(req, res) {
+  var find = Category.find({ parentCategory: null, avialable: true }, '_id name').sort('position');
+  find.exec(function (err, categories) {
+    if (err) {
+      res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
+    } else {
+      if (!categories) {
+        res.status(404).send({ message: "No hay categorias registradas" });
+      } else {
+        res.status(200).send({ categories });
+      }
+    }
+  });
+}
+
+// Funcion encargada de recuperar categorias principales, solo recupero el id y nombre
+function getSimpleSubCategories(req, res) {
+  var id = req.params.id;
+  var find = Category.find({ parentCategory: id, avialable: true }, '_id name').sort('position');
+  find.exec(function (err, categories) {
+    if (err) {
+      res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
+    } else {
+      if (!categories) {
+        res.status(404).send({ message: "No hay categorias registradas" });
+      } else {
+        res.status(200).send({ categories });
+      }
+    }
+  });
+}
+
+
+function getCategory(req, res) {
+  var id = req.params.id;
+  var find = Category.findOne({ _id: id }, '_id name description');
+  find.exec(function (err, category) {
+    if (err) {
+      res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
+    } else {
+      if (!category) {
+        res.status(404).send({ message: "No se encontró la categoria solicitada" });
+      } else {
+        res.status(200).send({ category });
       }
     }
   });
@@ -111,5 +160,8 @@ module.exports = {
   getMainCategories,
   getSubCategories,
   update,
-  getFinalCategories
+  getFinalCategories,
+  getSimpleMainCategories,
+  getSimpleSubCategories,
+  getCategory
 }

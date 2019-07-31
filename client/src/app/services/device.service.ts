@@ -32,4 +32,9 @@ export class DeviceService {
     return this.http.get(this.url + "devices", { headers: headers });
   }
 
+  public getDevicesCategory(idCategory) {    
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.url + "devices-category/" + idCategory, { headers: headers });
+  }
+
 }

@@ -1,36 +1,38 @@
 <div id="base">
-  <app-navbar id="navbar"></app-navbar>
+  <app-navbar id="navbar" (mouseleave)="openMainMenu()"></app-navbar>
   <div id="row" class="row justify-content-center no-gutters">
     <div id="content" class="col-12 col-md-10">
       <div class="row no-gutters">
 
-        <div id="test" class="col-12 col-md-2">
-
-
-          <button mat-button [matMenuTriggerFor]="animals" #clickHoverMenuTrigger="matMenuTrigger">boton
+        <div class="col-12 col-md-2">
+          <button mat-button [matMenuTriggerFor]="mainCategories" #mainTrigger="matMenuTrigger"
+            (click)="openMainMenu()">Recursos
           </button>
-   
-          <mat-menu #animals="matMenu" xPosition="after">
-            <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
-
-            <!--
-            <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
-            -->
+          <mat-menu #mainCategories="matMenu" xPosition="after">
+            <div *ngFor="let category of menu">
+              <app-menu-part mat-button category={{sendJSON(category)}} (select)="getSelection($event)"></app-menu-part>
+            </div>
           </mat-menu>
+        </div>
+        <div id="infoCategory" class="col-12 col-md-10" *ngIf="category">
+          <h2>{{category.name}}</h2>
+          <hr>
+          <p id="description">{{category.description}}</p>
+          <div id="deviceList" class="row no-gutters" *ngIf="category.devices">
+            <div class="col-12 col-md-4" *ngFor="let device of category.devices">
+              <div class="device">
+                <div class="imageDevice">
 
-          <mat-menu #vertebrates="matMenu" yPosition="below">
-            <button mat-menu-item>Amphibians</button>
-            <button mat-menu-item>Reptiles</button>
-            <button mat-menu-item>Birds</button>
-            <button mat-menu-item>Mammals</button>
-            <app-menu-part></app-menu-part>
-          </mat-menu>
-
+                </div>
+                <div class="infoDevice">
+                  <p class="nameDevice">{{device.name}}</p>
+                  <p class="description">{{getShortDescription(device.description)}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
-
-
       </div>
     </div>
   </div>
-</div>

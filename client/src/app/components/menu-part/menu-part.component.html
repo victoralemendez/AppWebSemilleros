@@ -1,34 +1,12 @@
-<button mat-button [matMenuTriggerFor]="submenu" (mouseenter)="openMenu()" #menuTrigger="matMenuTrigger">boto2
-</button>
-
-<mat-menu #submenu="matMenu" yPosition="below">
-  <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-  <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
-  <button mat-menu-item>Birds</button>
-  <button mat-menu-item>Mammals</button>
-</mat-menu>
-
-<mat-menu #invertebrates="matMenu">
-  <button mat-menu-item>Insects</button>
-  <button mat-menu-item>Molluscs</button>
-  <button mat-menu-item>Crustaceans</button>
-  <button mat-menu-item>Corals</button>
-  <button mat-menu-item>Arachnids</button>
-  <button mat-menu-item>Velvet worms</button>
-  <button mat-menu-item>Horseshoe crabs</button>
-</mat-menu>
-
-<mat-menu #amphibians="matMenu">
-  <button mat-menu-item>Sonoran desert toad</button>
-  <button mat-menu-item>Western toad</button>
-  <button mat-menu-item>Arroyo toad</button>
-  <button mat-menu-item>Yosemite toad</button>
-</mat-menu>
-
-<mat-menu #reptiles="matMenu">
-  <button mat-menu-item>Banded Day Gecko</button>
-  <button mat-menu-item>Banded Gila Monster</button>
-  <button mat-menu-item>Black Tree Monitor</button>
-  <button mat-menu-item>Blue Spiny Lizard</button>
-  <button mat-menu-item disabled>Velociraptor</button>
-</mat-menu>
+<div *ngIf="!finalCategory">
+  <button mat-menu-item [matMenuTriggerFor]="submenu" #menuTrigger="matMenuTrigger">{{category.name}}
+  </button>
+  <mat-menu #submenu="matMenu" xPosition="after">
+    <div *ngFor="let subcategory of category.categories">
+      <app-menu-part mat-button category={{sendJSON(subcategory)}} (select)="sendSelection($event)"></app-menu-part>
+    </div>
+  </mat-menu>
+</div>
+<div *ngIf="finalCategory">
+  <button mat-menu-item (click)="selectCategory(category._id)">{{category.name}}</button>
+</div>

@@ -39,6 +39,21 @@ export class CategoryService {
     return this.http.get(this.url + "sub-categories/" + idCategory, { headers: headers });
   }
 
+  public getSimpleMainCategories() {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.url + "simple-maincategories", { headers: headers });
+  }
+
+  public getSimpleSubCategories(idCategory) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.url + "simple-subcategories/" + idCategory, { headers: headers });
+  }
+
+  public getCategory(idCategory) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.url + "category/" + idCategory, { headers: headers });
+  }
+
   public update(category) {
     let paramsJSON = JSON.stringify(category);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });

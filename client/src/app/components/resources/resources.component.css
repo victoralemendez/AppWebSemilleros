@@ -21,7 +21,45 @@
     box-shadow: 5px 4px 12px rgb(73, 73, 73);
 }
 
-#test {
+#infoCategory {
+    padding: 2% 2% 1% 2%;
+    background-color: #fafafa;
+}
+
+#description {
+    color: rgb(80, 80, 80);
+}
+
+#deviceList {
+    margin-top: 5%;
+    background-color: #fafafa;
+    padding: 2%;
+}
+
+.device {
+    margin: 7px 4px 7px 4px;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    box-shadow: 2px 2px 6px rgb(177, 177, 177);
+}
+
+.imageDevice {
+    height: 150px;
+    width: 100%;
+}
+
+.infoDevice {
     display: flex;
     flex-direction: column;
+    padding: 5%;
+}
+
+.nameDevice {
+    text-align: center;
+    font-weight: bold;
+}
+
+.description {
+    text-align: justify;
+    color: rgb(109, 109, 109);
 }
