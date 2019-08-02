@@ -5,9 +5,11 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 
 // Componentes y servicios proprios
+import { DataInfoDeviceComponent } from '../data-info-device/data-info-device.component';
 import { DeviceService } from '../../services/device.service';
 import { CategoryService } from '../../services/category.service';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-resources',
@@ -89,6 +91,18 @@ export class ResourcesComponent implements OnInit {
       error => {
         var info: Information = { title: "Error", message: (<any>error).error.message };
         this.dialog.open(InfoDialogComponent, { data: info });
+      }
+    );
+  }
+
+  showDetails(device) {
+    this.dialog.open(DataInfoDeviceComponent, { data: device });
+  }
+
+  loan(device) {
+    this.dialog.open(ConfirmDialogComponent, {data: "¿Seguro que desea solicitar el prestamo de este dispositivo?."}).beforeClosed().subscribe(
+      result => {
+
       }
     );
   }

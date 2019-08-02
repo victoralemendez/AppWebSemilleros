@@ -29,8 +29,8 @@
                   <p class="descriptionDevice">{{getShortDescription(device.description)}}</p>
                 </div>
                 <div class="options">
-                  <button class="btnDetails">Detalles</button>
-                  <button class="btnLoan">Solicitar Prestamo</button>
+                  <button class="btnDetails" (click)="showDetails(device)">Detalles</button>
+                  <button class="btnLoan" (click)="loan(device)">Solicitar Prestamo</button>
                 </div>
               </div>
             </div>

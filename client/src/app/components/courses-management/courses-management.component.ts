@@ -40,7 +40,7 @@ export class CoursesManagementComponent implements OnInit {
 
   // Funcion encargada de la respuesta del servidor al crear un curso
   createCourse() {
-    let newCourse: Course = new Course("", "", "", "", 0, "", "");
+    let newCourse: Course = new Course("", "", "", "", 0, "", "", "", false, "");
     this.dialog.open(DataCourseComponent, { data: newCourse }).beforeClosed().subscribe(result => {
       if (result) {
         this.courseService.create(newCourse).subscribe(
@@ -59,8 +59,8 @@ export class CoursesManagementComponent implements OnInit {
   }
 
   // Funcion encargada de la respuesta del servidor al modificar un curso
-  updateCourse(json: Course, index: number) {
-    var courseCloned: Course = new Course(json._id, json.name, json.description, json.link, json.score, json.startDate, json.endDate, json.image);
+  updateCourse(json: any, index: number) {
+    var courseCloned: Course = new Course(json._id, json.name, json.description, json.link, json.score, json.startDate, json.endDate, json.teacher, json.internalTeacher, json.image);
     this.dialog.open(DataCourseComponent, { data: courseCloned }).beforeClosed().subscribe(result => {
       if (result) {
         this.courseService.update(courseCloned).subscribe(

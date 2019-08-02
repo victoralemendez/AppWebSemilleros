@@ -51,6 +51,7 @@ import { DataContactComponent } from './components/data-contact/data-contact.com
 import { DataInfoComponent } from './components/data-info/data-info.component';
 import { InfoManagementComponent } from './components/info-management/info-management.component';
 import { ContactManagementComponent } from './components/contact-management/contact-management.component';
+import { DataInfoDeviceComponent } from './components/data-info-device/data-info-device.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { ContactManagementComponent } from './components/contact-management/cont
     DataContactComponent,
     DataInfoComponent,
     InfoManagementComponent,
-    ContactManagementComponent
+    ContactManagementComponent,
+    DataInfoDeviceComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,8 @@ import { ContactManagementComponent } from './components/contact-management/cont
     DataNewsComponent,
     DataEventComponent,
     DataContactComponent,
-    DataInfoComponent
+    DataInfoComponent,
+    DataInfoDeviceComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

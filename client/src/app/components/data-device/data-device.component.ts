@@ -29,7 +29,6 @@ export class DataDeviceComponent {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public device: Device, private dialog: MatDialogRef<any>, private categoryService: CategoryService) {
-    console.log(this.device.category);
     this.msgError = '';
     this.length = 500;
     this.selectedCategory = this.device.category;

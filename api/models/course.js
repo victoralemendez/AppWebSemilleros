@@ -10,7 +10,9 @@ var courseSchema = Schema({
     score: Number,
     startDate: String,
     endDate: String,
-    image: String
+    image: String,
+    teacher: String,
+    internalTeacher: Boolean
 });
 
 module.exports = mongoose.model('Course', courseSchema);

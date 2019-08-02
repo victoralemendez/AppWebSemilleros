@@ -30,7 +30,8 @@
           <mat-form-field>
             <mat-label>Categoría</mat-label>
             <mat-select [(value)]="selectedCategory.name" name="category" required>
-              <mat-option *ngFor="let category of categories; let index = index" [value]="category.name" (click)="selectCategory(index)">
+              <mat-option *ngFor="let category of categories; let index = index" [value]="category.name"
+                (click)="selectCategory(index)">
                 {{category.name}}
               </mat-option>
             </mat-select>

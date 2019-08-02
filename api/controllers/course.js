@@ -12,6 +12,8 @@ function createCourse(params) {
     newCourse.startDate = params.startDate;
     newCourse.endDate = params.endDate;
     newCourse.score = params.score;
+    newCourse.teacher = params.teacher;
+    newCourse.internalTeacher = params.internalTeacher;
     return newCourse;
 }
 

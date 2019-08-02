@@ -1,0 +1,51 @@
+<div id="base">
+  <h2 mat-dialog-title align="start">Dispositivo</h2>
+  <p>Información del dispositivo seleccionado</p>
+  <mat-dialog-content class="mat-typography">
+    <div id="image">
+
+
+    </div>
+    <div id="infoContent">
+      <div class="row no-gutters">
+        <div class="col-12 col-md-5">
+          <p class="title">Nombre:</p>
+        </div>
+        <div class="col-12 col-md-7">
+          <p>{{device.name}}</p>
+        </div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col-12 col-md-5">
+          <p class="title">Descripción:</p>
+        </div>
+        <div class="col-12 col-md-7">
+          <p>{{device.description}}</p>
+        </div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col-12 col-md-5">
+          <p class="title">Caracteristicas:</p>
+        </div>
+        <div class="col-12 col-md-7">
+          <p>{{device.features}}</p>
+        </div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col-12 col-md-5">
+          <p class="title">Referencia:</p>
+        </div>
+        <div class="col-12 col-md-7">
+          <p>{{device.reference}}</p>
+        </div>
+      </div>
+
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button [mat-dialog-close]="true" mat-button>Ok</button>
+  </mat-dialog-actions>
+</div>

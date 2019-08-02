@@ -8,6 +8,8 @@ export class Course {
         public score: Number,
         public startDate: String,
         public endDate: String,
+        public teacher: String,
+        public internalTeacher: Boolean,
         public image?: String
     ) {}
 

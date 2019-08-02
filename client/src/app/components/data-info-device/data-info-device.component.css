@@ -1,0 +1,17 @@
+#base {
+    background-color: #fff;
+    width: 100% !important;
+}
+
+#image {
+    width: 100%;
+}
+
+#infoContent {
+    width: 100%;
+}
+
+.title {
+    color: #000;
+    font-weight: bold;
+}
