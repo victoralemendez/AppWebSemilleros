@@ -53,7 +53,7 @@ export class DevicesManagementComponent implements OnInit {
 
   // Funcion encargada de fijar el mensaje presentado al usuario
   private getInfo() {
-    return this.devices.length == 0 ? "No hay dispositivos registrados" : "Número de dispositivos encontrados: " + this.devices.length;
+    return this.devices.length == 0 ? "No hay recursos registrados" : "Número de recursos encontrados: " + this.devices.length;
   }
 
   // Funcion encargada de la respuesta del servidor al crear un curso
@@ -63,7 +63,7 @@ export class DevicesManagementComponent implements OnInit {
       if (result) {
         this.deviceService.create(newDevice).subscribe(
           response => {
-            var info: Information = { title: "Dispositivo creado", message: "El dispositivo se ha creado exitosamente" };
+            var info: Information = { title: "Recurso creado", message: "El recurso se ha creado exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
             this.showDevices();
           },
@@ -86,14 +86,14 @@ export class DevicesManagementComponent implements OnInit {
   }
 
   // Funcion encargada de la respuesta del servidor al modificar un curso
-  updateDevice(json: Device) {
+  updateDevice(json: any) {
     var deviceCloned: Device = new Device(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.category);
     this.dialog.open(DataDeviceComponent, { data: deviceCloned }).beforeClosed().subscribe(result => {
       if (result) {
         this.deviceService.update(deviceCloned).subscribe(
           response => {
             this.showDevices();
-            var info: Information = { title: "Dispositivo actualizado", message: "El dispositivo se actualizó exitosamente" };
+            var info: Information = { title: "Recurso actualizado", message: "El recurso se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
           },
           error => {

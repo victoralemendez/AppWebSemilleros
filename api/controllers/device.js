@@ -25,7 +25,7 @@ function register(req, res) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {
       if (!deviceStored) {
-        res.status(500).send({ message: "Ocurrió un error al guardar el dispositivo, comuniquese con el Administrador" });
+        res.status(500).send({ message: "Ocurrió un error al guardar el recurso, comuniquese con el Administrador" });
       } else {
         res.status(201).send({ device: deviceStored });
       }
@@ -38,10 +38,10 @@ function update(req, res) {
   var device = req.body;
   Device.findByIdAndUpdate(deviceId, device, function (err, deviceUpdated) {
     if (err) {
-      res.status(500).send({ message: "Error al actualizar el dispositivo, comuniquese con el Administrador" });
+      res.status(500).send({ message: "Error al actualizar el recurso, comuniquese con el Administrador" });
     } else {
       if (!deviceUpdated) {
-        res.status(404).send({ message: "No se encontro el dispositivo" });
+        res.status(404).send({ message: "No se encontró el recurso" });
       } else {
         res.status(200).send({ device: deviceUpdated });
       }
@@ -57,7 +57,7 @@ function getDevices(req, res) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {
       if (!devices) {
-        res.status(404).send({ message: "Error: No se encontraron dispositivos" });
+        res.status(404).send({ message: "Error: No se encontraron recursos" });
       } else {
         res.status(200).send({ devices });
       }
@@ -73,7 +73,7 @@ function getDevicesCategory(req, res) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {
       if (!devices) {
-        res.status(404).send({ message: "Error: No se encontraron dispositivos" });
+        res.status(404).send({ message: "Error: No se encontraron recursos" });
       } else {
         res.status(200).send({ devices });
       }

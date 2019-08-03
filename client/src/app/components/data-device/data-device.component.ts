@@ -32,7 +32,7 @@ export class DataDeviceComponent {
     this.msgError = '';
     this.length = 500;
     this.selectedCategory = this.device.category;
-    this.indexCategory = -1;
+    this.indexCategory = -1;    
     this.showCategories();
   }
 
@@ -49,7 +49,7 @@ export class DataDeviceComponent {
 
   // Funcion para validar el llenado de campos
   validData(): boolean {
-    return this.device.name.length > 0 && this.device.description.length > 0 && this.device.features.length > 0 && this.device.reference.length > 0;
+    return this.device.name.length > 0 && this.device.description.length > 0 && this.device.features.length > 0 && this.device.reference.length > 0 && this.device.category._id != null;
   }
 
   // Funcion para cerrar el dialogo
