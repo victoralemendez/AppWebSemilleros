@@ -39,8 +39,8 @@ import { DataNewsComponent } from './components/data-news/data-news.component';
 import { DataCategoryComponent } from './components/data-category/data-category.component';
 import { CategoriesManagementComponent } from './components/categories-management/categories-management.component';
 import { MessagesManagementComponent } from './components/messages-management/messages-management.component';
-import { DataDeviceComponent } from './components/data-device/data-device.component';
-import { DevicesManagementComponent } from './components/devices-management/devices-management.component';
+import { DataResourceComponent } from './components/data-resource/data-resource.component';
+import { ResourcesManagementComponent } from './components/resources-management/resources-management.component';
 import { UsersManagementComponent } from './components/users-management/users-management.component';
 import { DataUserComponent } from './components/data-user/data-user.component';
 import { DataEventComponent } from './components/data-event/data-event.component';
@@ -51,7 +51,7 @@ import { DataContactComponent } from './components/data-contact/data-contact.com
 import { DataInfoComponent } from './components/data-info/data-info.component';
 import { InfoManagementComponent } from './components/info-management/info-management.component';
 import { ContactManagementComponent } from './components/contact-management/contact-management.component';
-import { DataInfoDeviceComponent } from './components/data-info-device/data-info-device.component';
+import { DataInfoResourceComponent } from './components/data-info-resource/data-info-resource.component';
 
 @NgModule({
   declarations: [
@@ -74,8 +74,8 @@ import { DataInfoDeviceComponent } from './components/data-info-device/data-info
     DataCategoryComponent,
     CategoriesManagementComponent,
     MessagesManagementComponent,
-    DataDeviceComponent,
-    DevicesManagementComponent,
+    DataResourceComponent,
+    ResourcesManagementComponent,
     UsersManagementComponent,
     DataUserComponent,
     DataEventComponent,
@@ -86,7 +86,7 @@ import { DataInfoDeviceComponent } from './components/data-info-device/data-info
     DataInfoComponent,
     InfoManagementComponent,
     ContactManagementComponent,
-    DataInfoDeviceComponent
+    DataInfoResourceComponent
   ],
   imports: [
     BrowserModule,
@@ -113,13 +113,13 @@ import { DataInfoDeviceComponent } from './components/data-info-device/data-info
     DataCourseComponent,
     ConfirmDialogComponent,
     DataCategoryComponent,
-    DataDeviceComponent,
+    DataResourceComponent,
     DataUserComponent,
     DataNewsComponent,
     DataEventComponent,
     DataContactComponent,
     DataInfoComponent,
-    DataInfoDeviceComponent
+    DataInfoResourceComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

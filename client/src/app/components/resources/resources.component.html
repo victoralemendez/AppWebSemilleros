@@ -18,19 +18,19 @@
           <h2>{{category.name}}</h2>
           <hr>
           <p id="description">{{category.description}}</p>
-          <div id="deviceList" class="row no-gutters" *ngIf="category.devices">
-            <div class="col-12 col-md-4" *ngFor="let device of category.devices">
-              <div class="device">
-                <div class="imageDevice">
+          <div id="resourceList" class="row no-gutters" *ngIf="category.resources">
+            <div class="col-12 col-md-4" *ngFor="let resource of category.resources">
+              <div class="resource">
+                <div class="resourceImage">
 
                 </div>
-                <div class="infoDevice">
-                  <p class="nameDevice">{{device.name}}</p>
-                  <p class="descriptionDevice">{{getShortDescription(device.description)}}</p>
+                <div class="infoResource">
+                  <p class="resourceName">{{resource.name}}</p>
+                  <p class="resourceDescription">{{getShortDescription(resource.description)}}</p>
                 </div>
                 <div class="options">
-                  <button class="btnDetails" (click)="showDetails(device)">Detalles</button>
-                  <button class="btnLoan" (click)="loan(device)">Solicitar Prestamo</button>
+                  <button class="btnDetails" (click)="showDetails(resource)">Detalles</button>
+                  <button class="btnLoan" (click)="loan(resource)">Solicitar Prestamo</button>
                 </div>
               </div>
             </div>

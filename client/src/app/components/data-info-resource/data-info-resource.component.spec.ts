@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataDeviceComponent } from './data-device.component';
+import { DataInfoResourceComponent } from './data-info-resource.component';
 
-describe('DataDeviceComponent', () => {
-  let component: DataDeviceComponent;
-  let fixture: ComponentFixture<DataDeviceComponent>;
+describe('DataInfoResourceComponent', () => {
+  let component: DataInfoResourceComponent;
+  let fixture: ComponentFixture<DataInfoResourceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataDeviceComponent ]
+      declarations: [ DataInfoResourceComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DataDeviceComponent);
+    fixture = TestBed.createComponent(DataInfoResourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

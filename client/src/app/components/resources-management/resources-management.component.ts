@@ -4,20 +4,20 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 // Componentes y servicios propios
-import { Device } from '../../models/device';
-import { DataDeviceComponent } from '../data-device/data-device.component';
+import { Resource } from '../../models/resource';
+import { DataResourceComponent } from '../data-resource/data-resource.component';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
-import { DeviceService } from '../../services/device.service';
+import { ResourceService } from '../../services/resource.service';
 
 @Component({
-  selector: 'app-devices-management',
-  templateUrl: './devices-management.component.html',
-  styleUrls: ['./devices-management.component.css']
+  selector: 'app-resources-management',
+  templateUrl: './resources-management.component.html',
+  styleUrls: ['./resources-management.component.css']
 })
-export class DevicesManagementComponent implements OnInit {
+export class ResourcesManagementComponent implements OnInit {
 
   // Variable para gestionar los dispositivos
-  private devices: any[];
+  private resources: any[];
 
   // Variable para controlar el máximo de caracteres a mostrar en la tarjeta
   private maxDescLength: number;
@@ -25,20 +25,20 @@ export class DevicesManagementComponent implements OnInit {
   // Variables para imprimir mensajes
   private msgError: String;
 
-  constructor(public dialog: MatDialog, private deviceService: DeviceService) {
-    this.devices = [];
+  constructor(public dialog: MatDialog, private resourceService: ResourceService) {
+    this.resources = [];
     this.maxDescLength = 80;
   }
 
   ngOnInit() {
-    this.showDevices();
+    this.showResources();
     this.msgError = "";
   }
 
-  showDevices() {
-    this.deviceService.getDevices().subscribe(
+  showResources() {
+    this.resourceService.getResources().subscribe(
       response => {
-        this.devices = (<any>response).devices;
+        this.resources = (<any>response).resources;
       },
       error => {
         var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -53,19 +53,19 @@ export class DevicesManagementComponent implements OnInit {
 
   // Funcion encargada de fijar el mensaje presentado al usuario
   private getInfo() {
-    return this.devices.length == 0 ? "No hay recursos registrados" : "Número de recursos encontrados: " + this.devices.length;
+    return this.resources.length == 0 ? "No hay recursos registrados" : "Número de recursos encontrados: " + this.resources.length;
   }
 
   // Funcion encargada de la respuesta del servidor al crear un curso
-  createDevice() {
-    let newDevice: Device = new Device("", "", "", false, "", "", { _id: null, name: "" });
-    this.dialog.open(DataDeviceComponent, { data: newDevice }).beforeClosed().subscribe(result => {
+  create() {
+    let resource: Resource = new Resource("", "", "", false, "", "", { _id: null, name: "" }, null);
+    this.dialog.open(DataResourceComponent, { data: resource }).beforeClosed().subscribe(result => {
       if (result) {
-        this.deviceService.create(newDevice).subscribe(
+        this.resourceService.create(resource).subscribe(
           response => {
             var info: Information = { title: "Recurso creado", message: "El recurso se ha creado exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
-            this.showDevices();
+            this.showResources();
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -86,13 +86,13 @@ export class DevicesManagementComponent implements OnInit {
   }
 
   // Funcion encargada de la respuesta del servidor al modificar un curso
-  updateDevice(json: any) {
-    var deviceCloned: Device = new Device(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.category);
-    this.dialog.open(DataDeviceComponent, { data: deviceCloned }).beforeClosed().subscribe(result => {
+  update(json: any) {
+    var resourceCloned: Resource = new Resource(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.category, json.user);
+    this.dialog.open(DataResourceComponent, { data: resourceCloned }).beforeClosed().subscribe(result => {
       if (result) {
-        this.deviceService.update(deviceCloned).subscribe(
+        this.resourceService.update(resourceCloned).subscribe(
           response => {
-            this.showDevices();
+            this.showResources();
             var info: Information = { title: "Recurso actualizado", message: "El recurso se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
           },

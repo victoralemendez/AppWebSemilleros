@@ -31,36 +31,36 @@
     margin-bottom: 5%;
 }
 
-#deviceList {
+#resourceList {
     margin-top: 2%;
     background-color: #fafafa;
     padding: 2%;
 }
 
-.device {
+.resource {
     margin: 7px 4px 7px 4px;
     background-color: #fff;
     border: 1px solid #e6e6e6;
     box-shadow: 2px 2px 6px rgb(177, 177, 177);
 }
 
-.imageDevice {
+.resourceImage {
     height: 150px;
     width: 100%;
 }
 
-.infoDevice {
+.infoResource {
     display: flex;
     flex-direction: column;
     padding: 5% 5% 2% 5%;
 }
 
-.nameDevice {
+.resourceName {
     text-align: center;
     font-weight: bold;
 }
 
-.descriptionDevice {
+.resourceDescription {
     text-align: justify;
     color: rgb(109, 109, 109);
     margin-bottom: 0;

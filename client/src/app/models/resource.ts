@@ -1,4 +1,4 @@
-export class Device {
+export class Resource {
 
     constructor(
         public _id: String,
@@ -8,6 +8,7 @@ export class Device {
         public reference: String,
         public features: String,
         public category: any,
+        public user: String,
         public image?: String
     ) { }
 

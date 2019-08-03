@@ -10,11 +10,12 @@ var userRoutes = require('./routes/user');
 var messageRoutes = require('./routes/message');
 var courseRoutes = require('./routes/course');
 var categoryRoutes = require('./routes/category');
-var deviceRoutes = require('./routes/device');
+var resourceRoutes = require('./routes/resource');
 var eventRoutes = require('./routes/event');
 var newsRoutes = require('./routes/news');
 var informationRoutes = require('./routes/information');
 var contactRoutes = require('./routes/info-contact');
+var loanRoutes = require('./routes/loan');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -35,11 +36,12 @@ app.use('/api', userRoutes);
 app.use('/api', messageRoutes);
 app.use('/api', courseRoutes);
 app.use('/api', categoryRoutes);
-app.use('/api', deviceRoutes);
+app.use('/api', resourceRoutes);
 app.use('/api', newsRoutes);
 app.use('/api', eventRoutes);
 app.use('/api', informationRoutes);
 app.use('/api', contactRoutes);
+app.use('/api', loanRoutes);
 
 
 module.exports = app;

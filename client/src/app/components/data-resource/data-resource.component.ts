@@ -4,15 +4,15 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 // Componentes y Servicios propios
-import { Device } from '../../models/device';
+import { Resource } from '../../models/resource';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
-  selector: 'app-data-device',
-  templateUrl: './data-device.component.html',
-  styleUrls: ['./data-device.component.css']
+  selector: 'app-data-resource',
+  templateUrl: './data-resource.component.html',
+  styleUrls: ['./data-resource.component.css']
 })
-export class DataDeviceComponent {
+export class DataResourceComponent {
 
   // variable para controlar la seleccion de la categoria
   private selectedCategory: any;
@@ -28,10 +28,10 @@ export class DataDeviceComponent {
   private categories: any[];
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public device: Device, private dialog: MatDialogRef<any>, private categoryService: CategoryService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public resource: Resource, private dialog: MatDialogRef<any>, private categoryService: CategoryService) {
     this.msgError = '';
     this.length = 500;
-    this.selectedCategory = this.device.category;
+    this.selectedCategory = this.resource.category;
     this.indexCategory = -1;    
     this.showCategories();
   }
@@ -49,7 +49,7 @@ export class DataDeviceComponent {
 
   // Funcion para validar el llenado de campos
   validData(): boolean {
-    return this.device.name.length > 0 && this.device.description.length > 0 && this.device.features.length > 0 && this.device.reference.length > 0 && this.device.category._id != null;
+    return this.resource.name.length > 0 && this.resource.description.length > 0 && this.resource.features.length > 0 && this.resource.reference.length > 0 && this.resource.category._id != null;
   }
 
   // Funcion para cerrar el dialogo
@@ -66,7 +66,7 @@ export class DataDeviceComponent {
   selectCategory(index) {
     this.indexCategory = index;
     this.selectedCategory = this.categories[index];
-    this.device.category = this.categories[index];
+    this.resource.category = this.categories[index];
   }
 
 }

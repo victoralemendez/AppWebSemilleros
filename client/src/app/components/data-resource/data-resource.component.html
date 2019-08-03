@@ -7,25 +7,25 @@
       <div class="row no-gutters">
         <div id="data" class="col-12 col-md-8 offset-md-4">
           <mat-form-field>
-            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="device.name" required>
+            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="resource.name" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Referencia" #name="ngModel" name="refence" [(ngModel)]="device.reference"
+            <input matInput placeholder="Referencia" #name="ngModel" name="refence" [(ngModel)]="resource.reference"
               required>
           </mat-form-field>
-          <mat-checkbox name="avialable" [labelPosition]="before" [(ngModel)]="device.avialable">Disponible para
+          <mat-checkbox name="avialable" [labelPosition]="before" [(ngModel)]="resource.avialable">Disponible para
             prestamos</mat-checkbox>
         </div>
         <div id="data-description" class="col-12 col-md-8 offset-md-4">
           <mat-form-field>
             <textarea class="description" matInput maxlength="{{length}}" placeholder="Caracteristicas"
-              #description="ngModel" name="features" [(ngModel)]="device.features" required></textarea>
-            <mat-hint align="end">{{device.features.length}} / {{length}}</mat-hint>
+              #description="ngModel" name="features" [(ngModel)]="resource.features" required></textarea>
+            <mat-hint align="end">{{resource.features.length}} / {{length}}</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <textarea class="description" matInput maxlength="{{length}}" placeholder="Descripción"
-              #description="ngModel" name="description" [(ngModel)]="device.description" required></textarea>
-            <mat-hint align="end">{{device.description.length}} / {{length}}</mat-hint>
+              #description="ngModel" name="description" [(ngModel)]="resource.description" required></textarea>
+            <mat-hint align="end">{{resource.description.length}} / {{length}}</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Categoría</mat-label>

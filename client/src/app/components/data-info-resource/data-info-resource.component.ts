@@ -4,11 +4,11 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-data-info-device',
-  templateUrl: './data-info-device.component.html',
-  styleUrls: ['./data-info-device.component.css']
+  selector: 'app-data-info-resource',
+  templateUrl: './data-info-resource.component.html',
+  styleUrls: ['./data-info-resource.component.css']
 })
-export class DataInfoDeviceComponent {
+export class DataInfoResourceComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) private device) { }
 

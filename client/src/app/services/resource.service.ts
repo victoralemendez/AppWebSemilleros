@@ -7,7 +7,7 @@ import { GlOBAL } from './global';
 @Injectable({
   providedIn: 'root'
 })
-export class DeviceService {
+export class ResourceService {
 
   private url: String;
 
@@ -15,26 +15,26 @@ export class DeviceService {
     this.url = GlOBAL.url;
   }
 
-  public create(device) {
-    let paramsJSON = JSON.stringify(device);
+  public create(resource) {
+    let paramsJSON = JSON.stringify(resource);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.url + "device", paramsJSON, { headers: headers });
+    return this.http.post(this.url + "resource", paramsJSON, { headers: headers });
   }
 
-  public update(device) {
-    let params = JSON.stringify(device);
+  public update(resource) {
+    let params = JSON.stringify(resource);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-    return this.http.put(this.url + "device/" + device._id, params, { headers: headers });
+    return this.http.put(this.url + "resource/" + resource._id, params, { headers: headers });
   }
 
-  public getDevices() {
+  public getResources() {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get(this.url + "devices", { headers: headers });
+    return this.http.get(this.url + "resources", { headers: headers });
   }
 
-  public getDevicesCategory(idCategory) {    
+  public getResourcesCategory(idCategory) {    
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get(this.url + "devices-category/" + idCategory, { headers: headers });
+    return this.http.get(this.url + "resources-category/" + idCategory, { headers: headers });
   }
 
 }

@@ -1,81 +1,82 @@
 'use strict'
 
-var Device = require('../models/device');
+var Resource = require('../models/resource');
 
 // Funcion que crea un dispositivo con los parametros recibidos en una solicitud
-function createDevice(params) {
-  var newDevice = new Device();
-  newDevice.name = params.name;
-  newDevice.description = params.description;
-  newDevice.image = 'null';
-  newDevice.avialable = params.avialable;
-  newDevice.features = params.features;
-  newDevice.reference = params.reference;
-  newDevice.category = params.category._id;
-  return newDevice;
+function createResource(params) {
+  var resource = new Resource();
+  resource.name = params.name;
+  resource.description = params.description;
+  resource.image = 'null';
+  resource.avialable = params.avialable;
+  resource.features = params.features;
+  resource.reference = params.reference;
+  resource.category = params.category._id;
+  resource.user = params.user;
+  return resource;
 }
 
 
 // Funcion que almacena un dispositivo
 function register(req, res) {
   var params = req.body;
-  var newDevice = createDevice(params);
-  newDevice.save(function (err, deviceStored) {
+  var resource = createResource(params);
+  resource.save(function (err, storedResource) {
     if (err) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {
-      if (!deviceStored) {
+      if (!storedResource) {
         res.status(500).send({ message: "Ocurrió un error al guardar el recurso, comuniquese con el Administrador" });
       } else {
-        res.status(201).send({ device: deviceStored });
+        res.status(201).send({ resource: storedResource });
       }
     }
   });
 }
 
 function update(req, res) {
-  var deviceId = req.params.id;
-  var device = req.body;
-  Device.findByIdAndUpdate(deviceId, device, function (err, deviceUpdated) {
+  var resourceId = req.params.id;
+  var resource = req.body;
+  Resource.findByIdAndUpdate(resourceId, resource, function (err, updatedResource) {
     if (err) {
       res.status(500).send({ message: "Error al actualizar el recurso, comuniquese con el Administrador" });
     } else {
-      if (!deviceUpdated) {
+      if (!updatedResource) {
         res.status(404).send({ message: "No se encontró el recurso" });
       } else {
-        res.status(200).send({ device: deviceUpdated });
+        res.status(200).send({ resource: updatedResource });
       }
     }
   });
 }
 
 // Funcion que retorna todos los dispositivos
-function getDevices(req, res) {
-  var find = Device.find({});
-  find.populate({ path: 'category' }).exec(function (err, devices) {
+function getResources(req, res) {
+  var find = Resource.find({});
+  find.populate({ path: 'category' }).exec(function (err, resources) {
     if (err) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {
-      if (!devices) {
+      if (!resources) {
         res.status(404).send({ message: "Error: No se encontraron recursos" });
       } else {
-        res.status(200).send({ devices });
+        res.status(200).send({ resources });
       }
     }
   });
 }
 
 // Funcion que retorna los dispositivos asociados a una categoria
-function getDevicesCategory(req, res) {
+function getResourcesCategory(req, res) {
   var idCategory = req.params.id;
-  Device.find({ category: idCategory, avialable: true }, function (err, devices) {
+  Resource.find({ category: idCategory, avialable: true }, function (err, resources) {
     if (err) {
       res.ststaus(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
     } else {
-      if (!devices) {
+      if (!resources) {
         res.status(404).send({ message: "Error: No se encontraron recursos" });
       } else {
-        res.status(200).send({ devices });
+        res.status(200).send({ resources });
       }
     }
   });
@@ -83,7 +84,7 @@ function getDevicesCategory(req, res) {
 
 module.exports = {
   register,
-  getDevices,
   update,
-  getDevicesCategory
+  getResources,
+  getResourcesCategory
 }

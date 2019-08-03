@@ -156,7 +156,7 @@ function register(req, res) {
             if (userFound) {
                 res.status(409).send({ message: "Error: Ya se encuentra registrado un usuario con ese correo electronico" });
             } else {
-                user.save((err, userStored) => {
+                user.save(function (err, userStored) {
                     if (err) {
                         res.status(500).send({ message: 'Error al guardar el usuario, intente de nuevo' });
                     } else {

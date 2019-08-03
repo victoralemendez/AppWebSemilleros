@@ -5,11 +5,13 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 
 // Componentes y servicios proprios
-import { DataInfoDeviceComponent } from '../data-info-device/data-info-device.component';
-import { DeviceService } from '../../services/device.service';
+import { DataInfoResourceComponent } from '../data-info-resource/data-info-resource.component';
+import { ResourceService } from '../../services/resource.service';
 import { CategoryService } from '../../services/category.service';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { Loan } from '../../models/loan';
+import { LoanService } from '../../services/loan.service';
 
 @Component({
   selector: 'app-resources',
@@ -29,7 +31,7 @@ export class ResourcesComponent implements OnInit {
 
   @ViewChild('mainTrigger') menuTrigger: MatMenuTrigger;
 
-  constructor(private categoryService: CategoryService, private deviceService: DeviceService, private dialog: MatDialog) {
+  constructor(private categoryService: CategoryService, private resourceService: ResourceService, private loanService: LoanService, private dialog: MatDialog) {
     this.menu = [];
     this.maxDescLength = 60;
     this.buildMainMenu();
@@ -53,7 +55,7 @@ export class ResourcesComponent implements OnInit {
     this.categoryService.getCategory(idFinalCategory).subscribe(
       response => {
         this.category = (<any>response).category;
-        this.getDevicesCategory();
+        this.getResourcesCategory();
       },
       error => {
         var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -62,10 +64,10 @@ export class ResourcesComponent implements OnInit {
     );
   }
 
-  getDevicesCategory() {
-    this.deviceService.getDevicesCategory(this.category._id).subscribe(
+  getResourcesCategory() {
+    this.resourceService.getResourcesCategory(this.category._id).subscribe(
       response => {
-        this.category.devices = (<any>response).devices;
+        this.category.resources = (<any>response).resources;
       },
       error => {
         var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -95,16 +97,40 @@ export class ResourcesComponent implements OnInit {
     );
   }
 
-  showDetails(device) {
-    this.dialog.open(DataInfoDeviceComponent, { data: device });
+  showDetails(resource) {
+    this.dialog.open(DataInfoResourceComponent, { data: resource });
   }
 
-  loan(device) {
-    this.dialog.open(ConfirmDialogComponent, {data: "¿Seguro que desea solicitar el prestamo de este dispositivo?."}).beforeClosed().subscribe(
+  loan(resource) {
+    this.dialog.open(ConfirmDialogComponent, { data: "¿Seguro que desea solicitar el prestamo de este recurso?." }).beforeClose().subscribe(
       result => {
-
+        let idUser = this.getIdUser();
+        this.registerLoan(new Loan("", idUser, resource._id));
       }
     );
+  }
+
+  registerLoan(loan) {
+    this.loanService.create(loan).subscribe(
+      response => {
+        let info: Information = { title: "Solicitud de Préstamo", message: "La solicitud de préstamo se generó exitosamente" };
+        this.dialog.open(InfoDialogComponent, { data: info });
+      },
+      error => {
+        let info: Information = { title: "Solicitud inválida", message: (<any>error).error.message };
+        this.dialog.open(InfoDialogComponent, { data: info });
+      }
+    );
+  }
+
+  getIdUser(): String {
+    var id: String = null;
+    var identity = localStorage.getItem('identity');
+    if (identity) {
+      let user = JSON.parse(identity);
+      id = user._id;
+    }
+    return id;
   }
 
 }
