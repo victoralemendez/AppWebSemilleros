@@ -22,9 +22,10 @@ export class LoanRequestService {
     return this.http.post(this.url + "loan-request", paramsJSON, { headers: headers });
   }
 
-  public delete(id) {
+  public delete(request) {
+    let paramsJSON = JSON.stringify(request);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.url + "delete-request/" + id, { headers: headers });
+    return this.http.post(this.url + "delete-request", paramsJSON, { headers: headers });
   }
 
   public getReqPerUser() {

@@ -41,22 +41,6 @@ function store(res, request) {
     });
 }
 
-// Funcion encargada de eliminar un prestamo
-function remove(req, res) {
-    var id = req.params.id;
-    RequestLoan.findOneAndRemove({ _id: id }, function (err, deletedRequest) {
-        if (err) {
-            res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el Administrador" });
-        } else {
-            if (!deletedRequest) {
-                res.status(404).send({ message: "Error: No se encontró la solicitud de préstamo" });
-            } else {
-                res.status(200).send({ request: deletedRequest });
-            }
-        }
-    });
-}
-
 // Funcion que retorna todos los prestamos por usuario, funcion optimizada para consumir pocos recursos
 function getReqPerUser(req, res) {
     var query = RequestLoan.aggregate([
@@ -94,6 +78,23 @@ function getReqPerUser(req, res) {
                 res.status(404).send({ message: "No se encontrarón préstamos" });
             } else {
                 res.status(200).send({ requests });
+            }
+        }
+    });
+}
+
+// Funcion que elimina una solicitud
+function remove(req, res) {
+    var idUser = req.body.user;
+    var idUResource = req.body.resource;
+    RequestLoan.findOneAndRemove({ user: idUser, resource: idUResource }, function (err, deletedRequest) {
+        if (err) {
+            res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
+        } else {
+            if (!deletedRequest) {
+                res.status(404).send({ message: "No se encontró la solicitud de préstamo" });
+            } else {
+                res.status(200).send({ request: deletedRequest });
             }
         }
     });

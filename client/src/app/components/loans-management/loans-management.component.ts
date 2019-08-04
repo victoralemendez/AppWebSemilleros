@@ -102,17 +102,18 @@ export class LoansManagementComponent implements OnInit {
       this.dialog.open(DataLoanComponent, { data: loan }).beforeClosed().subscribe(result => {
         this.loanService.create(loan).subscribe(
           response => {
-            var info: Information = { title: "Error", message: "Préstamo generado con exito" };
-            this.dialog.open(InfoDialogComponent, { data: info });            
+            var info: Information = { title: "Préstamo", message: "Préstamo generado con exito" };
+            this.dialog.open(InfoDialogComponent, { data: info });
+            this.deleteRequest(request);
           },
-          error=> {
+          error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
-            this.dialog.open(InfoDialogComponent, { data: info });            
+            this.dialog.open(InfoDialogComponent, { data: info });
           }
         );
       });
     }
-  } 
+  }
 
   validateLoan(loan): Boolean {
     var valid = loan.resources.length > 0;
@@ -121,6 +122,26 @@ export class LoansManagementComponent implements OnInit {
       this.dialog.open(InfoDialogComponent, { data: info });
     }
     return valid;
+  }
+
+  deleteRequest(request) {
+    var userId = request.user[0]._id;
+    var resources = request.resources;
+    for (let index = 0; index < resources.length; index++) {
+      let resourceId = resources[index]._id;
+      this.loanReqService.delete({ user: userId, resource: resourceId }).subscribe(
+        response => {
+          if (index == resources.length - 1) {
+            this.showQueueReq();
+          }
+        },
+        error => {
+          this.showQueueReq();
+          var info: Information = { title: "Error", message: (<any>error).error.message };
+          this.dialog.open(InfoDialogComponent, { data: info });
+        }
+      );
+    }
   }
 
 }
