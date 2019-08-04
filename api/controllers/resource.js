@@ -12,7 +12,6 @@ function createResource(params) {
   resource.features = params.features;
   resource.reference = params.reference;
   resource.category = params.category._id;
-  resource.user = params.user;
   return resource;
 }
 
@@ -34,6 +33,7 @@ function register(req, res) {
   });
 }
 
+// Funcion que actualiza un recurso
 function update(req, res) {
   var resourceId = req.params.id;
   var resource = req.body;

@@ -1,0 +1,61 @@
+#base {
+    background-color: #fff;
+    width: 100% !important;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 2%;
+}
+
+mat-form-field {
+    padding: 1% 0% 1% 0%;
+}
+
+.resource {    
+    border: 1px solid grey;
+}
+
+.title {
+    margin: 0;
+    font-weight: bold;
+    color: #000;
+}
+
+#lender {
+    margin-top: 5%;
+}
+
+#error {
+    color: red;
+    text-align: center;
+}
+
+#btn-cancel {
+    background-color: #fff;
+    color: rgb(54, 54, 54);
+    border: 1px solid rgb(69, 69, 70);
+}
+
+#btn-save {
+    color: #fff;
+    background-color: rgb(1, 81, 172);
+    border: 1px solid rgb(1, 81, 172);
+}

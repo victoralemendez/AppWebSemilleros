@@ -10,9 +10,7 @@ var resourceSchema = Schema({
   avialable: Boolean,
   reference: String,
   features: String,
-  category: { type: Schema.ObjectId, ref: 'Category' },
-  user: { type: Schema.ObjectId, ref: 'User' },
-  //Aqui falta referencia de manual
+  category: { type: Schema.ObjectId, ref: 'Category' }
 });
 
 module.exports = mongoose.model('Resource', resourceSchema);

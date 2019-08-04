@@ -52,6 +52,9 @@ import { DataInfoComponent } from './components/data-info/data-info.component';
 import { InfoManagementComponent } from './components/info-management/info-management.component';
 import { ContactManagementComponent } from './components/contact-management/contact-management.component';
 import { DataInfoResourceComponent } from './components/data-info-resource/data-info-resource.component';
+import { LoansComponent } from './components/loans/loans.component';
+import { LoansManagementComponent } from './components/loans-management/loans-management.component';
+import { DataLoanComponent } from './components/data-loan/data-loan.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +89,10 @@ import { DataInfoResourceComponent } from './components/data-info-resource/data-
     DataInfoComponent,
     InfoManagementComponent,
     ContactManagementComponent,
-    DataInfoResourceComponent
+    DataInfoResourceComponent,
+    LoansComponent,
+    LoansManagementComponent,
+    DataLoanComponent
   ],
   imports: [
     BrowserModule,
@@ -119,7 +125,8 @@ import { DataInfoResourceComponent } from './components/data-info-resource/data-
     DataEventComponent,
     DataContactComponent,
     DataInfoComponent,
-    DataInfoResourceComponent
+    DataInfoResourceComponent,
+    DataLoanComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

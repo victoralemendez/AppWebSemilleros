@@ -1,0 +1,50 @@
+<div id="base">
+  <h2 mat-dialog-title align="start">Préstamo</h2>
+  <hr>
+  <p>Formato de préstamos de recursos ofrecidos por el semillero. Todos los campos son obligatorios</p>
+  <mat-dialog-content>
+    <form id="form" #loanForm="ngForm">
+      <div id="image"></div>
+      <div id="content">
+        <div>
+          <div>
+            <p>Recursos</p>
+          </div>
+          <div *ngFor="let resource of loan.resources" class="resource">
+            <div class="row no-gutters">
+              <div class="col-12 col-md-4 name">
+                <p class="title">{{resource.name}}</p>
+              </div>
+              <div class="col-12 col-md-4 field">
+                <mat-form-field>
+                  <input matInput placeholder="Cantidad" #quantity="ngModel" type="number" min="0" max="40" name="quantity"
+                    [(ngModel)]="resource.quantity" required>
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-md-4 field">
+                <mat-form-field>
+                  <input matInput placeholder="Nota" #note="ngModel" name="note" maxlength="15" [(ngModel)]="resource.note">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="lender" class="row no-gutters">
+          <div class="col-12 col-md-6">
+            <p class="title">Entregado por:</p>
+            <p>{{loan.lender}}</p>
+          </div>
+          <div class="col-12 col-md-6">
+            <p class="title">Fecha de entrega:</p>
+            <p>{{loan.dateStart}}</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
+  <mat-dialog-actions align="end">
+      <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
+      <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
+    </mat-dialog-actions>
+</div>

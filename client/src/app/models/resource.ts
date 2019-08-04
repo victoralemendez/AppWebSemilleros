@@ -8,7 +8,6 @@ export class Resource {
         public reference: String,
         public features: String,
         public category: any,
-        public user: String,
         public image?: String
     ) { }
 

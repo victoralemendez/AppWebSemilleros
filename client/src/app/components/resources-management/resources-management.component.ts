@@ -58,7 +58,7 @@ export class ResourcesManagementComponent implements OnInit {
 
   // Funcion encargada de la respuesta del servidor al crear un curso
   create() {
-    let resource: Resource = new Resource("", "", "", false, "", "", { _id: null, name: "" }, null);
+    let resource: Resource = new Resource("", "", "", false, "", "", { _id: null, name: "" }, "");
     this.dialog.open(DataResourceComponent, { data: resource }).beforeClosed().subscribe(result => {
       if (result) {
         this.resourceService.create(resource).subscribe(
@@ -87,7 +87,7 @@ export class ResourcesManagementComponent implements OnInit {
 
   // Funcion encargada de la respuesta del servidor al modificar un curso
   update(json: any) {
-    var resourceCloned: Resource = new Resource(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.category, json.user);
+    var resourceCloned: Resource = new Resource(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.category, json.image);
     this.dialog.open(DataResourceComponent, { data: resourceCloned }).beforeClosed().subscribe(result => {
       if (result) {
         this.resourceService.update(resourceCloned).subscribe(

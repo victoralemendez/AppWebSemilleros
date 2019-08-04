@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+// Componentes de angular material
 import { MatDialog } from '@angular/material/dialog';
 
+// Componentes y servicios proprios
 import { Event } from '../../models/event';
 import { EventService } from '../../services/event.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';

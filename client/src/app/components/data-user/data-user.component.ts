@@ -38,7 +38,7 @@ export class DataUserComponent {
     this.hidePassword = true;
     this.hideAuxPassword = true;
     this.auxPassword = this.config.user.password;
-    this.msgError = "";    
+    this.msgError = "";
     this.dateControl = new FormControl(Utilities.parseStringToDate(this.config.user.bornDate, "-"));
     this.dateControl.disable();
     this.minDate = new Date(new Date().getFullYear() - 70, 0, 1);

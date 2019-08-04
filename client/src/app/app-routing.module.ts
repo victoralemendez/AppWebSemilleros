@@ -10,6 +10,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ConfigContentComponent } from './components/config-content/config-content.component';
 import { ResourcesComponent } from './components/resources/resources.component';
+import { LoansComponent } from './components/loans/loans.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: "aboutus", component: AboutUsComponent },
   { path: "contact", component: ContactComponent },
   { path: "config-content", component: ConfigContentComponent },
-  { path: "resources", component: ResourcesComponent }
+  { path: "resources", component: ResourcesComponent },
+  { path: "loans", component: LoansComponent }
 ];
 
 @NgModule({

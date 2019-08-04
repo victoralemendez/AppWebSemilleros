@@ -1,0 +1,55 @@
+<div id="base">
+  <h2>Préstamos</h2>
+  <hr>
+  <div id="activeLonas">
+    <h5>Préstamos activos</h5>
+    <hr>
+
+  </div>
+  <div id="queueLoans">
+    <h5>Préstamos en espera</h5>
+    <hr>
+    <div class="loan" *ngFor="let req of queueReqs; let indexReq = index">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="item-name">{{req.user[0].name}} {{req.user[0].surname}}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row no-gutters resources">
+            <div class="dataUser">
+              <p class="data">Correo: {{req.user[0].email}}</p>
+            </div>
+            <div *ngFor="let resource of req.resources; let indexResource = index" class="col-12 col-md-4">
+              <div class="resource" *ngIf="!resource.select" (click)="selectResource(indexReq, indexResource)">
+                <div class="image">
+
+                </div>
+                <div class="info">
+                  <p class="resourceName">{{resource.name}}</p>
+                  <p class="resourceReference">Referencia: {{resource.reference}}</p>
+                </div>
+              </div>
+              <div class="resourceSelect" *ngIf="resource.select" (click)="deselectResource(indexReq, indexResource)">
+                <div class="image">
+
+                </div>
+                <div class="info">
+                  <p class="resourceSelectName">{{resource.name}}</p>
+                  <p class="resourceReference">Referencia: {{resource.reference}}</p>
+                </div>
+              </div>
+            </div>
+            <div class=" row no-guters note">
+              <div class="col-12 col-md-9">
+                <p class="data">Seleccione los dispositivos aprobados para préstamo</p>
+              </div>
+              <div class="col-12 col-md-3">
+                <button mat-button class="generateLoan" (click)="createLoan(req)">Generar préstamo</button>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

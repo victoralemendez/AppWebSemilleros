@@ -6,6 +6,7 @@
 .info {
     text-align: justify;
 }
+
 #form {
     display: flex;
     flex-direction: column;

@@ -10,8 +10,8 @@ import { ResourceService } from '../../services/resource.service';
 import { CategoryService } from '../../services/category.service';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { Loan } from '../../models/loan';
-import { LoanService } from '../../services/loan.service';
+import { RequestLoan } from '../../models/request-loan';
+import { LoanRequestService } from '../../services/loan-request.service';
 
 @Component({
   selector: 'app-resources',
@@ -31,7 +31,7 @@ export class ResourcesComponent implements OnInit {
 
   @ViewChild('mainTrigger') menuTrigger: MatMenuTrigger;
 
-  constructor(private categoryService: CategoryService, private resourceService: ResourceService, private loanService: LoanService, private dialog: MatDialog) {
+  constructor(private categoryService: CategoryService, private resourceService: ResourceService, private loanService: LoanRequestService, private dialog: MatDialog) {
     this.menu = [];
     this.maxDescLength = 60;
     this.buildMainMenu();
@@ -105,13 +105,13 @@ export class ResourcesComponent implements OnInit {
     this.dialog.open(ConfirmDialogComponent, { data: "¿Seguro que desea solicitar el prestamo de este recurso?." }).beforeClose().subscribe(
       result => {
         let idUser = this.getIdUser();
-        this.registerLoan(new Loan("", idUser, resource._id));
+        this.registerLoan(new RequestLoan("", idUser, resource._id));
       }
     );
   }
 
-  registerLoan(loan) {
-    this.loanService.create(loan).subscribe(
+  registerLoan(request) {
+    this.loanService.create(request).subscribe(
       response => {
         let info: Information = { title: "Solicitud de Préstamo", message: "La solicitud de préstamo se generó exitosamente" };
         this.dialog.open(InfoDialogComponent, { data: info });

@@ -15,6 +15,7 @@ var eventRoutes = require('./routes/event');
 var newsRoutes = require('./routes/news');
 var informationRoutes = require('./routes/information');
 var contactRoutes = require('./routes/info-contact');
+var loanRequestRoutes = require('./routes/request-loan');
 var loanRoutes = require('./routes/loan');
 
 
@@ -41,6 +42,7 @@ app.use('/api', newsRoutes);
 app.use('/api', eventRoutes);
 app.use('/api', informationRoutes);
 app.use('/api', contactRoutes);
+app.use('/api', loanRequestRoutes);
 app.use('/api', loanRoutes);
 
 
