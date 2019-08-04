@@ -18,6 +18,7 @@ export class Loan {
 }
 
 export interface DataResource {
+    _id: String,
     name: String,
     quantity: Number,
     note: String

@@ -64,12 +64,12 @@ export class LoansManagementComponent implements OnInit {
     for (let index = 0; index < requestLoan.resources.length; index++) {
       let resource = requestLoan.resources[index];
       if (resource.select) {
-        resources.push({ name: resource.name, note: "", quantity: 0 });
+        resources.push({ _id: resource._id, name: resource.name, note: "", quantity: 0 });
       }
     }
     var name = this.getUserName();
     if (name) {
-      loan = new Loan("", requestLoan.user[0]._id, Utilities.parseDateToString(new Date(), '-'), "", "", name, resources, "");
+      loan = new Loan("", requestLoan.user[0]._id, Utilities.parseDateToString(new Date(), '-'), null, "", name, resources, "");
     }
     return loan;
   }
@@ -104,7 +104,8 @@ export class LoansManagementComponent implements OnInit {
           response => {
             var info: Information = { title: "Préstamo", message: "Préstamo generado con exito" };
             this.dialog.open(InfoDialogComponent, { data: info });
-            this.deleteRequest(request);
+
+            this.deleteRequest(loan.user, loan.resources);
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -124,9 +125,7 @@ export class LoansManagementComponent implements OnInit {
     return valid;
   }
 
-  deleteRequest(request) {
-    var userId = request.user[0]._id;
-    var resources = request.resources;
+  deleteRequest(userId, resources) {
     for (let index = 0; index < resources.length; index++) {
       let resourceId = resources[index]._id;
       this.loanReqService.delete({ user: userId, resource: resourceId }).subscribe(
