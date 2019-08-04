@@ -51,8 +51,20 @@ function update(req, res) {
 
 // Funcion que retorna los prestamos activos
 function getActiveLoans(req, res) {
-    var loan = createLoan(req.body);
-    Loan.find({ dateEnd: null }, function (err, loans) {
+    var query = Loan.aggregate([
+        {
+            $lookup: {
+                from: 'users',
+                localField: 'user',
+                foreignField: '_id',
+                as: 'user',
+            }
+        },
+        {
+            $project: { "user.password": 0, "user.adminRole": 0, "user.admitted": 0, "user.score": 0, "user.image": 0,  "user.cvlac": 0,  "user.career": 0,  "user.semester": 0,  "user.student": 0,  "user.bornDate": 0,  "user._id": 0 }
+        }
+    ]);
+    query.exec(function (err, loans) {
         if (err) {
             res.status(500).send({ message: "Error al actualizar el recurso, comuniquese con el Administrador" });
         } else {

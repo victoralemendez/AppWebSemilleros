@@ -4,8 +4,8 @@
     <div id="content" class="col-12 col-md-10">
       <div class="row no-gutters">
 
-        <div class="col-12 col-md-2" (mouseenter)="openMainMenu()">
-          <button mat-button [matMenuTriggerFor]="mainCategories" #mainTrigger="matMenuTrigger"
+        <div class="col-12 col-md-2" (mouseleave)="openMainMenu()">
+          <button mat-button id="btnResources" [matMenuTriggerFor]="mainCategories" #mainTrigger="matMenuTrigger"
             (click)="openMainMenu()">Recursos
           </button>
           <mat-menu #mainCategories="matMenu" xPosition="after">

@@ -104,7 +104,6 @@ export class LoansManagementComponent implements OnInit {
           response => {
             var info: Information = { title: "Préstamo", message: "Préstamo generado con exito" };
             this.dialog.open(InfoDialogComponent, { data: info });
-
             this.deleteRequest(loan.user, loan.resources);
           },
           error => {
@@ -131,7 +130,7 @@ export class LoansManagementComponent implements OnInit {
       this.loanReqService.delete({ user: userId, resource: resourceId }).subscribe(
         response => {
           if (index == resources.length - 1) {
-            this.showQueueReq();
+            this.showLoans();
           }
         },
         error => {

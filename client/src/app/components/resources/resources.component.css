@@ -21,6 +21,15 @@
     box-shadow: 5px 4px 12px rgb(73, 73, 73);
 }
 
+#btnResources {
+    margin-top: 2%;
+    width: 100%;
+    background-color: rgb(68, 109, 197);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
 #infoCategory {
     padding: 2% 2% 1% 2%;
     background-color: #fff;

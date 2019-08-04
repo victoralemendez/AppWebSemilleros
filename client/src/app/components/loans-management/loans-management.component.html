@@ -4,12 +4,49 @@
   <div id="activeLonas">
     <h5>Préstamos activos</h5>
     <hr>
-
+    <div class="loan" *ngFor="let loan of activeLoans">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="item-name">{{loan.user[0].name}} {{loan.user[0].surname}}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <div class="row no-gutters">
+              <div class="col-12 col-md-7">
+                <p class="data">Correo: {{loan.user[0].email}}</p>
+              </div>
+              <div class="col-12 col-md-5">
+                <p class="data">Fecha entrega: {{loan.dateStart}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="resourceList">
+              <h6>Recursos</h6>
+              <div *ngFor="let resource of loan.resources">
+                <div class="row no-gutters dataLoanResource">
+                  <div class="col-12 col-md-4">
+                    <p class="data">Nombre: {{resource.name}}</p>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <p class="data">Cantidad: {{resource.quantity}}</p>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <p class="data">Nota: {{resource.note}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <p class="data">Entregado por: {{loan.lender}}</p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
-  <div id="queueLoans">
+  <div id="queueReqs">
     <h5>Préstamos en espera</h5>
     <hr>
-    <div class="loan" *ngFor="let req of queueReqs; let indexReq = index">
+    <div class="request" *ngFor="let req of queueReqs; let indexReq = index">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -42,8 +79,8 @@
             <div class=" row no-guters note">
               <div class="col-12 col-md-9">
                 <p class="data">Seleccione los dispositivos aprobados para préstamo</p>
-              </div>
-              <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3">
+                </div>
                 <button mat-button class="generateLoan" (click)="createLoan(req)">Generar préstamo</button>
               </div>
             </div>
