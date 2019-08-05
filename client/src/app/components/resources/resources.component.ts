@@ -47,6 +47,10 @@ export class ResourcesComponent implements OnInit {
     }
   }
 
+  getUrlImage(image) {
+    return this.resourceService.getUrlGetImage(image);
+  }
+
   sendJSON(json) {
     return JSON.stringify(json);
   }

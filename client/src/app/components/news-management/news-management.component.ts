@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { News } from '../../models/news';
 import { NewsService } from '../../services/news.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { DataNewsComponent } from '../data-news/data-news.component';
+import { DataNewsComponent, Data } from '../data-news/data-news.component';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 
 @Component({
@@ -31,15 +31,32 @@ export class NewsManagementComponent implements OnInit {
     this.msgError = '';
   }
 
+  private getUrlImage(image) {
+    return this.newsService.getUrlGetImage(image);
+  }
+
+  // Cargar imagen al servidor
+  uploadImage(newsId, files) {
+    this.newsService.updateImage(newsId, files)
+      .then((result: any) => {
+        this.loadNews();
+      });
+  }
+
   createNews() {
     let newNews: News = new News("", "", "", "");
-    this.dialog.open(DataNewsComponent, { data: newNews }).beforeClosed().subscribe(result => {
+    let data: Data = { news: newNews };
+    this.dialog.open(DataNewsComponent, { data: data }).beforeClosed().subscribe(result => {
       if (result) {
         this.newsService.create(newNews).subscribe(
           response => {
             var info: Information = { title: "Noticia creada", message: "La Noticia se ha creado exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
-            this.news.push((<any>response).news);
+            if (!data.image) {
+              this.news.push((<any>response).news);
+            } else {
+              this.uploadImage((<any>response).news._id, data.image);
+            }
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -52,11 +69,16 @@ export class NewsManagementComponent implements OnInit {
 
   updateNews(json: News, index: number) {
     var newsCloned: News = new News(json._id, json.name, json.description, json.image);
-    this.dialog.open(DataNewsComponent, { data: newsCloned }).beforeClosed().subscribe(result => {
+    let data: Data = { news: newsCloned };
+    this.dialog.open(DataNewsComponent, { data: data }).beforeClosed().subscribe(result => {
       if (result) {
         this.newsService.update(newsCloned).subscribe(
           response => {
-            this.news[index] = newsCloned;
+            if (!data.image) {
+              this.news[index] = newsCloned;
+            } else {
+              this.uploadImage(newsCloned._id, data.image);
+            }
             var info: Information = { title: "Noticia actualizada", message: "La Noticia se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
           },

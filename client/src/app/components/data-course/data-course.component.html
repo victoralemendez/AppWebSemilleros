@@ -4,26 +4,36 @@
   <mat-dialog-content class="mat-typography">
     <form id="form" #courseForm="ngForm">
       <div class="row no-gutters">
-        <div id="data" class="col-12 col-md-8 offset-md-4">
+        <div class="col-12 col-md-6">
+          <div id="image">
+            <div *ngIf="data.course.image && data.course.image != 'null'">
+              <img src="{{getUrlImage()}}" style="width: 90%; height: 150px;" alt="">
+            </div>
+          </div>
+          <p>
+            <input type="file" placeholder="Seleccionar imagen" (change)="fileChangeEvent($event)">
+          </p>
+        </div>
+        <div id="data" class="col-12 col-md-6">
           <mat-form-field>
-            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="course.name" required>
+            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="data.course.name" required>
           </mat-form-field>
           <mat-form-field>
             <input matInput type="number" min="10" placeholder="Creditos" #score="ngModel" name="score"
-              [(ngModel)]="course.score" required>
+              [(ngModel)]="data.course.score" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Link" #link="ngModel" name="link" [(ngModel)]="course.link" required>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Instructor" #link="ngModel" name="teacher" [(ngModel)]="course.teacher"
+            <input matInput placeholder="Instructor" #link="ngModel" name="teacher" [(ngModel)]="data.course.teacher"
               required>
           </mat-form-field>
-          <mat-checkbox name="internal" [labelPosition]="before" [(ngModel)]="course.internalTeacher">
+          <mat-checkbox name="internal" [labelPosition]="before" [(ngModel)]="data.course.internalTeacher">
             Instructor perteneciente al semillero</mat-checkbox>
-        </div>
+        </div>  
       </div>
       <div class="row">
+        <mat-form-field class="col-12">
+          <input matInput placeholder="Link" #link="ngModel" name="link" [(ngModel)]="data.course.link" required>
+        </mat-form-field>
         <mat-form-field class="col-12 col-md-6">
           <input matInput [min]="minStartDate" [max]="maxStartDate" [matDatepicker]="dp3"
             [formControl]="startDateControl" placeholder="Fecha de iniciación">
@@ -39,8 +49,8 @@
       </div>
       <mat-form-field>
         <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
-          name="description" [(ngModel)]="course.description" required></textarea>
-        <mat-hint align="end">{{course.description.length}} / {{length}}</mat-hint>
+          name="description" [(ngModel)]="data.course.description" required></textarea>
+        <mat-hint align="end">{{data.course.description.length}} / {{length}}</mat-hint>
       </mat-form-field>
     </form>
   </mat-dialog-content>

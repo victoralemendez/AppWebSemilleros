@@ -15,8 +15,10 @@
     background-color: #fafafa;
 }
 
-.request {
-    margin: 1px;
+.admittedUser {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .info {

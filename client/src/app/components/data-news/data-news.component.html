@@ -1,19 +1,30 @@
 <div id="base">
   <h2 mat-dialog-title align="start">Noticia</h2>
-  <p class="info">Ingrese la información de la noticia a publicar, Llene todos los campos.</p>
+  <p class="info">Ingrese la información de la noticia a publicar, Llene los campos y recuerde la publicación de imagen
+    es opcional.</p>
   <mat-dialog-content class="mat-typography">
     <form id="form" #newsForm="ngForm">
       <div class="row no-gutters">
-        <div id="data" class="col-12 col-md-8 offset-md-4">
+        <div class="col-12 col-md-6">
+          <div id="image">
+            <div *ngIf="data.news.image && data.news.image != 'null'">
+              <img src="{{getUrlImage()}}" style="width: 90%; height: 150px;" alt="">
+            </div>
+          </div>
+          <p>
+            <input type="file" placeholder="Seleccionar imagen" (change)="fileChangeEvent($event)">
+          </p>
+        </div>
+        <div id="data" class="col-12 col-md-6">
           <mat-form-field>
-            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="news.name" required>
+            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="data.news.name" required>
           </mat-form-field>
         </div>
       </div>
       <mat-form-field>
         <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
-          name="description" [(ngModel)]="news.description" required></textarea>
-        <mat-hint align="end">{{news.description.length}} / {{length}}</mat-hint>
+          name="description" [(ngModel)]="data.news.description" required></textarea>
+        <mat-hint align="end">{{data.news.description.length}} / {{length}}</mat-hint>
       </mat-form-field>
     </form>
   </mat-dialog-content>

@@ -1,5 +1,33 @@
 <div id="base">
-    
-    <app-navbar></app-navbar>
-
+    <div id="imgBandera"></div>
+    <app-navbar id="navbar"></app-navbar>
+    <div id="row" class="row justify-content-center no-gutters">
+        <div id="content" class="col-12 col-md-10">
+            <div id="items" class="row no-gutters">
+                <div id="news" class="col-12 col-md-7">
+                    <h5 class="title">Noticias</h5>
+                    <div id="new" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                    <img src="/assets/images/BANDERA_UNICAUCA.jpg" class="d-block w-100" alt="...">
+                                <p class="textNews">Nuevo sitio web para el semillero IoTIC</p>
+                            </div>
+                            <div *ngFor="let _news of news; let index = index" class="carousel-item">
+                                <img src="{{getUrlNewsImage(_news.image)}}" class="d-block w-100" alt="...">
+                                <p class="textNews">{{_news.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="courses" class="col-12 col-md-5">
+                    <h5 class="title">Cursos</h5>
+                    <div *ngFor="let course of courses" class="course">
+                        <h6 class="titleCourse">{{course.name}} |</h6>
+                        <p class="descripCourse">{{course.description}}</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -28,9 +28,6 @@
       <li class="nav-item active" *ngIf="user != null">
         <a class="nav-link" (click)="goToResources()">Recursos</a>
       </li>
-      <li class="nav-item active" *ngIf="user != null">
-        <a class="nav-link">Biblioteca</a>
-      </li>
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0" *ngIf="user != null">
       <div class="dropdown">
@@ -40,14 +37,16 @@
         </a>
 
         <div class="dropdown-menu btnConfig" aria-labelledby="dropdownMenuLink">
+          <!--
           <a class="dropdown-item btnConfig" (click)="goToProfile()">Perfil</a>
           <a class="dropdown-item btnConfig" href="#">Mis prestamos</a>
+          -->
           <a class="dropdown-item btnConfig" *ngIf="user.adminRole" (click)="goToConfig()">Ajustes</a>
           <a class="dropdown-item btnConfig" (click)="logOut()">Cerrar sesión</a>
         </div>
       </div>
     </ul>
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" *ngIf="user == null"> 
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" *ngIf="user == null">
       <li id="btnRegister" class="nav-item active">
         <a class="nav-link" (click)="goToRegister()">Registrarme</a>
       </li>

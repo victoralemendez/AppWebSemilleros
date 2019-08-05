@@ -22,7 +22,7 @@
             <div class="col-12 col-md-4" *ngFor="let resource of category.resources">
               <div class="resource">
                 <div class="resourceImage">
-
+                  <img *ngIf="resource.image && resource.image != 'null'" src="{{getUrlImage(resource.image)}}" style="height: 150px;width: 100%;" alt="">
                 </div>
                 <div class="infoResource">
                   <p class="resourceName">{{resource.name}}</p>

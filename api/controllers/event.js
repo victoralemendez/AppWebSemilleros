@@ -2,6 +2,12 @@
 
 var Event = require('../models/event');
 
+var fileSys = require('fs');
+var path = require('path');
+
+// Ruta de almacenamiento de imagenes
+const uploadImagesPath = "./uploads/events/";
+
 // Funcion que crea un event
 function createEvent(params) {
     var newEvent = new Event();
@@ -76,9 +82,51 @@ function getEvents(req, res) {
     });
 }
 
+// Funcion para almacenar una imagen a un curso
+function uploadImage(req, res) {
+    var eventId = req.params.id;
+    var fileName = 'No subido';
+    if (req.files) {
+        var filePath = req.files.image.path;
+        var fileSplit = filePath.split('/');
+        var fileName = fileSplit[2]; // 3 dado que [1] = events, [2] = /  entonces ruta : events/
+        var extSplit = fileName.split('\.');
+        var fileExt = extSplit[1];
+        if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg') {
+            Course.findByIdAndUpdate(eventId, { image: fileName }, (err, updatedEvent) => {
+                if (!updatedEvent) {
+                    res.status(500).send({ message: 'No se pudo actualizar el evento' });
+                } else {
+                    res.status(200).send({ event: updatedEvent, image: fileName });
+                }
+            });
+        } else {
+            res.status(409).send({ message: 'Extensión del archivo no válido' });
+        }
+    } else {
+        res.status(404).send({ message: 'No se ha subido ninguna imagen' });
+    }
+}
+
+// Funcion que retorna la imagen de un curso especificp
+function getImage(req, res) {
+    var imageFile = req.params.imageFile;
+    var pathFile = uploadImagesPath + imageFile;
+    fileSys.exists(pathFile, function (exists) {
+        if (exists) {
+            res.sendFile(path.resolve(pathFile));
+        } else {
+            res.status(404).send({ message: "No existe la imagen..." });
+        }
+    });
+}
+
+
 module.exports = {
     register,
     getEvents,
     update,
-    remove
+    remove,
+    getImage,
+    uploadImage
 }

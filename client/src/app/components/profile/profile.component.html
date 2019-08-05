@@ -3,8 +3,21 @@
   <div id="row" class="row no-gutters">
     <div id="content" class="col-12 col-md-8 offset-md-2">
       <div class="row no-gutters">
-        <div class="col-12 col-md-4">asdasdas</div>
-        <div class="col-12 col-md-8">asdasdas</div>
+        <div class="col-12 col-md-3">
+          <div *ngIf="user.image != 'null'">
+            <img src="{{getUrlImage()}}" style="width: 90%; height: 90;" />
+          </div>
+          <div *ngIf="user.image == 'null'">
+            <img src="assets/images/profile.png" style="width: 90%; height: 90;" />
+          </div>
+          <p>
+            <label>Subir foto</label>
+            <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
+          </p>
+        </div>
+        <div class="col-12 col-md-8">
+          <button mat-button (click)="update()">Guardar</button>
+        </div>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { NavbarComponent } from '../navbar/navbar.component';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -11,9 +11,40 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  private user: any;
+  private filesToUpload: Array<File>;
 
-  ngOnInit() {
+  constructor(private userService: UserService) {
+    this.user = null;
   }
 
+  ngOnInit() {
+    this.loadUser();
+  }
+
+  private loadUser() {
+    var identity = localStorage.getItem('identity');
+    if (identity != null) {
+      this.user = JSON.parse(identity);
+    }
+  }
+
+  getUrlImage() {
+    return this.userService.getUrlGetImage(this.user.image);
+  }
+
+  update() {
+    if (this.filesToUpload && this.filesToUpload.length > 0) {
+      this.userService.updateImage(this.user._id, this.filesToUpload)
+        .then((result: any) => {
+          this.user.image = result.image;
+          localStorage.setItem('identity', JSON.stringify(this.user));
+        });
+    }
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+  
 }

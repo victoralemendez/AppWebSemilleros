@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Event } from '../../models/event';
 import { EventService } from '../../services/event.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { DataEventComponent } from '../data-event/data-event.component';
+import { DataEventComponent, Data } from '../data-event/data-event.component';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 
 @Component({
@@ -33,13 +33,18 @@ export class EventsManagementComponent implements OnInit {
 
   createEvent() {
     let newEvent: Event = new Event("", "", "", 0, "", "");
-    this.dialog.open(DataEventComponent, { data: newEvent }).beforeClosed().subscribe(result => {
+    let data: Data = { event: newEvent };
+    this.dialog.open(DataEventComponent, { data: data }).beforeClosed().subscribe(result => {
       if (result) {
         this.eventService.create(newEvent).subscribe(
           response => {
             var info: Information = { title: "Evento creado", message: "El evento se ha creado exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
-            this.events.push((<any>response).event);
+            if (!data.image) {
+              this.events.push((<any>response).event);
+            } else {
+              this.uploadImage((<any>response).event._id, data.image);
+            }
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -52,11 +57,16 @@ export class EventsManagementComponent implements OnInit {
 
   updateEvent(json: Event, index: number) {
     var eventCloned: Event = new Event(json._id, json.name, json.description, json.score, json.date, json.image);
-    this.dialog.open(DataEventComponent, { data: eventCloned }).beforeClosed().subscribe(result => {
+    let data: Data = { event: eventCloned };
+    this.dialog.open(DataEventComponent, { data: data }).beforeClosed().subscribe(result => {
       if (result) {
         this.eventService.update(eventCloned).subscribe(
           response => {
-            this.events[index] = eventCloned;
+            if (!data.image) {
+              this.events[index] = eventCloned;
+            } else {
+              this.uploadImage(eventCloned._id, data.image);
+            }
             var info: Information = { title: "Evento actualizado", message: "El evento se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
           },
@@ -82,6 +92,18 @@ export class EventsManagementComponent implements OnInit {
           });
       }
     });
+  }
+
+  getUrlImage(image) {
+    return this.eventService.getUrlGetImage(image);
+  }
+
+  // Cargar imagen al servidor
+  uploadImage(eventId, files) {
+    this.eventService.updateImage(eventId, files)
+      .then((result: any) => {
+        this.loadEvents();
+      });
   }
 
   private getInfo() {

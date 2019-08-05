@@ -14,7 +14,8 @@
     <div class="col-12 col-md-4" *ngFor="let _news of news; let index = index">
       <div class="news">
         <div class="imageNews">
-
+          <img *ngIf="_news.image && _news.image != 'null'" src="{{getUrlImage(_news.image)}}"
+            style="height: 150px; width: 100%;" alt="">
         </div>
         <div class="infoNews">
           <p class="nameNews">{{_news.name}}</p>

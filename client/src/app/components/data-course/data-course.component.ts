@@ -4,9 +4,9 @@ import { FormControl } from '@angular/forms';
 // Imports de angular material
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
 // Componentes propios
 import { Course } from '../../models/course';
+import { CourseService } from '../../services/course.service';
 import { Utilities } from '../../services/utilities';
 
 @Component({
@@ -16,6 +16,9 @@ import { Utilities } from '../../services/utilities';
 })
 export class DataCourseComponent {
 
+  // Variable para la seleccion de imagen del curso
+  private filesToUpload: Array<File>;
+
   // Variables para controlar la cantidad de caracteres por campo
   private length: Number;
 
@@ -24,11 +27,11 @@ export class DataCourseComponent {
   private endDateControl: FormControl;
   private minStartDate: Date;
   private maxStartDate: Date;
-
+  
   // Variable para mostrar mensaje de error
   private msgError: String;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public course: Course, private dialog: MatDialogRef<any>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Data, private dialog: MatDialogRef<any>, private courseService: CourseService) {
     this.loadCourseData();
     this.length = 500;
     this.minStartDate = new Date(new Date());
@@ -42,13 +45,17 @@ export class DataCourseComponent {
     return new Date(this.startDateControl.value);
   }
 
+  private getUrlImage() {
+    return this.courseService.getUrlGetImage(this.data.course.image);
+  }
+
   private loadCourseData() {
-    if (this.course._id == "") {
+    if (this.data.course._id == "") {
       this.startDateControl = new FormControl(new Date());
       this.endDateControl = new FormControl();
     } else {
-      this.startDateControl = new FormControl(Utilities.parseStringToDate(this.course.startDate, "-"));
-      this.endDateControl = new FormControl(Utilities.parseStringToDate(this.course.endDate, "-"));
+      this.startDateControl = new FormControl(Utilities.parseStringToDate(this.data.course.startDate, "-"));
+      this.endDateControl = new FormControl(Utilities.parseStringToDate(this.data.course.endDate, "-"));
     }
   }
 
@@ -59,15 +66,23 @@ export class DataCourseComponent {
 
   // Funcion para validar el llenado de campos
   validData(): boolean {
-    return this.course.name.length > 0 && this.course.score > 0 && this.course.link.length > 0 && this.course.description.length > 0 && this.startDateControl.value != null && this.endDateControl.value != null;
+    return this.data.course.name.length > 0 && this.data.course.score > 0 && this.data.course.link.length > 0 && this.data.course.description.length > 0 && this.startDateControl.value != null && this.endDateControl.value != null;
+  }
+
+  // Funcion para capturar las imagenes a subir
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
   // Funcion para cerrar el dialogo
   closeDialog() {
     var close: boolean = false;
     if (this.validData()) {
-      this.course.startDate = Utilities.parseDateToString(this.startDateControl.value, "-");
-      this.course.endDate = Utilities.parseDateToString(this.endDateControl.value, "-");
+      this.data.course.startDate = Utilities.parseDateToString(this.startDateControl.value, "-");
+      this.data.course.endDate = Utilities.parseDateToString(this.endDateControl.value, "-");
+      if (this.filesToUpload) {
+        this.data.image = this.filesToUpload;
+      }
       this.dialog.close(true);
     } else {
       this.msgError = 'Todos los campos son obligatorios, los creditos deben ser superiores a cero';
@@ -75,4 +90,9 @@ export class DataCourseComponent {
     return close;
   }
 
+}
+
+export interface Data {
+  course: Course,
+  image?: Array<File>
 }

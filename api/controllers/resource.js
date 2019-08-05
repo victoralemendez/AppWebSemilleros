@@ -2,6 +2,12 @@
 
 var Resource = require('../models/resource');
 
+var fileSys = require('fs');
+var path = require('path');
+
+// Ruta de almacenamiento de imagenes
+const uploadImagesPath = "./uploads/resources/images/";
+
 // Funcion que crea un dispositivo con los parametros recibidos en una solicitud
 function createResource(params) {
   var resource = new Resource();
@@ -14,6 +20,47 @@ function createResource(params) {
   resource.category = params.category._id;
   return resource;
 }
+
+
+// Funcion para almacenar una imagen a un recurso
+function uploadImage(req, res) {
+  var resourceId = req.params.id;
+  var fileName = 'No subido';
+  if (req.files) {
+    var filePath = req.files.image.path;
+    var fileSplit = filePath.split('/');
+    var fileName = fileSplit[3]; // 3 dado que [1] = courses, [2] = images  entonces ruta : resources/images/
+    var extSplit = fileName.split('\.');
+    var fileExt = extSplit[1];
+    if (fileExt == 'png' || fileExt == 'jpg') {
+      Resource.findByIdAndUpdate(resourceId, { image: fileName }, (err, updatedResource) => {
+        if (!updatedResource) {
+          res.status.send({ message: 'No se pudo actualizar el recurso' });
+        } else {
+          res.status(200).send({ resource: updatedResource, image: fileName });
+        }
+      });
+    } else {
+      res.status(409).send({ message: 'Extensión del archivo no válido' });
+    }
+  } else {
+    res.status(404).send({ message: 'No se ha subido ninguna imagen' });
+  }
+}
+
+// Funcion que retorna la imagen de un recurso especificp
+function getImage(req, res) {
+  var imageFile = req.params.imageFile;
+  var pathFile = uploadImagesPath + imageFile;
+  fileSys.exists(pathFile, function (exists) {
+    if (exists) {
+      res.sendFile(path.resolve(pathFile));
+    } else {
+      res.status(404).send({ message: "No existe la imagen..." });
+    }
+  });
+}
+
 
 
 // Funcion que almacena un dispositivo
@@ -86,5 +133,8 @@ module.exports = {
   register,
   update,
   getResources,
-  getResourcesCategory
+  getResourcesCategory,
+  getImage,
+  getResources,
+  uploadImage
 }

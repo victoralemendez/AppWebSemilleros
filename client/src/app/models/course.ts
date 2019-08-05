@@ -10,7 +10,7 @@ export class Course {
         public endDate: String,
         public teacher: String,
         public internalTeacher: Boolean,
-        public image?: String
+        public image?: any
     ) {}
 
 }

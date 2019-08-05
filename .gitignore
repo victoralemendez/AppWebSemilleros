@@ -1,5 +1,13 @@
 api/node_modules/*
 api/node_modules/.*
+api/uploads/users/cvlacs/*
+api/uploads/users/images/*
+api/uploads/resources/documents/*
+api/uploads/resources/images/*
+api/uploads/events/*
+api/uploads/loans/*
+api/uploads/courses/images/
+api/uploads/news/*
 client/node_modules/*
 client/node_modules/.*
 

@@ -2,6 +2,12 @@
 
 var News = require('../models/news');
 
+var fileSys = require('fs');
+var path = require('path');
+
+// Ruta de almacenamiento de imagenes
+const uploadImagesPath = "./uploads/news/";
+
 // Funcion que crea una Noticia
 function createNews(params) {
     var newNews = new News();
@@ -74,9 +80,50 @@ function getNews(req, res) {
     });
 }
 
+// Funcion para almacenar una imagen a una noticia
+function uploadImage(req, res) {
+    var newsId = req.params.id;
+    var fileName = 'No subido';
+    if (req.files) {
+        var filePath = req.files.image.path;
+        var fileSplit = filePath.split('/');
+        var fileName = fileSplit[2]; // 2 dado que [1] = news/, entonces ruta : news/
+        var extSplit = fileName.split('\.');
+        var fileExt = extSplit[1];
+        if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg') {
+            News.findByIdAndUpdate(newsId, { image: fileName }, (err, updatedNews) => {
+                if (!updatedNews) {
+                    res.status(500).send({ message: 'No se pudo actualizar el la noticia' });
+                } else {
+                    res.status(200).send({ news: updatedNews, image: fileName });
+                }
+            });
+        } else {
+            res.status(409).send({ message: 'Extensión del archivo no válido' });
+        }
+    } else {
+        res.status(404).send({ message: 'No se ha subido ninguna imagen' });
+    }
+}
+
+// Funcion que retorna la imagen de un curso especificp
+function getImage(req, res) {
+    var imageFile = req.params.imageFile;
+    var pathFile = uploadImagesPath + imageFile;
+    fileSys.exists(pathFile, function (exists) {
+        if (exists) {
+            res.sendFile(path.resolve(pathFile));
+        } else {
+            res.status(404).send({ message: "No existe la imagen..." });
+        }
+    });
+}
+
 module.exports = {
     register,
     getNews,
     update,
-    remove
+    remove,
+    getImage,
+    uploadImage
 }

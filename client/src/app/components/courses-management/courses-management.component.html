@@ -14,7 +14,7 @@
     <div class="col-12 col-md-4" *ngFor="let course of courses; let index = index">
       <div class="course">
         <div class="imageCourse">
-
+          <img *ngIf="course.image && course.image != 'null'" src="{{getUrlImage(course.image)}}" style="height: 150px; width: 100%;" alt="">
         </div>
         <div class="infoCourse">
           <p class="nameCourse">{{course.name}}</p>

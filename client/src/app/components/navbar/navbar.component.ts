@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   private loadUser() {
     var identity = localStorage.getItem('identity');
     this.user = null;
-    if (identity != 'null') {
+    if (identity != null) {
       let json = JSON.parse(identity);
       this.user = User.buildFromJSON(json);
     }

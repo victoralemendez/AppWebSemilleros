@@ -10,6 +10,7 @@ import { DataLoanComponent } from '../data-loan/data-loan.component';
 import { LoanRequestService } from '../../services/loan-request.service';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 import { Utilities } from '../../services/utilities';
+import { ResourceService } from '../../services/resource.service';
 
 @Component({
   selector: 'app-loans-management',
@@ -22,7 +23,7 @@ export class LoansManagementComponent implements OnInit {
   private activeLoans: any[];
   private selectedReq: any;
 
-  constructor(private loanReqService: LoanRequestService, private dialog: MatDialog, private loanService: LoanService) {
+  constructor(private loanReqService: LoanRequestService, private dialog: MatDialog, private loanService: LoanService, private resourceService: ResourceService) {
     this.queueReqs = [];
     this.activeLoans = [];
     this.selectedReq = null;
@@ -140,6 +141,10 @@ export class LoansManagementComponent implements OnInit {
         }
       );
     }
+  }
+
+  getUrlImage(image) {
+    return this.resourceService.getUrlGetImage(image);
   }
 
 }

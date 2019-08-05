@@ -8,7 +8,7 @@
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title class="item-name">{{loan.user[0].name}} {{loan.user[0].surname}}</mat-panel-title>
+            <mat-panel-title>{{loan.user[0].name}} {{loan.user[0].surname}}</mat-panel-title>
           </mat-expansion-panel-header>
           <div>
             <div class="row no-gutters">
@@ -59,7 +59,8 @@
             <div *ngFor="let resource of req.resources; let indexResource = index" class="col-12 col-md-4">
               <div class="resource" *ngIf="!resource.select" (click)="selectResource(indexReq, indexResource)">
                 <div class="image">
-
+                  <img *ngIf="resource.image && resource.image != 'null'" style="width: 100%; height: 150px;"
+                    src="{{getUrlImage(resource.image)}}" alt="">
                 </div>
                 <div class="info">
                   <p class="resourceName">{{resource.name}}</p>
@@ -68,7 +69,8 @@
               </div>
               <div class="resourceSelect" *ngIf="resource.select" (click)="deselectResource(indexReq, indexResource)">
                 <div class="image">
-
+                  <img *ngIf="resource.image && resource.image != 'null'" style="width: 100%; height: 150px;"
+                    src="{{getUrlImage(resource.image)}}" alt="">
                 </div>
                 <div class="info">
                   <p class="resourceSelectName">{{resource.name}}</p>
@@ -79,9 +81,9 @@
             <div class=" row no-guters note">
               <div class="col-12 col-md-9">
                 <p class="data">Seleccione los dispositivos aprobados para préstamo</p>
+              </div>
                 <div class="col-12 col-md-3">
-                </div>
-                <button mat-button class="generateLoan" (click)="createLoan(req)">Generar préstamo</button>
+                  <button mat-button class="generateLoan" (click)="createLoan(req)">Generar préstamo</button>
               </div>
             </div>
           </div>

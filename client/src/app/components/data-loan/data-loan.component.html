@@ -17,13 +17,14 @@
               </div>
               <div class="col-12 col-md-4 field">
                 <mat-form-field>
-                  <input matInput placeholder="Cantidad" #quantity="ngModel" type="number" min="0" max="40" name="quantity"
-                    [(ngModel)]="resource.quantity" required>
+                  <input matInput placeholder="Cantidad" #quantity="ngModel" type="number" min="0" max="40"
+                    name="quantity" [(ngModel)]="resource.quantity" required>
                 </mat-form-field>
               </div>
               <div class="col-12 col-md-4 field">
                 <mat-form-field>
-                  <input matInput placeholder="Nota" #note="ngModel" name="note" maxlength="15" [(ngModel)]="resource.note">
+                  <input matInput placeholder="Nota" #note="ngModel" name="note" maxlength="20"
+                    [(ngModel)]="resource.note">
                 </mat-form-field>
               </div>
             </div>
@@ -44,7 +45,7 @@
   </mat-dialog-content>
   <p id="error" *ngIf="msgError != ''">{{msgError}}</p>
   <mat-dialog-actions align="end">
-      <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
-      <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
-    </mat-dialog-actions>
+    <button id="btn-cancel" [mat-dialog-close]="false" mat-button>Cancelar</button>
+    <button id="btn-save" mat-button (click)="closeDialog()" cdkFocusInitial>Guardar</button>
+  </mat-dialog-actions>
 </div>

@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 // Componentes y servicios propios
 import { Resource } from '../../models/resource';
-import { DataResourceComponent } from '../data-resource/data-resource.component';
+import { DataResourceComponent, Data } from '../data-resource/data-resource.component';
 import { InfoDialogComponent, Information } from '../info-dialog/info-dialog.component';
 import { ResourceService } from '../../services/resource.service';
 
@@ -59,13 +59,18 @@ export class ResourcesManagementComponent implements OnInit {
   // Funcion encargada de la respuesta del servidor al crear un curso
   create() {
     let resource: Resource = new Resource("", "", "", false, "", "", { _id: null, name: "" }, "");
-    this.dialog.open(DataResourceComponent, { data: resource }).beforeClosed().subscribe(result => {
+    let data: Data = { resource: resource };
+    this.dialog.open(DataResourceComponent, { data: data }).beforeClosed().subscribe(result => {
       if (result) {
         this.resourceService.create(resource).subscribe(
           response => {
             var info: Information = { title: "Recurso creado", message: "El recurso se ha creado exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
-            this.showResources();
+            if (!data.image) {
+              this.showResources();
+            } else {
+              this.uploadImage((<any>response).resource._id, data.image);
+            }
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };
@@ -85,16 +90,33 @@ export class ResourcesManagementComponent implements OnInit {
     return shortDescrip;
   }
 
+  private getUrlImage(resource) {
+    return this.resourceService.getUrlGetImage(resource.image);
+  }
+
+  // Cargar imagen al servidor
+  uploadImage(resourceId, files) {
+    this.resourceService.updateImage(resourceId, files)
+      .then((result: any) => {
+        this.showResources();
+      });
+  }
+
   // Funcion encargada de la respuesta del servidor al modificar un curso
   update(json: any) {
     var resourceCloned: Resource = new Resource(json._id, json.name, json.description, json.avialable, json.reference, json.features, json.category, json.image);
-    this.dialog.open(DataResourceComponent, { data: resourceCloned }).beforeClosed().subscribe(result => {
+    let data: Data = { resource: resourceCloned };
+    this.dialog.open(DataResourceComponent, { data: data }).beforeClosed().subscribe(result => {
       if (result) {
         this.resourceService.update(resourceCloned).subscribe(
           response => {
-            this.showResources();
             var info: Information = { title: "Recurso actualizado", message: "El recurso se actualizó exitosamente" };
             this.dialog.open(InfoDialogComponent, { data: info });
+            if (!data.image) {
+              this.showResources();
+            } else {
+              this.uploadImage(resourceCloned._id, data.image);
+            }
           },
           error => {
             var info: Information = { title: "Error", message: (<any>error).error.message };

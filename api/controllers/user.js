@@ -1,9 +1,13 @@
 'user strict'
 
-var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user');
 var jwt = require('../services/jwt');
+var fileSys = require('fs');
+var path = require('path');
 
+
+// Ruta de almacenamiento de imagenes
+const uploadImagesPath = "./uploads/users/images/";
 
 // Funcion encargada de la autenticación de usuarios mediante credenciales
 function login(req, res) {
@@ -18,7 +22,6 @@ function login(req, res) {
                 res.status(404).send({ message: "El usuario no existe o aún no se ha aceptado su solicitud" });
             } else {
                 if (password == user.password) {
-                    // Devolver datos del usuario identifi#!/usr/bin/env jscado
                     if (params.getHash) {
                         res.status(200).send({
                             token: jwt.createToken(user)
@@ -30,6 +33,45 @@ function login(req, res) {
                     res.status(401).send({ message: "Usuario o contraseña incorrectas" });
                 }
             }
+        }
+    });
+}
+
+// Funcion para almacenar una imagen a un usuairo
+function uploadImage(req, res) {
+    var userId = req.params.id;
+    var fileName = 'No subido';
+    if (req.files) {
+        var filePath = req.files.image.path;
+        var fileSplit = filePath.split('/');
+        var fileName = fileSplit[3]; // 3 dado que [1] = users, [2] = images  entonces ruta : users/images/
+        var extSplit = fileName.split('\.');
+        var fileExt = extSplit[1];
+        if (fileExt == 'png' || fileExt == 'jpg') {
+            User.findByIdAndUpdate(userId, { image: fileName }, (err, updatedUser) => {
+                if (!updatedUser) {
+                    res.status(500).send({ message: 'No se pudo actualizar el usuario' });
+                } else {
+                    res.status(200).send({ user: updatedUser, image: fileName });
+                }
+            });
+        } else {
+            res.status(409).send({ message: 'Extensión del archivo no válido' });
+        }
+    } else {
+        res.status(404).send({ message: 'No se ha subido ninguna imagen' });
+    }
+}
+
+// Funcion que retorna la imagen de un usuario especificp
+function getImage(req, res) {
+    var imageFile = req.params.imageFile;
+    var pathFile = uploadImagesPath + imageFile;
+    fileSys.exists(pathFile, function (exists) {
+        if (exists) {
+            res.sendFile(path.resolve(pathFile));
+        } else {
+            res.status(404).send({ message: "No existe la imagen..." });
         }
     });
 }
@@ -65,7 +107,6 @@ function remove(req, res) {
     });
 }
 
-
 function getUsersNotActivated(req, res) {
     User.find({ admitted: false }, function (err, users) {
         if (err) {
@@ -75,20 +116,6 @@ function getUsersNotActivated(req, res) {
                 res.status(404).send({ message: "No se encontraron solicitudes registradas" });
             } else {
                 res.status(200).send({ users });
-            }
-        }
-    });
-}
-
-function getCountUsersNotActivated(req, res) {
-    User.find({ admitted: false }, function (err, users) {
-        if (err) {
-            res.status(500).send({ message: "Error interno, contacte con el administrador" });
-        } else {
-            if (!users) {
-                res.status(404).send({ message: "No se encontraron solicitudes registradas" });
-            } else {
-                res.status(200).send({ number: users.length });
             }
         }
     });
@@ -107,23 +134,6 @@ function getUsersActivated(req, res) {
         }
     });
 }
-
-/*
-pt.compare(password, user.password, function (err, check) {
-                    if (check) {
-                        // Devolver datos del usuario identificado
-                        if (params.getHash) {
-                            res.status(200).send({
-                                token: jwt.createToken(user)
-                            } else {
-                                res.status(200).send({ user });
-                            });
-                        }
-                    } else {
-                        res.status(404).send({ message: "Usuario o contraseña incorrectas" });
-                    }
-                });
-*/
 
 
 // Funcion para crear un usuario nuevo
@@ -179,5 +189,7 @@ module.exports = {
     update,
     remove,
     getUsersNotActivated,
-    getUsersActivated
+    getUsersActivated,
+    uploadImage,
+    getImage
 };

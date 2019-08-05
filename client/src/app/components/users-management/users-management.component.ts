@@ -39,6 +39,10 @@ export class UsersManagementComponent implements OnInit {
     );
   }
 
+  getUrlImage(user) {
+    return this.userService.getUrlGetImage(user.image);
+  }
+
   getShortName(name, surname) {
     var names = name.split(' ');
     var surnames = surname.split(' ');

@@ -14,7 +14,8 @@
     <div class="col-12 col-md-4" *ngFor="let event of events; let index = index">
       <div class="event">
         <div class="imageEvent">
-
+          <img *ngIf="event.image && event.image != 'null'" src="{{getUrlImage(event.image)}}"
+            style="height: 150px; width: 100%;" alt="">
         </div>
         <div class="infoEvent">
           <p class="nameEvent">{{event.name}}</p>

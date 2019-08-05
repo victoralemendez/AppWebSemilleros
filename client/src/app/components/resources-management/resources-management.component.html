@@ -11,14 +11,14 @@
     </button>
   </div>
 
-  <div id="deviceList" class="row no-gutters">
+  <div id="resourceList" class="row no-gutters">
     <div class="col-12 col-md-4" *ngFor="let resource of resources; let index = index">
-      <div class="device">
-        <div class="imageDevice">
-
+      <div class="resource">
+        <div class="imageResource">
+          <img *ngIf="resource.image && resource.image != 'null'" src="{{getUrlImage(resource)}}" style="width: 100%; height: 150px;;" alt="">
         </div>
-        <div class="infoDevice">
-          <p class="nameDevice">{{resource.name}}</p>
+        <div class="infoResource">
+          <p class="nameResource">{{resource.name}}</p>
           <p class="description">{{getShortDescription(resource.description)}}</p>
           <p class="description">Estado: {{getStringState(resource.avialable)}}</p>
           <p class="description">Categoría: {{resource.category.name}}</p>

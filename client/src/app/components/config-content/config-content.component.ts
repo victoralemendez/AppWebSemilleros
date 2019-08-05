@@ -11,7 +11,7 @@ export class ConfigContentComponent implements OnInit {
   private codeDisplayed: number;
 
   constructor() {
-    this.codeDisplayed = 10;
+    this.codeDisplayed = 1;
   }
 
   ngOnInit() {

@@ -4,9 +4,19 @@
   <mat-dialog-content class="mat-typography">
     <form id="form" #eventForm="ngForm">
       <div class="row no-gutters">
-        <div id="data" class="col-12 col-md-8 offset-md-4">
+        <div class="col-12 col-md-6">
+          <div id="image">
+            <div *ngIf="data.event.image && data.event.image != 'null'">
+              <img src="{{getUrlImage()}}" style="width: 90%; height: 150px;" alt="">
+            </div>
+          </div>
+          <p>
+            <input type="file" placeholder="Seleccionar imagen" (change)="fileChangeEvent($event)">
+          </p>
+        </div>
+        <div id="data" class="col-12 col-md-6">
           <mat-form-field>
-            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="event.name" required>
+            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="data.event.name" required>
           </mat-form-field>
           <mat-form-field>
             <input matInput [min]="minStartDate" [max]="maxStartDate" [matDatepicker]="dp3"
@@ -16,14 +26,14 @@
           </mat-form-field>
           <mat-form-field>
             <input matInput type="number" min="10" placeholder="Creditos" #score="ngModel" name="score"
-              [(ngModel)]="event.score" required>
+              [(ngModel)]="data.event.score" required>
           </mat-form-field>
         </div>
       </div>
       <mat-form-field>
         <textarea id="description" matInput maxlength="{{length}}" placeholder="Descripción" #description="ngModel"
-          name="description" [(ngModel)]="event.description" required></textarea>
-        <mat-hint align="end">{{event.description.length}} / {{length}}</mat-hint>
+          name="description" [(ngModel)]="data.event.description" required></textarea>
+        <mat-hint align="end">{{data.event.description.length}} / {{length}}</mat-hint>
       </mat-form-field>
     </form>
   </mat-dialog-content>
