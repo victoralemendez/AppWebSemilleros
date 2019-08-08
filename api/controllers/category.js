@@ -2,7 +2,11 @@
 
 var Category = require('../models/category');
 
-// Funcion encargada de crear el prototipo que se almacenará en la base de datos
+/**
+ * @description Funcion encargada de crear una nueva Categoria con el modelo de la base de datos
+ * @param {JSON} params Datos de la categoria que son recibidas en una solicitud
+ * @returns {Category} Retorna la nueva categoria creada
+ */
 function createCategory(params) {
   var category = new Category();
   category.name = params.name;

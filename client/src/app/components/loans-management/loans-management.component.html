@@ -37,7 +37,14 @@
               </div>
             </div>
             <hr>
-            <p class="data">Entregado por: {{loan.lender}}</p>
+            <div class="row no-gutters note">
+              <div class="col-12 col-md-9">
+                <p class="data">Entregado por: {{loan.lender}}</p>
+              </div>
+              <div class="col-12 col-md-3">
+                <button mat-button class="finishLoan">Terminar</button>
+              </div>
+            </div>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
@@ -50,7 +57,7 @@
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title class="item-name">{{req.user[0].name}} {{req.user[0].surname}}</mat-panel-title>
+            <mat-panel-title>{{req.user[0].name}} {{req.user[0].surname}}</mat-panel-title>
           </mat-expansion-panel-header>
           <div class="row no-gutters resources">
             <div class="dataUser">
@@ -78,12 +85,12 @@
                 </div>
               </div>
             </div>
-            <div class=" row no-guters note">
+            <div class="row no-guters note">
               <div class="col-12 col-md-9">
                 <p class="data">Seleccione los dispositivos aprobados para préstamo</p>
               </div>
-                <div class="col-12 col-md-3">
-                  <button mat-button class="generateLoan" (click)="createLoan(req)">Generar préstamo</button>
+              <div class="col-12 col-md-3">
+                <button mat-button class="generateLoan" (click)="createLoan(req)">Generar préstamo</button>
               </div>
             </div>
           </div>

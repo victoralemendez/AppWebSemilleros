@@ -11,16 +11,16 @@
     </button>
   </div>
   <div id="contactList" class="row no-gutters">
-    <div class="col-12 col-md-4" *ngFor="let contact of contacts; let index = index">
+    <div class="col-12 col-md-6" *ngFor="let contact of contacts; let index = index">
       <div class="contact">
         <div class="infoContact">
           <p class="title">{{contact.title}}</p>
           <p class="text">{{contact.text}}</p>
-          <div class="row justify-content-center no-gutters">
-            <div class="col-12 col-md-6">
+          <div class="row justify-content-end no-gutters">
+            <div class="col-12 col-md-4">
               <button class="btnDelete" (click)="deleteContact(index)">Eliminar</button>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
               <button class="btnEdit" (click)="updateContact(index)">Editar</button>
             </div>
           </div>

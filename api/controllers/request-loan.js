@@ -83,6 +83,23 @@ function getReqPerUser(req, res) {
     });
 }
 
+// Funcion que retorna todos los prestamos para un usuario, funcion optimizada para consumir pocos recursos
+function getReqUser(req, res) {
+    var userId = req.params.id;
+    var query = RequestLoan.find({ user: userId });
+    query.populate({ path: 'resource' }).exec(function (err, requests) {
+        if (err) {
+            res.status(500).send({ message: "Ocurrió un error interno, comuniquese con el servidor" });
+        } else {
+            if (!requests) {
+                res.status(404).send({ message: "No se encontrarón préstamos" });
+            } else {
+                res.status(200).send({ requests });
+            }
+        }
+    });
+}
+
 // Funcion que elimina una solicitud
 function remove(req, res) {
     var idUser = req.body.user;
@@ -103,5 +120,6 @@ function remove(req, res) {
 module.exports = {
     register,
     remove,
-    getReqPerUser
+    getReqPerUser,
+    getReqUser
 }

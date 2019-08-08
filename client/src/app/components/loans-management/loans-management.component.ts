@@ -62,13 +62,13 @@ export class LoansManagementComponent implements OnInit {
   buildLoan(requestLoan) {
     var loan = null;
     var resources: DataResource[] = [];
+    var name = this.getUserName();
     for (let index = 0; index < requestLoan.resources.length; index++) {
       let resource = requestLoan.resources[index];
       if (resource.select) {
         resources.push({ _id: resource._id, name: resource.name, note: "", quantity: 0 });
       }
     }
-    var name = this.getUserName();
     if (name) {
       loan = new Loan("", requestLoan.user[0]._id, Utilities.parseDateToString(new Date(), '-'), null, "", name, resources, "");
     }
@@ -101,17 +101,19 @@ export class LoansManagementComponent implements OnInit {
     var loan: Loan = this.buildLoan(request);
     if (loan && this.validateLoan(loan)) {
       this.dialog.open(DataLoanComponent, { data: loan }).beforeClosed().subscribe(result => {
-        this.loanService.create(loan).subscribe(
-          response => {
-            var info: Information = { title: "Préstamo", message: "Préstamo generado con exito" };
-            this.dialog.open(InfoDialogComponent, { data: info });
-            this.deleteRequest(loan.user, loan.resources);
-          },
-          error => {
-            var info: Information = { title: "Error", message: (<any>error).error.message };
-            this.dialog.open(InfoDialogComponent, { data: info });
-          }
-        );
+        if (result) {
+          this.loanService.create(loan).subscribe(
+            response => {
+              var info: Information = { title: "Préstamo", message: "Préstamo generado con exito" };
+              this.dialog.open(InfoDialogComponent, { data: info });
+              this.deleteRequest(loan.user, loan.resources);
+            },
+            error => {
+              var info: Information = { title: "Error", message: (<any>error).error.message };
+              this.dialog.open(InfoDialogComponent, { data: info });
+            }
+          );
+        }
       });
     }
   }
@@ -131,7 +133,9 @@ export class LoansManagementComponent implements OnInit {
       this.loanReqService.delete({ user: userId, resource: resourceId }).subscribe(
         response => {
           if (index == resources.length - 1) {
+            console.log("Final");
             this.showLoans();
+            this.showQueueReq();
           }
         },
         error => {
